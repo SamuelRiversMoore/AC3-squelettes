@@ -139,7 +139,7 @@ section.dashboard .enfant, section.dashboard .contributeur{
 	vertical-align: middle;
 }
 .onglet>[type=radio]:checked ~ label{
-	background: #FFC200;
+	background: var(--green-medium);
 	z-index: 2;
 	color: #666;
 	color: rgba(0, 0, 0, 0.56);
@@ -546,18 +546,18 @@ section.administration form input.petit.bouton{padding:0; margin:0; margin-right
 	vertical-align: baseline;
 }
 .bouton.ajouter{
-	background: #007AC8;
+	background: var(--brown-dark);
 	color: #fff;
 }
 .bouton.montrer{
-	background: #007AC8;
+	background: var(--brown-dark);
 	color: #fff;
 }
 .bouton.ajouter.interne{
 	background: #88ABC1;
 }
 .bouton.ajouter.externe, .bouton.ajouter.article{
-	background: #FFC200;
+	background: var(--green-medium);
 }
 .bouton.ajouter.article{
 	margin-bottom: 16px;
@@ -1143,7 +1143,7 @@ ul.mediatheque li.media .preview{
 	cursor: pointer;
 }
 .item>input:checked + label{
-	background: #3C87B6;
+	background: var(--green-medium);
 	color: #fff;
 }
 .item>input:checked + label .item-texte{
