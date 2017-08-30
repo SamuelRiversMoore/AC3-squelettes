@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="[(#ENV{lang}|sinon{fr})]">
+<INCLURE{fond=inc/header, env}>
+	<body [(#SESSION{statut}|oui)class="logged"]>
+
+    #SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+    [ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+	<BOUCLE_villes (VILLES projets_liens) {id_projet} {statut IN #GET{statut}}>
+		<BOUCLE_pays (PAYS villes_liens) {id_ville} {statut IN #GET{statut}}>
+			<INCLURE{fond=inc/menu, env, id_rubrique=3, id_pay, id_ville, id_projet} />
+			<INCLURE{fond=inc/pages/inventaire/projets, env, id_ville, id_pay, id_projet} />
+		</BOUCLE_pays>
+	</BOUCLE_villes>
+
+	<INCLURE{fond=inc/footer}>
+
+	</body>
+</html>

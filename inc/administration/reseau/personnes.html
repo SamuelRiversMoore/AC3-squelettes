@@ -1,0 +1,18 @@
+<section class="administration mini">
+    <BOUCLE_personne (PERSONNES) {id_personne} {tout}>
+
+        [(#AFFICHER|=={editer_personne}|et{#CIBLE|=={#ID_PERSONNE}}|non)
+            <a class="bouton moyen modifier icon fa-pencil" href="[(#SELF|parametre_url{afficher, editer_personne}|parametre_url{cible,#ID_PERSONNE})]" title="<:lped:personne_modifier:>"></a>
+        ]
+
+        [(#FORMULAIRE_MODERATION_OBJET{personnes,personne,#ID_PERSONNE})]
+
+        [(#AFFICHER|=={personne_ok}|et{#CIBLE|=={#ID_PERSONNE}}|oui)<p class="message ok"><:lped:enregistrement_ok:></p>]
+
+        [(#AFFICHER|=={editer_personne}|et{#CIBLE|=={#ID_PERSONNE}}|oui)
+             [(#FORMULAIRE_EDITION_PERSONNE{#ID_PERSONNE,'',[(#SELF|parametre_url{'afficher','personne_ok'}|parametre_url{cible,#ID_PERSONNE})]})]
+        ]
+
+
+    </BOUCLE_personne>
+</section>

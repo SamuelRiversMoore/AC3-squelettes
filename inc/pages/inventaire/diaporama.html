@@ -1,0 +1,16 @@
+<B_images>
+	<div id="inventaire-images">
+		<h5>— <:lped:images:></h5>
+		<div class="slider-wrapper">
+			<div class="slider">
+				<BOUCLE_images (DOCUMENTS) {id_projet} {extension==jpg|png|gif} {par num titre} {tout}>
+					<figure>
+						<span class="repere"></span>
+						<img src="[(#FICHIER|image_reduire{1200,1000}|extraire_attribut{src})]"/>
+					</figure>
+				</BOUCLE_images>
+			</div>
+		</div>
+		<div class="slick-zoom">zoom</div>
+	</div>
+</B_images>

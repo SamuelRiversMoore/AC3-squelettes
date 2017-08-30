@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="[(#ENV{lang}|sinon{fr})]">
+<INCLURE{fond=inc/header, env}>
+	<body [(#SESSION{statut}|oui)class="logged"]>
+	<INCLURE{fond=inc/menu, env, id_rubrique}>
+
+	<!-- accueil -->
+	[(#ID_RUBRIQUE|=={1}|oui) <INCLURE{fond=inc/pages/accueil}, env> ]
+
+	<!-- journal -->
+	[(#ID_RUBRIQUE|=={2}|oui) <INCLURE{fond=inc/pages/journal, env, id_rubrique}> ]
+
+	<!-- inventaire -->
+	[(#ID_RUBRIQUE|=={3}|oui) <INCLURE{fond=inc/pages/inventaire}, env> ]
+
+	<!-- synthèses -->
+	[(#ID_RUBRIQUE|=={24}|oui) <INCLURE{fond=inc/pages/syntheses, env, id_rubrique}> ]
+
+	<!-- lexique -->
+	[(#ID_RUBRIQUE|=={5}|oui) <INCLURE{fond=inc/pages/lexique, env, id_rubrique}> ]
+
+	<!-- réseau -->
+	[(#ID_RUBRIQUE|=={6}|oui) <INCLURE{fond=inc/pages/reseau, env, id_rubrique}> ]
+
+	<!-- à propos -->
+	[(#ID_RUBRIQUE|=={7}|oui) <INCLURE{fond=inc/pages/apropos, env, id_rubrique}> ]
+
+
+	<INCLURE{fond=inc/footer}>
+
+	</body>
+</html>

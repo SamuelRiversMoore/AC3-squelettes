@@ -1,0 +1,109 @@
+
+<BOUCLE_villes(VILLES){id_ville}{tout}>
+<div id="contenu" class="wrapper">
+
+	<INCLURE{fond=inc/pages/inventaire/ariane, id_pay, id_ville}>
+
+	<header>
+		<h1>[(#ENV{lang}|=={fr}|oui)[(#NOM_FR)]] [(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</h1>
+		[(#REM) on affiche le panneau d'administration]
+		[(#AUTORISER{modifier,ville,#ID_VILLE}|oui) <INCLURE{fond=inc/administration/inventaire/villes, afficher, id_ville} /> ]
+
+		[(#REM) pour ajouter un projet]
+		[(#AUTORISER{creer,projet}|oui)
+			[(#AFFICHER|=={'nouveau_projet'}|oui)
+				[(#FORMULAIRE_EDITION_PROJET{'new', 'ville', #ID_VILLE} )]
+			]
+			<a class="gros bouton ajouter article icon fa-map-marker" href="#URL_ACTION_AUTEUR{creer_projet,#ID_VILLE,#URL_VILLE{#ID_VILLE}|parametre_lang}"><:lped:projet_ajouter:></a>
+		]
+
+
+	</header>
+
+
+	<!-- inclusion thematiques -->
+	<INCLURE{fond=inc/pages/inventaire/thematiques, afficher, thematique, chapitre, document, id_ville}>
+
+	#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+	[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+	<B_projets>
+	    <section id="ville-projet">
+            <h5>— <:lped:projets:></h5>
+	        <BOUCLE_projets (PROJETS) {id_ville} {statut IN #GET{statut}}>
+				[(#REM) on on a le droit de voir la projet]
+				[(#AUTORISER{voir,projet,#ID_PROJET}|oui)
+		            <a href="[(#URL_PROJET|parametre_lang)]">
+		                <article>
+		                    <h2>
+		                        <span>
+		                            [ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR) ] ]
+		                            [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]
+									<span class="status [(#ENV{lang}|sinon{fr})] [(#SESSION{statut}|oui) [(#STATUT)] ]"></span>
+		                        </span>
+		                    </h2>
+				]
+			                <BOUCLE_images (DOCUMENTS){id_projet}{extension==jpg|png|gif}{0,1}{par num titre}{si #AUTORISER{voir,projet,#ID_PROJET}}>
+			                    <figure style="background-image: url('[(#FICHIER|image_passe_partout{390,265}|image_recadre{390,265}|extraire_attribut{src})]')">
+			                    </figure>
+			                </BOUCLE_images>
+											[(#AUTORISER{voir,projet,#ID_PROJET}|oui)<figure></figure>]
+			                <//B_images>
+
+				[(#REM) on on a le droit de voir la projet]
+				[(#AUTORISER{voir,projet,#ID_PROJET}|oui)
+						<!--
+		                    [ (#ENV{lang}|=={fr}|oui) [ <section>(#DESCRIPTION_FR|couper{160})</section>] ]
+		                    [ (#ENV{lang}|=={en}|oui) [ <section>(#DESCRIPTION_EN|couper{160}|sinon{#DESCRIPTION_FR|couper{160}}) </section>] ]
+		                -->
+		                </article>
+		            </a>
+				]
+	        </BOUCLE_projets>
+	    </section>
+	</B_projets>
+
+
+
+	<BOUCLE_test_projets (PROJETS){id_ville}{longitude != ''}{0,1}>
+		<div id="inventaire-carte">
+			<h5>— <:lped:carte_projets:></h5>
+			<div id="inventaire-mapbox"></div>
+		</div>
+	</BOUCLE_test_projets>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+	var maxZoom = 12;
+
+	var geojson = [
+		<BOUCLE_projets_carte(PROJETS){id_ville}{longitude != ''}>
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [[(#LONGITUDE)], [(#LATITUDE)]]
+			},
+			"properties": {
+				"title": "#TITRE_FR",
+				"marker-color": "#FFDB16",
+				"marker-size": "medium",
+				"url": "#URL_PROJET",
+				"icon": {
+					"className": "my-icon icon-dc", // class name to style
+					"html": "&#9733;", // add content inside the marker
+					"iconSize": null // size of icon, use null to set the size in CSS
+				}
+			}
+		},
+		</BOUCLE_projets_carte>
+
+	];
+</script>
+
+
+</BOUCLE_villes>

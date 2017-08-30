@@ -1,0 +1,59 @@
+#SET{formats_images, #ARRAY{gif, jpg, jpeg, png}}
+
+<div class="onglets">
+	<header><:lped:document_provenance:></header>
+
+	<div class="onglet">
+		 <input type="radio" id="onglet-1" name="onglet-group-1" checked>
+		 <label for="onglet-1" class="icon fa-arrow-circle-up"><:lped:document_uploader:></label>
+		 <div class="onglet-content centered">
+			[<p class="message erreur icon fa-exclamation-triangle">(#ENV**{erreurs}|table_valeur{'fichier_upload_erreur'})</p>]
+			<div class="upload-block">
+				<div id="inputImg">
+					<img src="">
+				</div>
+				<input type="file" id="fileupload" name="fichier_upload" class="fileupload hiddeninput" />
+				<label for="fileupload"><:lped:document_upload:></label>
+			</div>
+		 </div>
+	</div>
+
+	<div class="onglet">
+		 <input type="radio" id="onglet-2" name="onglet-group-1">
+		 <label for="onglet-2" class="icon fa-link"><:lped:document_url:></label>
+		 <div class="onglet-content centered">
+					[<p class="message erreur icon fa-exclamation-triangle">(#ENV**{erreurs}|table_valeur{'fichier_distant_erreur'})</p>]
+			<div class="input-block demi">
+				<label for='fichier_distant' class="icon fa-link"></label><span><input type='text' name='fichier_distant' value='#ENV{lien}' placeholder="<:lped:document_lien:>" autocomplete="off"/></span>
+			</div>
+		 </div>
+	</div>
+
+	<div class="onglet">
+		 <input type="radio" id="onglet-3" name="onglet-group-1">
+		 <label for="onglet-3" class="icon fa-folder"><:lped:document_mediatheque:></label>
+		 <div class="onglet-content" style="overflow:scroll; text-align:left">
+				 <B_mediatheque>
+					<ul class="mediatheque">
+						<BOUCLE_mediatheque (DOCUMENTS) {tout}>
+							<li class="media">
+								<input type="radio" name="mediatheque" value="#ID_DOCUMENT" id="input-#ID_DOCUMENT" class="hiddeninput">
+								<label for="input-#ID_DOCUMENT">
+									[(#GET{formats_images}|find{#EXTENSION}|oui)
+										<img class="preview" src="#FICHIER">
+									]
+									[(#GET{formats_images}|find{#EXTENSION}|non)
+										<div class="gros fichier #EXTENSION preview">#EXTENSION</div>
+									]
+									<div class="titre">[(#TITRE|sinon{(sans titre)})]</div>
+								</label>
+							</li>
+						</BOUCLE_mediatheque>
+					</ul>
+				</B_mediatheque>
+		 </div>
+	</div>
+
+</div>
+[<p class="message erreur icon fa-exclamation-triangle">(#ENV**{erreurs}|table_valeur{'fichier_manquant'})</p>]
+[<p class="message erreur icon fa-exclamation-triangle">(#ENV**{erreurs}|table_valeur{'fichier_non_image'})</p>]

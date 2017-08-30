@@ -1,0 +1,33 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+[(#REM) petit hack : on test si on est pas connecté s'il y a bien des chapitres dans cette thématique]
+<BOUCLE_chapitre_test (CHAPITRES) {id_thematique} {par num titre_fr} {statut IN #GET{statut}} {0,1} {si #SESSION{statut}|non}>#SET{test_chapitre, oui}</BOUCLE_chapitre_test>
+
+[(#REM) suite petit hack : pour ne pas les affiche le menu s'il n'y en a pas pour les utilisateurs non connectés ]
+<ul class="chapitres" [(#THEMATIQUE|=={#ID_THEMATIQUE}|oui) style="display:block"] [(#PREMIER|=={oui}) style="display:block"] [(#SESSION{statut}|non|et{#GET{test_chapitre}|non}|oui) style="display:none;"]>
+	<BOUCLE_chapitres (CHAPITRES) {id_thematique} {statut IN #GET{statut}} >
+
+	  [(#REM) si on est autorisé à voir le chapitre ]
+	  [(#AUTORISER{voir,chapitre,#ID_CHAPITRE}|oui)
+		<li>
+			<a class="item chapitre[(#CHAPITRE|=={#ID_CHAPITRE}|oui)strong]" href="[(#SELF|parametre_lang|parametre_url{thematique, #ID_THEMATIQUE}|parametre_url{chapitre, #ID_CHAPITRE}|parametre_url{afficher, ''}|parametre_url{document, ''})]" data-cible="thematique#ID_THEMATIQUE-chapitre#ID_CHAPITRE" >
+				[ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR|supprimer_numero) ] ]
+				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|supprimer_numero|sinon{#TITRE_FR|supprimer_numero}) ] ]
+				[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|oui)<span class='status [(#STATUT)] [(#ENV{lang}|sinon{fr})]'></span>]
+			</a>
+		</li>
+	  ]
+
+	</BOUCLE_chapitres>
+
+	[(#REM) intégration du lien pour ajouter des chapitre ]
+		[(#AUTORISER{creer,chapitre}|oui)
+			<li class="new">
+			 <a class="bouton moyen ajouter interne icon fa-level-up rotate90" href="[(#SELF|parametre_lang|parametre_url{thematique, #ID_THEMATIQUE}|parametre_url{afficher, editer_chapitre}|parametre_url{chapitre, new})]" data-cible="chapitre_new" [(#CHAPITRE|=={new}|oui) class="strong" ]><:lped:chapitre_ajouter:></a>
+			</li>
+
+		]
+
+
+</ul>

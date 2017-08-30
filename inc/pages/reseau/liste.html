@@ -1,0 +1,57 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+[(#AUTORISER{creer,personne}|ou{#AUTORISER{creer,institution}}|oui) <section class="controls">]
+
+[(#AUTORISER{creer,personne}|oui)
+	<a class="bouton gros ajouter" href="[(#SELF|parametre_url{afficher,'nouvelle_personne'}|parametre_url{cible,#ID_RUBRIQUE})]"> <:lped:personne_ajouter:> </a>
+	[(#AFFICHER|=={nouvelle_personne}|et{#CIBLE|=={#ID_RUBRIQUE}}|oui) <section class="administration">[(#FORMULAIRE_EDITION_PERSONNE{'new',#ID_RUBRIQUE,[(#SELF|parametre_url{afficher,''}|parametre_url{cible,''})]})] </section> ]
+]
+
+[(#AUTORISER{creer,institution}|oui)
+		<a class="bouton gros ajouter" href="#URL_ACTION_AUTEUR{creer_institution,#ID_RUBRIQUE,#SELF|parametre_lang|parametre_url{afficher,''}|parametre_url{cible,''}}"><:lped:institution_ajouter:></a>
+		[(#AFFICHER|=={nouvelle_institution}|et{#CIBLE|=={#ID_RUBRIQUE}}|oui) <section class="administration">[(#FORMULAIRE_EDITION_INSTITUTION{'new',#ID_RUBRIQUE,[(#SELF|parametre_url{afficher,''}|parametre_url{cible,''})]})] </section> ]
+]
+
+[(#AUTORISER{creer,personne}|ou{#AUTORISER{creer,institution}}|oui) </section>]
+
+
+<section class="personnes">
+	<B_personne>
+		<table class="sortable">
+			<thead>
+				<tr class="row_first">
+					<th>Nom et courriel</th>
+					<th>Fonction</th>
+					<th>Société</th>
+					<th>Pays</th>
+				</tr>
+			</thead>
+			<tbody>
+				<BOUCLE_personne (PERSONNES) {id_rubrique} {statut IN #GET{statut}} {par statut}>
+					[(#AUTORISER{voir,personne,#ID_PERSONNE}|oui)
+						<tr class="[(#COMPTEUR_BOUCLE|modulo{2}|=={0}|?{row_odd odd,row_even even})]">
+							<td class="personne" data-personne="#NOM">
+								[(#AUTORISER{modifier,personne,#ID_PERSONNE}|oui)<INCLURE{fond=inc/administration/reseau/personnes, afficher, cible, id_personne} />]
+								[<a href="mailto:(#EMAIL)">]#NOM[(#EMAIL|oui)</a>]
+							</td>
+							<td>#FONCTION</td>
+							<td>#SOCIETE</td>
+							<td>#PAYS</td>
+						</tr>
+					]
+				</BOUCLE_personne>
+			</tbody>
+		</table>
+	</B_personne>
+</section>
+
+<section class="institutions">
+	<div class="insitutions-wrapper">
+		<BOUCLE_institution (INSTITUTIONS) {id_rubrique} {statut IN #GET{statut}} {par statut}>
+			[(#AUTORISER{voir,institution,#ID_INSTITUTION}|oui)
+				<INCLURE{fond=inc/pages/reseau/institution, env, id_institution} />
+			]
+		</BOUCLE_institution>
+	</div>
+</section>

@@ -1,0 +1,25 @@
+<BOUCLE_glodef (GLODEFS) {id_glodef} {tout} >
+
+	<tr>
+		<td class="statut" data-statut="[(#VAL{#STATUT}|_T)]">
+			[(#SESSION{statut}|=={0minirezo}|oui) [(#FORMULAIRE_MODERATION_OBJET{glodefs,glodef,#ID_GLODEF})] ]
+			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{fr})]"></div> ]
+		</td>
+		<td class="titre">
+			<BOUCLE_glomot (GLOMOTS glodefs_liens) {id_glodef} {tout}>
+			<a href="[(#URL_RUBRIQUE{5}|parametre_url{glomot,#ID_GLOMOT}|ancre_url{#TITRE|substr{0,1}})]">
+			</BOUCLE_glomot>
+				[(#DEFINITION|couper{80})]
+			</a>
+		</td>
+		<td class="contributeurs">
+			<BOUCLE_auteur (AUTEURS) {id_glodef} {tout} >
+				<span class="contributeur">[(#NOM)][,(#COMPTEUR_BOUCLE|!={#TOTAL_BOUCLE}|oui)]</span>
+			</BOUCLE_auteur>
+		</td>
+		<td class="date" data-date="[(#MAJ)]">
+			[(#MAJ|affdate)]
+		</td>
+	</tr>
+
+</BOUCLE_glodef>

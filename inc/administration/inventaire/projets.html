@@ -1,0 +1,21 @@
+<section class="administration">
+    <BOUCLE_projet (PROJETS) {id_projet} {tout}>
+        <a class="bouton moyen modifier icon fa-pencil" alt="<:lped:projet_modifier:>" href="[(#URL_PROJET|parametre_lang|parametre_url{afficher, editer_projet})]"><:lped:editer:>[(#AFFICHER|=={projet_ok}|oui)<span class="message ok icon fa-check"></span>]</a>
+
+        [(#FORMULAIRE_MODERATION_OBJET{projets,projet,#ID_PROJET})]
+
+        <div class="meta">
+            <span class="icon fa-calendar-o" alt="<:lped:creation:>" title="<:lped:creation:>">[(#DATE|affdate)]</span>
+            <span class="icon fa-pencil-square-o" alt="<:lped:modification:>" title="<:lped:modification:>">[(#MAJ|affdate)]</span>
+            <span class="auteurs icon fa-user" alt="<:lped:contributeurs:>" title="<:lped:contributeurs:>">
+                <BOUCLE_auteurs (AUTEURS) {id_projet}>
+                    <span class="auteur">#NOM</span>
+                </BOUCLE_auteurs>
+            </span>
+        </div>
+        [(#AFFICHER|=={editer_projet}|oui)
+            [(#FORMULAIRE_EDITION_PROJET{ #ID_PROJET,'','',[(#URL_PROJET|parametre_lang|parametre_url{afficher, projet_ok})],#ANNULER})]
+        ]
+
+    </BOUCLE_projet>
+</section>

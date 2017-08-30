@@ -1,0 +1,67 @@
+
+<BOUCLE_projets(PROJETS){id_projet}{tout}>
+
+[(#REM) on on a le droit de voir la projet]
+[(#AUTORISER{voir,projet,#ID_PROJET}|oui)
+
+	<div id="contenu" class="wrapper">
+		<INCLURE{fond=inc/pages/inventaire/ariane, id_pay, id_ville, id_projet} />
+
+		<header>
+			<h1>[ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR) ] ][ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]</h1>
+			[(#REM) on affiche le panneau d'administration]
+		    [(#AUTORISER{modifier,projet,#ID_PROJET}|oui) <INCLURE{fond=inc/administration/inventaire/projets, afficher, id_projet, env} /> ]
+		</header>
+
+		<div class="col-wrap">
+			<div id="inventaire-introduction">
+				<h5>— <:lped:introduction:></h5>
+				[ (#ENV{lang}|=={fr}|oui)  [(#DESCRIPTION_FR)] ]
+				[ (#ENV{lang}|=={en}|oui)  [(#DESCRIPTION_EN|sinon{#DESCRIPTION_FR})] ]
+		    </div>
+
+			<!-- inclusion diaporama -->
+			<INCLURE{fond=inc/pages/inventaire/diaporama, id_projet} />
+		</div>
+
+		<!-- inclusion thematiques -->
+		<INCLURE{fond=inc/pages/inventaire/thematiques, afficher, thematique, chapitre, document, id_projet} />
+
+		<div id="inventaire-carte" class="projet">
+			<h5>— <:lped:situation_geographique:></h5>
+			<div id="inventaire-mapbox"></div>
+		</div>
+
+	</div>
+
+]
+
+	<B_projets_carte>
+		<script type="text/javascript">
+
+			var maxZoom = 14;
+
+			var geojson = [
+				<BOUCLE_projets_carte(PROJETS){id_projet}{longitude != ''} {si #AUTORISER{voir,projet,#ID_PROJET}}>
+				{
+					"type": "Feature",
+					"geometry": {
+						"type": "Point",
+						"coordinates": [[(#LONGITUDE)], [(#LATITUDE)]]
+					},
+					"properties": {
+						"title": "#TITRE_FR",
+						"marker-color": "#FFDB16",
+						"marker-size": "medium",
+						"url": "#URL_PROJET"
+					}
+				},
+				</BOUCLE_projets_carte>
+
+			];
+		</script>
+	</B_projets_carte>
+
+
+
+</BOUCLE_projets>

@@ -1,0 +1,39 @@
+
+<form action='#ENV{action}' method='post' class="moderation inline">
+#ACTION_FORMULAIRE{#ENV{action}}
+    [(#ENV{role}|=={0minirezo}|oui)
+        <div class="select-menu" data-original="[(#ENV{statut}|oui)[(#STATUT)]]">
+            <!-- <span class="status-label">Statut : </span> -->
+            <span class="select-options">
+                <span class="select-title" title="<:lped:statut:>"><div class="status [(#ENV{statut}|oui)[(#STATUT)] [(#ENV{lang}|sinon{fr})]]"></div></span>
+                <ul>
+                    <li class="status prepa [(#ENV{statut}|=={prepa}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="prepa"></li>
+                    <li class="status prop [(#ENV{statut}|=={prop}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="prop"></li>
+                    <li class="status publie [(#ENV{statut}|=={publie}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="publie"></li>
+                    <li class="status refuse [(#ENV{statut}|=={refuse}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="refuse"></li>
+                    <li class="status poubelle [(#ENV{statut}|=={poubelle}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="poubelle"></li>
+                </ul>
+            </span>
+            <select name="form_statut" class="hiddeninput">
+                <option value="prepa" [(#ENV{statut}|=={prepa}|oui) selected]><:lped:prepa:></option>
+                <option value="prop" [(#ENV{statut}|=={prop}|oui) selected]><:lped:prop:></option>
+                <option value="publie" [(#ENV{statut}|=={publie}|oui) selected]><:lped:publie:></option>
+                <option value="refuse" [(#ENV{statut}|=={refuse}|oui) selected]><:lped:refuse:></option>
+                <option value="poubelle" [(#ENV{statut}|=={poubelle}|oui) selected]><:lped:poubelle:></option>
+            </select>
+            <input type='submit' class="bouton petit ok hiddeninput" name='ok' value='' />
+            [<span class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</span>]
+            [<span class="message ok icon fa-smile-o" title="(#ENV**{message_ok})"></span>]
+        </div>
+    ]
+
+    [(#ENV{role}|=={1comite}|et{#ENV{statut}|=={prepa}}|oui)
+        <input type="hidden" value="prop" name="form_statut">
+        <input type='submit' name='ok' value='<:lped:proposer:>' class="petit bouton proposer" />
+    ]
+
+    [(#ENV{role}|=={1comite}|et{#ENV{statut}|!={prepa}}|oui)
+        <span class="status-label">Statut : </span>
+        <div class="status [(#ENV{lang}|sinon{fr})] #ENV{statut}"></div>
+    ]
+  </form>

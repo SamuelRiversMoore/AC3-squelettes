@@ -1,0 +1,35 @@
+
+#search-bar { display: block; margin: .25em 0 0; width: 100%; padding: .25em .5em; font-size: 1rem; }
+.output {
+  list-style: none;
+  min-height: 0px;
+  border-top: 0 !important;
+  color: #767676;
+  font-size: .75em;
+  transition: min-height 0.2s;
+  position: absolute;
+  z-index: 5;
+  margin: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+}
+.output, #search-bar {
+  background: #fff;
+  border: 1px solid #767676;
+}
+.prediction-item {
+  padding: .5em .75em;
+  transition: color 0.2s, background 0.2s;
+}
+.output:hover .focus {
+  background: #fff;
+  color: #767676;
+}
+.prediction-item:hover, .focus,
+.output:hover .focus:hover {
+  background: #ddd;
+  color: #333;
+}
+.prediction-item:hover { cursor: pointer; }
+.prediction-item strong { color: #333; }
+.prediction-item:hover strong { color: #000; }

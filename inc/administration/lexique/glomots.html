@@ -1,0 +1,15 @@
+<section class="administration">
+    <BOUCLE_mots (GLOMOTS) {id_glomot} {tout}>
+        [(#AFFICHER|=={editer_glomot}|et{#GLOMOT|=={#ID_GLOMOT}}|non)
+            <a class="bouton moyen modifier icon fa-pencil" href="[(#SELF|parametre_url{afficher, editer_glomot}|parametre_url{glomot,#ID_GLOMOT})]"><:lped:editer:></a>
+        ]
+
+        [(#FORMULAIRE_MODERATION_OBJET{glomots,glomot,#ID_GLOMOT})]
+
+        [(#AFFICHER|=={glomot_ok}|et{#GLOMOT|=={#ID_GLOMOT}}|oui)<p class="message ok"><:lped:enregistrement_ok:></p>]
+
+        [(#AFFICHER|=={editer_glomot}|et{#GLOMOT|=={#ID_GLOMOT}}|oui)
+             [(#FORMULAIRE_EDITION_GLOMOT{#ID_GLOMOT,[(#SELF|parametre_url{'afficher','glomot_ok'}|parametre_url{glomot,#ID_GLOMOT})]})]
+        ]
+    </BOUCLE_mots>
+</section>

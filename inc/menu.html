@@ -1,0 +1,50 @@
+<span id="show-menu" class="gros bouton icon fa-chevron-left"><span>Menu</span></span>
+
+<div id="menu">
+	<span id="close-menu" class="icon fa-times"></span>
+	<a id="menu-logo" href="[(#URL_SITE_SPIP|parametre_lang)]"><img src="squelettes/assets/images/logo-mc3.svg" width="320" height="95" alt="homepage logo"></a>
+
+	<div id="menu-header">
+		<ul class="languages">
+			<li>[(#LANG|=={fr}|non)<a href="[(#SELF|parametre_url{'afficher',''}|parametre_url{lang,''})]">]FR[(#LANG|=={fr}|non)</a>]</li>
+			<li>[(#LANG|=={en}|non)<a href="[(#SELF|parametre_url{lang,en})]">]EN[(#LANG|=={en}|non)</a>]</li>
+		</ul>
+		<input type="checkbox" name="searchbar-button" id="searchbar-button" class="hiddeninput">
+		<label id="search-button" class="icon fa-search" for="searchbar-button" title="<:lped:rechercher:>"></label>
+		<div id="menu-searchbar">
+			<form action="[(#URL_PAGE{recherche}|parametre_lang)]" method='post'>
+				<input type="search" name="recherche" autocomplete="off" placeholder="<:lped:rechercher:>" />
+			</form>
+		</div>
+	</div>
+	<ul id="menu-principal">
+		<BOUCLE_menu(RUBRIQUES){tout}{racine}{par num titre}>
+			<li [(#EXPOSE|=={on}|oui) class="active"]>
+				<a href="[(#URL_RUBRIQUE|parametre_lang)]" title="#TITRE">
+					[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+					[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+				</a>
+				<!-- inventaire qui déplie-->
+				[(#EXPOSE|=={on}|et{#ID_RUBRIQUE|=={3}}|oui) <INCLURE{fond=inc/pages/inventaire/menu, env, id_pay, id_ville, id_projet, lang=#ENV{lang}}>]
+			</li>
+		</BOUCLE_menu>
+	</ul>
+
+	<ul id="menu-footer">
+		<B_auteur>
+			<BOUCLE_auteur (AUTEURS) {tout} {id_auteur=#SESSION{id_auteur}}>
+				<li>#NOM</li>
+				<li><a href="[(#URL_PAGE{compte}|parametre_lang)]"><:lped:mon_compte:></a></li>
+				<li><a href="#URL_LOGOUT"><:lped:se_deconnecter:></a></li>
+			</BOUCLE_auteur>
+		</B_auteur>
+		<li><a href="[(#URL_PAGE{connexion}|parametre_url{redirect,#SELF})]">Connexion</a></li>
+		<//B_auteur>
+	</ul>
+
+</div>
+[(#AUTORISER{creer,pay}|oui)
+	[(#AFFICHER|=={'nouveau_pays'}|oui)
+		[(#FORMULAIRE_EDITION_PAY)]
+	]
+]

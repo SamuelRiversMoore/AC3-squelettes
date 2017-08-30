@@ -1,0 +1,6 @@
+<BOUCLE_doc (DOCUMENTS) {id_document} {tout}>
+<a href="#URL_DOCUMENT" class="fichier #EXTENSION integre" target="_blank">#EXTENSION
+    <div class="titre-doc[(#TITRE|textebrut|strlen|>{60}|oui) large]"><span>[(#TITRE|sinon{Sans titre})]</span></div>
+</a>
+</BOUCLE_doc>
+#FILTRE{trim}

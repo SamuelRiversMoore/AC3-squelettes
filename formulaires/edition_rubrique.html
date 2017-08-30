@@ -1,0 +1,34 @@
+
+[(#EDITABLE|oui)
+<div class="modal">
+    <div class="modal-container">
+        <a href="[(#SELF|parametre_url{afficher,''})]" class="retour"></a>
+        <section class="edition">
+            <form action='#ENV{action}' method='post'>
+                #ACTION_FORMULAIRE{#ENV{action}}
+                <section class="row head">
+                    <h2 class="full"><:lped:rubrique_edition_titre:></h2>
+                    [<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+                    [<p class="message ok icon fa-check">(#ENV*{message_ok})</p>]
+
+
+                </section>
+
+                <section class="row">
+                    <header class="full"><:lped:rubrique_nom:></header>
+                    <div class="input-block demi"><label for='nom_fr'>FR</label><span><input type='text' name='titre' value='#ENV{titre}' autocomplete="off"/></span></div>
+                    <div class="input-block demi"><label for='nom_en'>EN</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
+                </section>
+
+
+                <section class="row boutons right">
+                    <div class="full">
+                        <a href="[(#SELF|parametre_url{afficher,''})]" class="gros bouton fermer"><:lped:annuler:></a>
+                        <input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+                    </div>
+                </section>
+            </form>
+        </section>
+    </div>
+</div>
+]

@@ -1,0 +1,66 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{tout}>
+	<div id="contenu" class="wrapper">
+		<div id="arbo">
+			<a href="[(#URL_SITE_SPIP|parametre_lang)]">#NOM_SITE_SPIP</a> >
+			<span class="arbo-current-page">
+				[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+			</span>
+		</div>
+		<header>
+			<h1>
+				[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+			</h1>
+		</header>
+		<section class="page-standard">
+			<article>
+				[(#SESSION{statut}|=={0minirezo}|oui)
+					[(#AFFICHER|=={'nouvel_article'}|oui)
+						<section class="administration">[(#FORMULAIRE_EDITION_ART{'new',7} )]</section>
+					]
+					[(#AFFICHER|=={'nouvel_article'}|non)
+						<a class="gros bouton ajouter article icon fa-plus" href="#URL_ACTION_AUTEUR{creer_art,7,#URL_RUBRIQUE{#ID_RUBRIQUE}|parametre_lang}"><:lped:article_ajouter:></a>
+					]
+
+				]
+				<div class="colonne">
+					<BOUCLE_article(ARTICLES) {id_rubrique} {par statut, num titre} {statut IN #GET{statut}}>
+						[(#AUTORISER{voir,article,#ID_ARTICLE}|oui)
+							<article class="apropos">
+
+									<h2>
+										[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+										[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+									</h2>
+
+									[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/article, id_article, env }/> ]
+									<div class="texte-courant">
+										[ (#ENV{lang}|=={fr}|oui) [(#TEXTE|liens_ouvrants)] ]
+										[ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE|liens_ouvrants}) ] ]
+									</div>
+							</article>
+						]
+					</BOUCLE_article>
+				</div>
+
+			</article>
+		</section>
+
+		<section class="credits">
+			[ (#ENV{lang}|=={fr}|oui)
+				<h3 class="discret">Crédits :</h3>
+				<p class="colonne">Ce site a été conçu et développé par <a href="http://www.emmanuelkormann.com/">Emmanuel&nbsp;Kormann</a>, <a href="http://www.samuelriversmoore.net/">Samuel&nbsp;Rivers-Moore</a> et&nbsp;<a href="http://www.lecollecteur.fr/">Pierre&nbsp;Tandille</a> en collaboration avec l'équipe MC3.</p>
+			]
+			[ (#ENV{lang}|=={en}|oui) 
+				<h3 class="discret">Credits :</h3>
+				<p class="colonne">This website has been designed and coded by <a href="http://www.emmanuelkormann.com/">Emmanuel&nbsp;Kormann</a>, <a href="http://www.samuelriversmoore.net/">Samuel&nbsp;Rivers-Moore</a> and&nbsp;<a href="http://www.lecollecteur.fr/">Pierre&nbsp;Tandille</a> in collaboration with the MC3 team.</p>
+			]
+		</section>
+	</div>
+</BOUCLE_rubrique>
+
+

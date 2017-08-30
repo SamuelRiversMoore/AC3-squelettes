@@ -1,0 +1,374 @@
+<BOUCLE_auteur (AUTEURS) {id_auteur} {tout}>
+<div id="contenu" class="wrapper compte">
+	<h1>#NOM</h1>
+	<section class="profil">
+
+		<div>
+			<span class="discret"><:lped:login:> :</span>
+			<span>#LOGIN</span>
+		</div>
+		<div>
+			<span class="discret"><:lped:email:> :</span>
+			<span>#EMAIL</span>
+		</div>
+		<div>
+			<span class="discret"><:lped:role:> :</span>
+			<span>[(#STATUT|=={0minirezo}|oui)<:lped:administrateur:>][(#STATUT|=={1comite}|oui)<:lped:redacteur:>]</span>
+		</div>
+
+
+
+
+
+
+	</section>
+
+
+	<h2><:lped:tableau_de_bord:></h2>
+	<section class="dashboard">
+		<div class="tabs-wrapper">
+			<nav id="nav-tabs" class="gauche">
+				<ul>
+					<li class="section">
+						<a class="item titre discret" href="#tab-pays" data-cible="tab-pays"><:lped:inventaire:></a>
+						<ul class="chapitres">
+							<li><a class="item chapitre" href="#tab-pays" data-cible="tab-pays"><:lped:pays:></a></li>
+							<li><a class="item chapitre" href="#tab-villes" data-cible="tab-villes"><:lped:villes:></a></li>
+							<li><a class="item chapitre" href="#tab-projets" data-cible="tab-projets"><:lped:projets:></a></li>
+							<li><a class="item chapitre" href="#tab-thematiques" data-cible="tab-thematiques"><:lped:thematiques:></a></li>
+							<li><a class="item chapitre" href="#tab-chapitres" data-cible="tab-chapitres"><:lped:chapitres:></a></li>
+							<li><a class="item chapitre" href="#tab-documents" data-cible="tab-documents"><:lped:documents:></a></li>
+						</ul>
+					</li>
+					<li class="section">
+						<a class="item titre discret" href="#tab-syntheses" data-cible="tab-syntheses"><:lped:articles:></a>
+						<ul class="chapitres">
+							<li><a class="item chapitre" href="#tab-syntheses" data-cible="tab-syntheses"><:lped:syntheses:></a></li>
+							<li><a class="item chapitre" href="#tab-journal" data-cible="tab-journal"><:lped:journal:></a></li>
+							<li><a class="item chapitre" href="#tab-apropos" data-cible="tab-apropos"><:lped:a_propos:></a></li>
+						</ul>
+					</li>
+					<li class="section">
+						<a class="item titre discret" href="#tab-mots" data-cible="tab-mots"><:lped:lexique:></a>
+						<ul class="chapitres">
+							<li><a class="item chapitre" href="#tab-mots" data-cible="tab-mots"><:lped:mots:></a></li>
+							<li><a class="item chapitre" href="#tab-defs" data-cible="tab-defs"><:lped:definitions:></a></li>
+							<li><a class="item chapitre" href="#tab-refs" data-cible="tab-refs"><:lped:references:></a></li>
+						</ul>
+					</li>
+					<li class="section">
+						<a class="item titre discret" href="#tab-personnes" data-cible="tab-personnes"><:lped:membres_et_partenaires:></a>
+						<ul class="chapitres">
+							<li><a class="item chapitre" href="#tab-personnes" data-cible="tab-personnes"><:lped:personnes:></a></li>
+							<li><a class="item chapitre" href="#tab-institutions" data-cible="tab-institutions"><:lped:institutions:></a></li>
+						</ul>
+					</li>
+				</ul>
+                <div id="tabs-menu-button" class="icon fa-bars"></div>
+			</nav>
+			<article class="tab" id="tab-pays">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:nom:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_pays (PAYS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,pay,#ID_PAY}|oui) <INCLURE{fond=inc/administration/compte/pays, env, id_pay}> ]
+						</BOUCLE_pays>
+						<BOUCLE_pays_poub (PAYS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,pay,#ID_PAY}|oui) <INCLURE{fond=inc/administration/compte/pays, env, id_pay}> ]
+						</BOUCLE_pays_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-villes">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:nom:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_villes (VILLES) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,ville,#ID_VILLE}|oui) <INCLURE{fond=inc/administration/compte/villes, env, id_ville}> ]
+						</BOUCLE_villes>
+						<BOUCLE_villes_poub (VILLES) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,ville,#ID_VILLE}|oui) <INCLURE{fond=inc/administration/compte/villes, env, id_ville}> ]
+						</BOUCLE_villes_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-projets">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_projets (PROJETS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,projet,#ID_PROJET}|oui) <INCLURE{fond=inc/administration/compte/projets, env, id_projet}> ]
+						</BOUCLE_projets>
+						<BOUCLE_projets_poub (PROJETS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,projet,#ID_PROJET}|oui) <INCLURE{fond=inc/administration/compte/projets, env, id_projet}> ]
+						</BOUCLE_projets_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-thematiques">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_thematiques (THEMATIQUES) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,thematique,#ID_THEMATIQUE}|oui) <INCLURE{fond=inc/administration/compte/thematiques, env, id_thematique}> ]
+						</BOUCLE_thematiques>
+						<BOUCLE_thematiques_poub (THEMATIQUES) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,thematique,#ID_THEMATIQUE}|oui) <INCLURE{fond=inc/administration/compte/thematiques, env, id_thematique}> ]
+						</BOUCLE_thematiques_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-chapitres">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_chapitres (CHAPITRES) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|oui) <INCLURE{fond=inc/administration/compte/chapitres, env, id_chapitre}> ]
+						</BOUCLE_chapitres>
+						<BOUCLE_chapitres_poub (CHAPITRES) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|oui) <INCLURE{fond=inc/administration/compte/chapitres, env, id_chapitre}> ]
+						</BOUCLE_chapitres_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-documents">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_documents (DOCUMENTS) {tout} {par statut, maj} {inverse} {statut IN prepa, prop, publie} {objet IN thematique, chapitre}>
+							[(#AUTORISER{modifier,document,#ID_DOCUMENT}|oui) <INCLURE{fond=inc/administration/compte/documents, env, id_document}> ]
+						</BOUCLE_documents>
+						<BOUCLE_documents_poub (DOCUMENTS) {tout} {par statut, maj} {inverse} {statut IN refuse, poubelle} {objet IN thematique, chapitre}>
+							[(#AUTORISER{modifier,document,#ID_DOCUMENT}|oui) <INCLURE{fond=inc/administration/compte/documents, env, id_document}> ]
+						</BOUCLE_documents_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-syntheses">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_articles (ARTICLES) {tout} {statut IN prepa, prop, publie} {par statut, maj} {inverse} {id_secteur=24}>
+							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
+						</BOUCLE_articles>
+						<BOUCLE_articles_poub (ARTICLES) {tout} {statut IN refuse, poubelle} {par statut, maj} {inverse} {id_secteur=24}>
+							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
+						</BOUCLE_articles_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-journal">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_articles_journal (ARTICLES) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse} {id_secteur=2}>
+							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
+						</BOUCLE_articles_journal>
+						<BOUCLE_articles_journal_poub (ARTICLES) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse} {id_secteur=2}>
+							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
+						</BOUCLE_articles_journal_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-apropos">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+							<th class="trad"><:lped:traduction:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_articles_apropos (ARTICLES) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse} {id_secteur=7}>
+							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
+						</BOUCLE_articles_apropos>
+						<BOUCLE_articles_apropos_poub (ARTICLES) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse} {id_secteur=7}>
+							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
+						</BOUCLE_articles_apropos_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-mots">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_mots (GLOMOTS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,glomot,#ID_GLOMOT}|oui) <INCLURE{fond=inc/administration/compte/glomots, env, id_glomot}> ]
+						</BOUCLE_mots>
+						<BOUCLE_mots_poub (GLOMOTS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,glomot,#ID_GLOMOT}|oui) <INCLURE{fond=inc/administration/compte/glomots, env, id_glomot}> ]
+						</BOUCLE_mots_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-defs">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_defs (GLODEFS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,glodef,#ID_GLODEF}|oui) <INCLURE{fond=inc/administration/compte/glodefs, env, id_glodef}> ]
+						</BOUCLE_defs>
+						<BOUCLE_defs_poub (GLODEFS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,glodef,#ID_GLODEF}|oui) <INCLURE{fond=inc/administration/compte/glodefs, env, id_glodef}> ]
+						</BOUCLE_defs_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-refs">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_refs (GLOREFS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,gloref,#ID_GLOREF}|oui) <INCLURE{fond=inc/administration/compte/glorefs, env, id_gloref}> ]
+						</BOUCLE_refs>
+						<BOUCLE_refs_poub (GLOREFS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,gloref,#ID_GLOREF}|oui) <INCLURE{fond=inc/administration/compte/glorefs, env, id_gloref}> ]
+						</BOUCLE_refs_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-personnes">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_personnes (PERSONNES) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,personnes,#ID_PERSONNE}|oui) <INCLURE{fond=inc/administration/compte/personnes, env, id_personne}> ]
+						</BOUCLE_personnes>
+						<BOUCLE_personnes_poub (PERSONNES) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,personnes,#ID_PERSONNE}|oui) <INCLURE{fond=inc/administration/compte/personnes, env, id_personne}> ]
+						</BOUCLE_personnes_poub>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="tab" id="tab-institutions">
+				<table class="sortable">
+					<thead>
+						<tr class="row_first">
+							<th class="statut"><:lped:statut:></th>
+							<th><:lped:titre:></th>
+							<th><:lped:contributeurs:></th>
+							<th><:lped:date:></th>
+						</tr>
+					</thead>
+					<tbody>
+						<BOUCLE_institutions (INSTITUTIONS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+							[(#AUTORISER{modifier,institutions,#ID_INSTITUTION}|oui) <INCLURE{fond=inc/administration/compte/institutions, env, id_institution}> ]
+						</BOUCLE_institutions>
+						<BOUCLE_institutions_poub (INSTITUTIONS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+							[(#AUTORISER{modifier,institutions,#ID_INSTITUTION}|oui) <INCLURE{fond=inc/administration/compte/institutions, env, id_institution}> ]
+						</BOUCLE_institutions_poub>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+	</section>
+</div>
+</BOUCLE_auteur>

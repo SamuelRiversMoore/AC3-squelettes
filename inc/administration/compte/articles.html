@@ -1,0 +1,23 @@
+
+<BOUCLE_articles (ARTICLES) {id_article} {tout} >
+	<tr>
+		<td class="statut" data-statut="[(#VAL{#STATUT}|_T)]">
+			[(#SESSION{statut}|=={0minirezo}|oui) [(#FORMULAIRE_MODERATION_OBJET{articles,article,#ID_ARTICLE})] ]
+			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{fr})]"></div> ]
+		</td>
+		<td class="titre">
+			<a href="#URL_ARTICLE">[(#ENV{lang}|=={fr}|oui)#TITRE][(#ENV{lang}|=={en}|oui)[(#TITRE_EN|sinon{#TITRE})]]</a>
+		</td>
+		<td class="contributeurs">
+			<BOUCLE_auteur (AUTEURS) {id_article} {tout} >
+				<span class="contributeur">[(#NOM)][,(#COMPTEUR_BOUCLE|!={#TOTAL_BOUCLE}|oui)]</span>
+			</BOUCLE_auteur>
+		</td>
+		<td class="date" data-date="[(#MAJ)]">
+			[(#MAJ|affdate)]
+		</td>
+		<td class="trad">
+			[(#TITRE_EN|oui|et{#TITRE|oui}|et{#TEXTE|oui}|et{#TEXTE_EN|oui}|?{<:lped:oui:>,<:lped:non:>})]
+		</td>
+	</tr>
+</BOUCLE_articles>

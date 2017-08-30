@@ -1,0 +1,29 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+<BOUCLE_mot (GLOMOTS) {id_glomot} {tout}>
+
+	<div class="lexique-wrapper">
+		<a title="#TITRE" href="[(#SELF|parametre_url{glomot, #ID_GLOMOT})]##ANCRE" class="lexique-titre [(#GLOMOT|=={#ID_GLOMOT}|oui)ouvert]">#TITRE</a>
+		<div class="glomot-contenu [(#GLOMOT|=={#ID_GLOMOT}|oui)ouvert]" id="glomot_#ID_GLOMOT">
+			[(#AUTORISER{modifier,glomot,#ID_GLOMOT}|oui) <INCLURE{fond=inc/administration/lexique/glomots, afficher, id_glomot, glomot} /> ]
+			<BOUCLE_definitions (GLODEFS) {id_glomot} {statut IN #GET{statut}}>
+				[(#AUTORISER{voir,glodef,#ID_GLODEF}|oui)
+					<div class="lexique-definition">
+						<INCLURE{fond=inc/pages/lexique/definitions, env, id_glodef}>
+					</div>
+				]
+			</BOUCLE_definitions>
+
+			[(#AUTORISER{creer,glodef}|oui)
+				<div class="lexique-definition">
+					<a class="gros bouton ajouter" href="#URL_ACTION_AUTEUR{creer_glodef,#ID_GLOMOT,#URL_RUBRIQUE|parametre_lang|parametre_url{glomot,#ID_GLOMOT}}"><:lped:definition_ajouter:></a>
+				</div>
+				[(#AFFICHER|=={nouvelle_def}|et{#GLOMOT|=={#ID_GLOMOT}}|oui)
+					[(#FORMULAIRE_EDITION_GLODEF{'new',#ID_GLOMOT,[(#URL_RUBRIQUE)]})]
+				]
+
+			]
+		</div>
+	</div>
+</BOUCLE_mot>

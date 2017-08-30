@@ -1,0 +1,20 @@
+<section class="administration">
+	<BOUCLE_ville (VILLES) {id_ville} {tout}>
+		<a class="bouton moyen modifier icon fa-pencil" alt="<:lped:ville_modifier:>" href="[(#URL_VILLE|parametre_lang|parametre_url{afficher, editer_ville})]"><:lped:editer:>[(#AFFICHER|=={ville_ok}|oui)<span class="message ok icon fa-check"></span>]</a>
+
+		[(#FORMULAIRE_MODERATION_OBJET{villes,ville,#ID_VILLE})]
+
+        <div class="meta">
+			<span class="icon fa-calendar-o" alt="<:lped:creation:>" title="<:lped:creation:>">[(#DATE|affdate)]</span>
+			<span class="icon fa-pencil-square-o" alt="<:lped:modification:>" title="<:lped:modification:>">[(#MAJ|affdate)]</span>
+			<span class="auteurs icon fa-user" alt="<:lped:contributeurs:>" title="<:lped:contributeurs:>">
+				<BOUCLE_auteurs (AUTEURS) {id_ville}>
+					<span class="auteur">#NOM</span>
+				</BOUCLE_auteurs>
+			</span>
+		</div>
+		[(#AFFICHER|=={editer_ville}|oui)
+			[(#FORMULAIRE_EDITION_VILLE{ #ID_VILLE,'','',[(#URL_VILLE|parametre_lang|parametre_url{afficher, ville_ok})]})]
+		]
+	</BOUCLE_ville>
+</section>

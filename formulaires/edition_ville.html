@@ -1,0 +1,38 @@
+[(#EDITABLE|oui)
+
+<div class="modal">
+    <div class="modal-container">
+        <a href="[(#SELF|parametre_url{afficher,''})]" class="retour"></a>
+        <section class="edition">
+            <form action='#ENV{action}' method='post'>
+                #ACTION_FORMULAIRE{#ENV{action}}
+                <section class="row head">
+                    <h2 class="full"> [(#ENV{id_ville}|=={new}|?{<:lped:ville_nouveau_titre:>,<:lped:ville_edition_titre:>})] </h2>
+                    [<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+                    [<p class="message ok icon fa-check">(#ENV*{message_ok})</p>]
+                </section>
+
+                <section class="row">
+                    <header class="full"><:lped:ville_nom:></header>
+                    <div class="input-block demi"><label for='nom_fr'>FR</label><span><input type='text' name='nom_fr' value='#ENV{nom_fr}' autocomplete="off"/></span></div>
+                    <div class="input-block demi"><label for='nom_en'>EN</label><span><input type='text' name='nom_en' value='#ENV{nom_en}' autocomplete="off"/></span></div>
+                </section>
+
+                 <section class="row">
+                    <header class="full"><:lped:ville_coordonnees:></header>
+                    <div class="input-block demi"><label for='latitude'>LAT.</label><span><input type='text' name='latitude' value='#ENV{latitude}' autocomplete="off"/></span></div>
+                    <div class="input-block demi"><label for='longitude'>LON.</label><span><input type='text' name='longitude' value='#ENV{longitude}' autocomplete="off"/></span></div>
+                    <div id='administration-map'></div>
+                </section>
+
+                <section class="row boutons right">
+                    <div class="full">
+                        <a href="[(#SELF|parametre_url{afficher,''})]" class="gros bouton fermer"><:lped:annuler:></a>
+                        <input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+                    </div>
+                </section>
+            </form>
+        </section>
+    </div>
+</div>
+]

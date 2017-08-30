@@ -1,0 +1,36 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+<BOUCLE_chapitres (CHAPITRES) {id_thematique} {par num titre_fr} {statut IN #GET{statut}} >
+
+	[(#REM) si on est autorisé à voir le chapitre ]
+	[(#AUTORISER{voir,chapitre,#ID_CHAPITRE}|oui)
+		[(#REM) si c'est le chapitre en cours : on display:block le chapitre ]
+		<article class="tab chapitre" id="thematique#ID_THEMATIQUE-chapitre#ID_CHAPITRE" [(#CHAPITRE|=={#ID_CHAPITRE}|oui) style="display:block"] >
+			<h2>
+			  [ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR|supprimer_numero) ] ]
+			  [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|supprimer_numero|sinon{#TITRE_FR|supprimer_numero}) ] ]
+			</h2>
+			[(#REM) on inclus le panneau d'administration pour le chapitre ]
+			[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|oui) <INCLURE{fond=inc/administration/inventaire/chapitres, afficher, id_chapitre, chapitre} /> ]
+
+			<section class="texte-courant">
+			    [ (#ENV{lang}|=={fr}|oui) [(#TEXTE_FR|liens_ouvrants)] ]
+			    [ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE_FR|liens_ouvrants}) ] ]				
+			</section>
+
+			<INCLURE{fond=inc/pages/inventaire/documents, afficher, thematique, chapitre, document, id_chapitre} />
+
+		</article>
+	]
+
+</BOUCLE_chapitres>
+
+
+[(#REM) intégration du lien pour ajouter des chapitre ]
+	[(#AUTORISER{creer,chapitre}|oui)
+		[(#AFFICHER|=={editer_chapitre}|et{#CHAPITRE|=={new}}|et{#THEMATIQUE|=={#ID_THEMATIQUE}}|oui)
+				<section class="administration">[(#FORMULAIRE_EDITION_CHAPITRE{ 'new' , 'thematique' , #ID_THEMATIQUE ,[(#SELF|parametre_url{'afficher',''}|parametre_url{'chapitre',''})]})]</section>
+		]
+
+	]

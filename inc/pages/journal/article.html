@@ -1,0 +1,49 @@
+<BOUCLE_journal (ARTICLES) {id_article} {tout}>
+
+
+<div id="contenu" class="wrapper">
+	<div id="arbo">
+		<a href="[(#URL_SITE_SPIP|parametre_lang)]">#NOM_SITE_SPIP</a> >
+		<a href="[(#INFO_URL{rubrique,2}|parametre_lang)]">
+			[ (#ENV{lang}|=={fr}|oui) [ (#INFO_TITRE{rubrique,2}) ] ]
+			[ (#ENV{lang}|=={en}|oui) [ (#INFO_TITRE_EN{rubrique,2}|sinon{#INFO_TITRE{rubrique,2}}) ] ]</a> >
+		<span class="arbo-current-page">
+			[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
+			[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+		</span>
+	</div>
+
+	<section class="journal page-standard">
+		<article>
+			<header>			
+				<h1>[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ] [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]</h1>
+				[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/article, id_article, env }/>]
+			</header>
+
+			<div class="grid-2 texte-courant">
+				<div>
+					<BOUCLE_document (DOCUMENTS){id_article}{extension==jpg|png|gif}{0,1}>
+						<figure class="article-icone">
+							<img src="[(#FICHIER|image_passe_partout{225,315}|image_recadre{225,315,'center center','#ffffff'}|extraire_attribut{src})]"/>
+						</figure>
+					</BOUCLE_document>
+					<p class="discret">
+						<span>— [(#DATE|affdate)], <:lped:par:></span>
+						<span class="auteurs"><BOUCLE_auteur (AUTEURS){id_article}><span class="auteur">#NOM</span></BOUCLE_auteur></span>
+					</p>
+				</div>
+				<div>
+					<div class="medium">
+						[ (#ENV{lang}|=={fr}|oui) [ (#CHAPO) ] ]
+						[ (#ENV{lang}|=={en}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
+					</div>
+					[ (#ENV{lang}|=={fr}|oui) [(#TEXTE|liens_ouvrants)] ]
+					[ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE|liens_ouvrants}) ] ]
+				</div>
+			</div>
+
+		</article>
+
+	</section>
+		</div>
+</BOUCLE_journal>

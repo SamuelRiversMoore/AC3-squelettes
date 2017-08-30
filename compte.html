@@ -1,0 +1,17 @@
+<BOUCLE_auteur (AUTEURS) {id_auteur = #SESSION{id_auteur}} {tout}>
+
+<!DOCTYPE HTML>
+<html lang="[(#ENV{lang}|sinon{fr})]">
+<INCLURE{fond=inc/header, inc}>
+	<body [(#SESSION{statut}|oui)class="logged"]>
+
+	<INCLURE{fond=inc/menu}>
+
+	<INCLURE{fond=inc/administration/compte/compte, env, id_auteur}>
+
+	<INCLURE{fond=inc/footer}>
+
+	</body>
+</html>
+
+</BOUCLE_auteur>

@@ -1,0 +1,81 @@
+
+	<B_references>
+			<section class="row">
+				<header for='titre'><:lped:reference:></header>
+				<BOUCLE_references (GLOREFS) {id_glodef = #ENV{id_glodef}} {tout}>
+					<div class="edition-reference">
+						<form action='#ENV{action}' method='post' class="inline">
+							#ACTION_FORMULAIRE{#ENV{action}}
+							<input type='hidden' name='delier' value='#ID_GLOREF' />
+							<button type='submit' class="mega bouton icon fa-times" name='ok'></button>
+						</form>
+						<span class="titre discret">#TITRE:</span>
+						<span class="description">#DESCRIPTION</span>
+					</div>
+				</BOUCLE_references>
+			</section>
+		</B_references>
+
+		[(#REM) si la première boucle n'a pas été executée]
+		
+		<section class="row">
+			<header for='titre'><:lped:reference:></header>
+			<div class="gros bouton montrer" data-target="referenceadmin"><:lped:reference_ajouter:></div>
+		</section>
+
+			<div class="surmodal hidden" id="referenceadmin">
+				<section class="edition">
+					<section class="row head">
+						<h2 class="full"><:lped:reference_ajouter:></h2>
+						[<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+						[<p class="message ok icon fa-check-square-o">(#ENV*{message_ok})</p>]
+					</section>
+
+				    <form action='#ENV{action}' method='post'>
+						<section class="row">
+							#ACTION_FORMULAIRE{#ENV{action}}
+					        <header><:lped:reference_titre:></header>
+					        <div id="autosearch">
+								<input type="text" name='titre' id="search-bar" autocomplete="off" />
+								<input type="checkbox" id="show-hide-menu" name="show-hide" class="hiddeninput">
+								<label for="show-hide-menu" class="show-hide bouton icon fa-angle-down"></label>
+								<div class="autosearch-results">
+									<ul class="output-partiel"></ul>
+									<ul class="output-complet">
+										<B_refs>
+											<BOUCLE_refs (GLOREFS) {si #ENV{id_gloref}|=={new}} {tout}>
+												<li class="item">
+													<input type="radio" name="gloref_lien" value="#ID_GLOREF" id="gloref-#ID_GLOREF" class="hiddeninput">
+													<label for="gloref-#ID_GLOREF">
+														<span class="item-titre">#TITRE</span>
+														<span class="item-texte">#DESCRIPTION</span>
+													</label>
+												</li>
+											</BOUCLE_refs>
+										</B_refs>
+									</ul>
+								</div>
+
+					        </div>
+
+
+							<!--
+					        <input type="text" name='titre' id="default" list="glorefs" value="#ENV{titre}" autocomplete="false">
+							-->
+						</section>
+
+						<section class="row">
+							<header><:lped:reference_description:></header>
+							<textarea name='description' class="small">#ENV{description}</textarea>
+						</section>
+
+						<section class="row boutons right">
+							<div class="full">
+								<div class="gros bouton annuler"><:lped:annuler:></div>
+								<input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:ajouter:>' />
+							</div>
+						</section>
+					</form>
+				</section>
+			</div>
+		<//B_references>

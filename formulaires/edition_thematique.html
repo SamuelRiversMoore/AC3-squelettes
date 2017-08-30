@@ -1,0 +1,44 @@
+
+[(#EDITABLE|oui)
+<div class="modal">
+	<div class="modal-container">
+
+		<a href="[(#SELF|parametre_url{afficher,''})]" class="retour"></a>
+		<section class="edition">
+			<form action='#ENV{action}' method='post'>
+				#ACTION_FORMULAIRE{#ENV{action}}
+				<section class="row head">
+					<h2 class="full">[(#ENV{id_thematique}|=={new}|?{<:lped:thematique_nouveau_titre:>,<:lped:thematique_edition_titre:>})] </h2>
+					[<span class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</span>]
+				</section>
+				<section class="row">
+					<header class="full"><:lped:thematique_titre:></header>
+					<div class="input-block demi"><label for='titre_fr'>FR</label><span><input type='text' name='titre_fr' value='#ENV{titre_fr}' autocomplete="off"/></span></div>
+					<div class="input-block demi"><label for='titre_en'>EN</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
+				</section>
+
+				<div class="row switch">
+					<input  id="newthematiquetextelangueuniqueid" class="switchlang hideninput" type="checkbox"[(#LANG|=={fr}|oui) checked]>
+					<label for="newthematiquetextelangueuniqueid"><span class="fr">FR</span><span class="en">EN</span></label>
+
+					<section class="langue fr full">
+						<header for='texte_fr'><:lped:thematique_texte_fr:></header>
+						<textarea name='texte_fr'>#ENV{texte_fr}</textarea>
+					</section>
+					<section class="langue en full">
+						<header for='texte_en'><:lped:thematique_texte_en:></header>
+						<textarea name='texte_en'>#ENV{texte_en}</textarea>
+					</section>
+				</div>
+
+				<section class="row boutons right">
+					<div class="full">
+						<a href="[(#SELF|parametre_url{afficher,''})]" class="gros bouton fermer"><:lped:annuler:></a>
+						<input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+					</div>
+				</section>
+			</form>
+		</section>
+	</div>
+</div>
+]

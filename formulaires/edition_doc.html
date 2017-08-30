@@ -1,0 +1,122 @@
+[(#ENV{mode}|=={image}|non)
+<div class="modal">
+	<div class="modal-container">
+	<a href="[(#SELF|parametre_url{afficher,''}|parametre_url{document,''})]" class="retour"></a>
+]
+	#SET{formats_images, #ARRAY{gif, jpg, jpeg, png}}
+
+	<section class="edition document">
+
+		<section class="row head">
+			<h2 class="full"><:lped:document_edition_titre:></h2>
+			[<p class="message ok icon fa-check">(#ENV**{message_ok})</p>]
+			[<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+		</section>
+
+		<section class="row diaporama">
+			<BOUCLE_images (DOCUMENTS documents_liens) {documents_liens.objet = #ENV{lien_objet}} {documents_liens.id_objet = #ENV{lien_id_objet}} {par num titre} {tout} {si #ENV{mode}|=={image}}>
+				<figure class="diapositive">
+					[(#GET{formats_images}|find{#EXTENSION}|oui)
+						<img src="[(#FICHIER|image_passe_partout{200,150}|image_recadre{200,150,'center center','#ffffff'}|extraire_attribut{src})]"/>
+					]
+					[(#GET{formats_images}|find{#EXTENSION}|non)
+						<div class="gros fichier #EXTENSION">#EXTENSION</div>
+					]
+					<div class="supprimer-button icon fa-trash"></div>
+					<div class="supprimer">
+						<form action='#ENV{action}' method='post' enctype='multipart/form-data' class="supprimer-wrap">
+							#ACTION_FORMULAIRE{#ENV{action}}
+							<input type='hidden' name='delier' value='#ID_DOCUMENT' />
+							<header><:lped:document_supression_titre:></header>
+							<div class="moyen bouton annuler"><:lped:non:></div>
+							<input type='submit' class="moyen bouton enregistrer" name='ok' value='<:lped:oui:>' />
+						</form>
+					</div>
+					<figcaption>[(#GET{formats_images}|find{#EXTENSION}|oui)&lt;img#ID_DOCUMENT&gt;][(#GET{formats_images}|find{#EXTENSION}|non)&lt;doc#ID_DOCUMENT&gt;]</figcaption>
+				</figure>
+			</BOUCLE_images>
+			<figure class="diapositive fake">
+				<div class="moyen bouton montrer" data-target="documentadmin">Ajouter un fichier</div>
+			</figure>
+		</section>
+
+		<div class="surmodal hidden" id="documentadmin">
+			<section class="edition">
+				<section class="row head">
+					<h2 class="full"><:lped:document_edition_titre:></h2>
+					[<p class="message ok icon fa-check">(#ENV**{message_ok})</p>]
+					[<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+				</section>
+				<form action='#ENV{action}' method='post' enctype='multipart/form-data' class="formulaire_spip">
+					#ACTION_FORMULAIRE{#ENV{action}}
+
+					<section class="row">
+						[(#FICHIER|oui)
+							<div class="affichage-document">
+								<div class="gros fichier #EXTENSION">#EXTENSION</div>
+								<div class="document-nom">[(#FICHIER|basename)]</div>
+							</div>
+						]
+						[(#FICHIER|non)
+							<INCLURE{fond=formulaires/edition_doc_onglets, env}>
+						]
+					</section>
+
+					[(#ENV{mode}|!={image}|oui)
+						<section class="row">
+							<div class="input-block demi">
+								<header><:lped:document_titre:></header>
+								<input type="text"  name="titre" value="#ENV{titre}" autocomplete="off"/>
+							</div>
+							<div class="input-block demi">
+								<header><:lped:document_auteur:></header>
+								<input type="text"  name="auteur" value="#ENV{auteur}" autocomplete="off"/>
+							</div>
+							[<p class="message erreur icon fa-exclamation-triangle">(#ENV**{erreurs}|table_valeur{'titre'})</p>]
+						</section>
+
+						<section class="row">
+							<div class="input-block demi">
+								<header><:lped:document_date:></header>
+								<input type="text"  name="date_document" value="#ENV{date_document}" autocomplete="off"/>
+							</div>
+							<div class="input-block demi">
+								<header><:lped:document_reference:></header>
+								<input type="text"  name="reference" value="#ENV{reference}" autocomplete="off"/>
+							</div>
+						</section>
+
+						<section class="row">
+							<header><:lped:document_resume:></header>
+							<textarea name="descriptif" class="small inserer_barre_edition">#ENV{descriptif}</textarea>
+						</section>
+
+						<section class="row">
+							<div class="full">
+								<div class="input-block demi">
+									<header><:lped:resume_auteur:></header>
+									<input type="text"  name="auteur_resume" value="#ENV{auteur_resume}" autocomplete="off"/>
+								</div>
+								<div class="input-block demi">
+									<header><:lped:resume_date:></header>
+									<input type="text"  name="date_resume" value="#ENV{date_resume}" autocomplete="off"/>
+								</div>
+							</div>
+						</section>
+					]
+
+					<section class="row boutons right">
+						<div class="full">
+							[(#ENV{mode}|=={image}|non) <a href="[(#SELF|parametre_url{afficher,''}|parametre_url{document,''})]" class="gros bouton fermer"><:lped:annuler:></a> ]
+							[(#ENV{mode}|=={image}|oui) <a href="[(#SELF|parametre_url{afficher,''}|parametre_url{document,''})]" class="gros bouton annuler"><:lped:annuler:></a> ]
+							<input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+						</div>
+					</section>
+				</form>
+			</section>
+		</div>
+	</section>
+[(#ENV{mode}|=={image}|non)
+	</div>
+</div>
+]

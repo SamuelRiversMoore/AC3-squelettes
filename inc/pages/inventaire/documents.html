@@ -1,0 +1,62 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+[(#REM) pour de nouveau docs ]
+[(#AUTORISER{creer,document}|oui)
+
+	[(#REM) on défini le parent pour envoi au formulaire ]
+	[(#ID_CHAPITRE|oui) #SET{lien_objet, chapitre} #SET{lien_id_objet, #ID_CHAPITRE} ]
+	[(#ID_THEMATIQUE|oui) #SET{lien_objet, thematique} #SET{lien_id_objet, #ID_THEMATIQUE} ]
+
+	[(#REM) on affiche si nécessaire le formulaire d'édition pour un nouveau document ]
+	[(#THEMATIQUE|oui|et{#CHAPITRE|non}|et{#THEMATIQUE|=={#ID_THEMATIQUE}}|oui) #SET{courant, oui}]
+	[(#CHAPITRE|oui|et{#CHAPITRE|=={#ID_CHAPITRE}}|oui) #SET{courant, oui}]
+
+	[(#AFFICHER|=={editer_document}|et{#DOCUMENT|=={new}}|et{#GET{courant}|=={oui}}|oui)
+			[(#FORMULAIRE_EDITION_DOC{'new',#GET{lien_objet},#GET{lien_id_objet},[(#SELF|parametre_url{'afficher',''}|parametre_url{'document',''})]})]
+	]
+
+	[(#REM) hack pour enlever bug page par defaut]
+	[(#THEMATIQUE|non) #SET{hack,#ID_THEMATIQUE} ]
+	[(#THEMATIQUE|oui) #SET{hack,#THEMATIQUE}]
+
+	<a class="bouton gros ajouter icon fa-file" href="[(#SELF|parametre_lang|parametre_url{thematique, #GET{hack}}|parametre_url{afficher, editer_document}|parametre_url{document, new})]"><:lped:document_ajouter:></a>
+
+]
+
+<BOUCLES_documents (DOCUMENTS) {id_chapitre?} {id_thematique?} {par num titre} {par maj} {statut IN #GET{statut}}>
+
+	[(#REM) si on a le droit de voir le document ]
+	[(#AUTORISER{voir,document,#ID_DOCUMENT}|oui)
+		<section class="thematique-document" id="document_#ID_DOCUMENT">
+			<div class="thematique-document-header">
+				[(#REM) on affiche le panneau d'administration du document ]
+				[(#AUTORISER{modifier,document,#ID_DOCUMENT}|oui) <INCLURE{fond=inc/administration/inventaire/documents, id_document, afficher, document, thematique} /> ]
+
+				[(#REM) si on édite pas le doc alors on affiche ses infos ]
+				<div class="thematique-document-fichiers">
+					<a href="#URL_DOCUMENT" class="gros fichier #EXTENSION" target="_blank">
+						#EXTENSION
+					</a>
+				</div>
+
+				<h4 class="medium">[(#TITRE|sinon{Sans titre})]</h4>
+
+				[<div class="thematique-document-meta">
+					<p class="discret">
+						(#AUTEUR)<br /> [(#DATE_DOCUMENT)] [<br /><span class="small">(#REFERENCE|sinon{#FICHIER|basename})</span>]
+					</p>
+				</div>]
+			</div>
+
+			<div class="thematique-document-description"> [(#DESCRIPTIF|liens_ouvrants)] </div>
+
+			[<div class="thematique-document-meta">
+			  <p class="discret"> (#AUTEUR_RESUME) <br /> [(#DATE_RESUME)] </p>
+			</div>]
+		</section>
+	]
+
+
+
+</BOUCLES_documents>

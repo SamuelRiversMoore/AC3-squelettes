@@ -1,0 +1,62 @@
+<div class="modal">
+	<div class="modal-container">
+
+		[(#ENV{annuler}|oui) <a href="#URL_ACTION_AUTEUR{supprimer_art,#ENV{id_article},#ANNULER}" class="retour"></a>]
+		[(#ENV{annuler}|non) <a href="[(#SELF|parametre_url{afficher,''}|parametre_url{article,''})]" class="retour"></a>]
+
+		<section class="edition">
+			<form action='#ENV{action}' method='post' enctype='multipart/form-data' class="formulaire_spip">
+				#ACTION_FORMULAIRE{#ENV{action}}
+				<section class="row head">
+					<h2 class="full">[(#ENV{id_article}|=={new}|?{<:lped:article_nouveau_titre:>, <:lped:article_edition_titre:>})]</h2>
+					[<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+					[<p class="message ok icon fa-check">(#ENV*{message_ok})</p>]
+				</section>
+
+				<section class="row">
+					<header class="full"><:lped:article_titre:></header>
+					<div class="input-block demi"><label for='titre'>FR</label><span><input type='text' name='titre' value='#ENV{titre}' autocomplete="off"/></span></div>
+					<div class="input-block demi"><label for='titre_en'>EN</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
+				</section>
+
+				<div class="row switch">
+					<input  id="newarticlechapolangueuniqueid" class="switchlang hideninput" type="checkbox"[(#LANG|=={fr}|oui) checked]>
+					<label for="newarticlechapolangueuniqueid"><span class="fr">FR</span><span class="en">EN</span></label>
+					<section class="langue fr full">
+						<header for='chapo'><:lped:article_chapo_fr:></header>
+						<textarea name='chapo' class="small inserer_barre_edition">#ENV{chapo}</textarea>
+					</section>
+					<section class="langue en full">
+						<header for='chapo_en'><:lped:article_chapo_en:></header>
+						<textarea name='chapo_en' class="small inserer_barre_edition">#ENV{chapo_en}</textarea>
+					</section>
+				</div>
+
+				<div class="row switch">
+					<input  id="newarticletxtlangueuniqueid" class="switchlang hideninput" type="checkbox"[(#LANG|=={fr}|oui) checked]>
+					<label for="newarticletxtlangueuniqueid"><span class="fr">FR</span><span class="en">EN</span></label>
+					<section class="langue fr full">
+						<header for='texte'><:lped:article_texte_fr:></header>
+						<textarea name='texte' class="inserer_barre_edition">#ENV{texte}</textarea>
+					</section>
+					<section class="langue en full">
+						<header for='texte_en'><:lped:article_texte_en:></header>
+						<textarea name='texte_en'  class="inserer_barre_edition">#ENV{texte_en}</textarea>
+					</section>
+				</div>
+
+				<section class="row boutons right">
+					<div class="full">
+
+						[(#ENV{annuler}|oui) <a href="#URL_ACTION_AUTEUR{supprimer_art,#ENV{id_article},#ANNULER}" class="gros bouton fermer"><:lped:annuler:></a>]
+						[(#ENV{annuler}|non) <a href="[(#SELF|parametre_url{afficher,''}|parametre_url{article,''})]" class="gros bouton fermer"><:lped:annuler:></a>]
+
+						<input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+					</div>
+				</section>
+			</form>
+
+			<INCLURE{fond=formulaires/edition_art_inc, env, ajax}>
+		</section>
+	</div>
+</div>

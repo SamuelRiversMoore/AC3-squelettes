@@ -1,0 +1,30 @@
+
+<div id="contenu" class="wrapper large">
+	<div id="inventaire-mapbox" class="full"></div>
+</div>
+
+
+<script type="text/javascript">
+	
+	var maxZoom = 5;
+	
+	var geojson = [
+		<BOUCLE_villes_carte(VILLES){longitude != ''}>
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [[(#LONGITUDE)], [(#LATITUDE)]]
+			},
+			"properties": {
+				"title": "#NOM_FR",
+				"marker-color": "#FFDB16",
+				"marker-size": "medium",
+				"url": "#URL_VILLE"
+			}
+		},
+		</BOUCLE_villes_carte>
+		
+	];
+</script>
+

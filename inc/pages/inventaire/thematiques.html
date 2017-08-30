@@ -1,0 +1,61 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+[(#REM) petit hack : on test si on est pas connecté s'il y a bien des thématiques  et des chapitres dans cette thématique]
+<BOUCLE_thematiques_test (THEMATIQUES) {id_pay?} {id_ville?} {id_projet?} {par num titre_fr} {statut IN #GET{statut}} {0,1} {si #SESSION{statut}|non}>#SET{test_thematique, oui}</BOUCLE_thematiques_test>
+
+[(#REM) suite petit hack : pour ne pas les afficher s'il n'y en a pas pour les utilisateurs non connectés ]
+<section id="inventaire-thematiques" [(#SESSION{statut}|non|et{#GET{test_thematique}|non}|oui) style="display:none;"]>
+
+    <div id="inventaire-tabs" class="tabs-wrapper">
+            <nav id="nav-tabs" class="gauche">
+                <header>
+                    <h5>— <:lped:thematiques:></h5>
+                </header>
+
+                [(#REM) menu des thématiques ]
+                <INCLURE{fond=inc/pages/inventaire/menu_thematiques, env} />
+
+                [(#REM) bouton pour remonter en haut ]
+                <div id="tabs-menu-button" class="icon fa-bars"></div>
+            </nav>
+
+            <BOUCLE_thematiques (THEMATIQUES) {id_pay?} {id_ville?} {id_projet?} {par num titre_fr} {statut IN #GET{statut}} >
+                [(#REM) si on est autorisé à voir la thématique ]
+                [(#AUTORISER{voir,thematique,#ID_THEMATIQUE}|oui)
+
+                    [(#REM) le display:block permet d'afficher la thématique en cours, et de surcharger via javascript un comportement sans rechargement ]
+                    <article class="tab" id="thematique#ID_THEMATIQUE" [(#CHAPITRE|non|et{#THEMATIQUE|=={#ID_THEMATIQUE}|oui}) style="display:block" ] [(#THEMATIQUE|=={''}|et{#COMPTEUR_BOUCLE|=={1}}|oui) style="display:block" ] >
+                            <h2>
+                              [ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR|supprimer_numero) ] ]
+                              [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|supprimer_numero|sinon{#TITRE_FR|supprimer_numero}) ] ]
+                            </h2>
+                            [(#REM) on inclus le panneau d'administration de la thématique pour ceux qui ont le droit  ]
+                            [(#AUTORISER{modifier,thematique,#ID_THEMATIQUE}|oui) <INCLURE{fond=inc/administration/inventaire/thematiques, afficher, id_thematique, thematique} /> ]
+
+                            <section class="texte-courant">
+                                [ (#ENV{lang}|=={fr}|oui) [ (#TEXTE_FR|liens_ouvrants)] ]
+                                [ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE_FR|liens_ouvrants}) ] ]
+                            </section>
+
+                            <INCLURE{fond=inc/pages/inventaire/documents, afficher, thematique, chapitre, document, id_thematique} />
+
+                    </article>
+                    <INCLURE{fond=inc/pages/inventaire/chapitres, afficher, thematique, chapitre, document, id_thematique } />
+
+                ]
+            </BOUCLE_thematiques>
+
+            [(#AUTORISER{creer,thematique}|oui)
+                [(#AFFICHER|=={'editer_thematique'}|et{#THEMATIQUE|=={new}}|oui)
+                    [(#ID_PAY|oui) #SET{lien_objet, pay} #SET{lien_id_objet, #ID_PAY} ]
+                    [(#ID_VILLE|oui) #SET{lien_objet, ville} #SET{lien_id_objet, #ID_VILLE} ]
+                    [(#ID_PROJET|oui) #SET{lien_objet, projet} #SET{lien_id_objet, #ID_PROJET} ]
+                    [(#FORMULAIRE_EDITION_THEMATIQUE{ 'new' , #GET{lien_objet} , #GET{lien_id_objet} ,[(#SELF|parametre_url{'afficher',''}|parametre_url{'thematique',''})]})]
+                ]
+            ]
+
+
+
+    </div>
+</section>

@@ -1,0 +1,32 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+
+<BOUCLE_article (ARTICLES) {id_article} {statut IN #GET{statut}} >
+#SET{lang, #ENV{lang}|sinon{fr}}
+<!DOCTYPE HTML>
+<html  lang="[(#GET{lang})]">
+<INCLURE{fond=inc/header, env, lang=#GET{lang}} />
+	<body [(#SESSION{statut}|oui)class="logged"]>
+
+	<!-- si c'est un article du journal -->
+	[(#ID_RUBRIQUE|=={8}|ou{#ID_RUBRIQUE|=={9}}|oui)
+		<INCLURE{fond=inc/menu, env, id_rubrique=2, lang=#GET{lang}} />
+		[(#AUTORISER{voir,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/pages/journal/article, id_article, env, lang=#GET{lang}} />
+		]
+	]
+
+	<!-- si c'est un article des synthèses -->
+	<BOUCLE_rubrique (RUBRIQUES){id_rubrique}{tout}>
+		<BOUCLE_papa (RUBRIQUES){id_enfant}{tout}>
+			[(#ID_RUBRIQUE|=={24}|oui)
+				<INCLURE{fond=inc/menu, env, id_rubrique=24, lang=#GET{lang}} />
+				[(#AUTORISER{voir,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/pages/syntheses/article, id_article, env, lang=#GET{lang}} /> ]
+			]
+		</BOUCLE_papa>
+	</BOUCLE_rubrique>
+
+	<INCLURE{fond=inc/footer} />
+
+	</body>
+</html>
+</BOUCLE_article>

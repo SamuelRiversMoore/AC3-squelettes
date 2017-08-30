@@ -1,0 +1,28 @@
+<section class="administration">
+	<BOUCLE_documents (DOCUMENTS) {id_document} {tout}>
+		[(#AFFICHER|=={editer_document}|et{#DOCUMENT|=={#ID_DOCUMENT}}|non)
+			<a class="bouton moyen modifier icon fa-pencil" href="[(#SELF|parametre_lang|parametre_url{afficher, editer_document}|parametre_url{document, #ID_DOCUMENT})]"><:lped:editer:></a>
+		]
+
+		[(#FORMULAIRE_MODERATION_OBJET{documents,document,#ID_DOCUMENT})]
+		
+		<div class="meta">
+			<span class="icon fa-calendar-o" alt="<:lped:creation:>" title="<:lped:creation:>">[(#DATE|affdate)]</span>
+			<span class="icon fa-pencil-square-o" alt="<:lped:modification:>" title="<:lped:modification:>">[(#MAJ|affdate)]</span>
+			<span class="auteurs icon fa-user" alt="<:lped:contributeurs:>" title="<:lped:contributeurs:>">
+				<BOUCLE_auteurs (AUTEURS) {id_document}>
+					<span class="auteur">#NOM</span>
+				</BOUCLE_auteurs>
+			</span>
+
+		</div>
+
+		[(#AFFICHER|=={document_ok}|et{#DOCUMENT|=={#ID_DOCUMENT}}|oui)<span class="message ok icon fa-check"></span>]
+
+		[(#AFFICHER|=={editer_document}|et{#DOCUMENT|=={#ID_DOCUMENT}}|oui)
+				[(#FORMULAIRE_EDITION_DOC{#ID_DOCUMENT,'','',[(#SELF|parametre_url{afficher,document_ok})] })]
+		]
+
+
+	</BOUCLE_documents>
+</section>

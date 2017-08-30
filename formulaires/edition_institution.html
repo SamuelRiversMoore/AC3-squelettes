@@ -1,0 +1,51 @@
+
+[(#EDITABLE|oui)
+	<div class="modal">
+		<div class="modal-container">
+			[(#ENV{annuler}|oui) <a href="#URL_ACTION_AUTEUR{supprimer_institution,#ENV{id_institution},#ANNULER}" class="retour"></a>]
+			[(#ENV{annuler}|non) <a href="[(#SELF|parametre_url{afficher,''})]" class="retour"></a>]
+
+			<section class="edition">
+
+				<form action='#ENV{action}' method='post'>
+					#ACTION_FORMULAIRE{#ENV{action}}
+					<section class="row head">
+						<h2 class="full"> [(#ENV{id_institution}|=={new}|?{<:lped:institution_nouveau_titre:>,<:lped:institution_edition_titre:>})] </h2>
+						[<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+						[<p class="message ok icon fa-check-square-o">(#ENV*{message_ok})</p>]
+					</section>
+
+					<section class="row">
+						<div class="input-block demi">
+							<header class="full"><:lped:institution_nom:></header>
+							<label for='nom' class="icon fa-building"></label><span><input type='text' name='nom' value='#ENV{nom}' autocomplete="off"/></span>
+						</div>
+						<div class="input-block demi">
+							<header class="full"><:lped:institution_lien:></header>
+							<label for='lien' class="icon fa-link"></label><span><input type='text' name='lien' value='#ENV{lien}' autocomplete="off"/></span>
+						</div>
+					</section>
+
+					<section class="row">
+						<div class="input-block">
+							<header class="full"><:lped:institution_description:></header>
+							<textarea name='description' class="small"> #ENV{description}</textarea>
+						</div>
+					</section>
+
+					<section class="row boutons right">
+						<div class="full">
+							[(#ENV{annuler}|oui) <a href="#URL_ACTION_AUTEUR{supprimer_institution,#ENV{id_insitution},#ANNULER}" class="gros bouton fermer"><:lped:annuler:></a>]
+							[(#ENV{annuler}|non) <a href="[(#SELF|parametre_url{afficher,''})]" class="gros bouton fermer"><:lped:annuler:></a>]
+
+							<input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+						</div>
+					</section>
+				</form>
+
+				<INCLURE{fond=formulaires/edition_institution_inc, env, ajax}>
+
+			</section>
+		</div>
+	</div>
+]

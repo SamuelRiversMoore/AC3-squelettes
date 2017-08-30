@@ -1,0 +1,28 @@
+<section class="administration">
+	<BOUCLE_article (ARTICLES) {id_article} {tout}>
+
+		<a class="bouton moyen modifier icon fa-pencil" alt="<:lped:article_modifier:>" href="[(#SELF|parametre_lang|parametre_url{afficher, editer_article}|parametre_url{article, #ID_ARTICLE})]"><:lped:article_modifier:>[(#AFFICHER|=={article_ok}|oui)<span class="message ok icon fa-check"></span>]</a>
+
+		[(#FORMULAIRE_MODERATION_OBJET{articles,article,#ID_ARTICLE})]
+
+		<div class="meta">
+			<span class="icon fa-calendar-o" alt="<:lped:creation:>" title="<:lped:creation:>">[(#DATE|affdate)]</span>
+			<span class="icon fa-pencil-square-o" alt="<:lped:modification:>" title="<:lped:modification:>">[(#MAJ|affdate)]</span>
+			<span class="auteurs icon fa-user" alt="<:lped:contributeurs:>" title="<:lped:contributeurs:>">
+				<BOUCLE_auteurs (AUTEURS) {id_article}>
+					<span class="auteur">#NOM</span>
+				</BOUCLE_auteurs>
+			</span>
+		</div>
+
+		[(#REM) hack pour la page à propos]
+		[(#ARTICLE|non) #SET{condition,oui} ]
+		[(#ARTICLE|oui|et{#ID_ARTICLE|=={#ARTICLE}}|oui) #SET{condition,oui} ]
+
+		[(#AFFICHER|=={editer_article}|et{#GET{condition}|oui}|oui)
+			[(#FORMULAIRE_EDITION_ART{#ID_ARTICLE,#ID_RUBRIQUE,[(#SELF|parametre_url{afficher,article_ok}|parametre_url{annuler,''}|parametre_url{article,''})],#ANNULER})]
+		]
+
+
+	</BOUCLE_article>
+</section>

@@ -1,0 +1,327 @@
+<div id="contenu" class="wrapper">
+
+	<header class="gros">
+		<h1><:lped:rechercher:></h1>
+
+		<div id="content-searchbar">
+			<form action="[(#SELF)]" method='post'>
+				<input type="search" name="recherche" value="#RECHERCHE" autocomplete="off"/>
+			</form>
+		</div>
+	</header>
+
+	<section class="page-standard">
+		<h2 class="discret">[<:lped:resultat_pour:> "(#RECHERCHE)" :]</h2>
+
+		#SET{type, #ARRAY}
+		#SET{type_en, #ARRAY}
+		#SET{chemin_fr, #ARRAY}
+		#SET{chemin_en, #ARRAY}
+		#SET{resume_fr, #ARRAY}
+		#SET{resume_en, #ARRAY}
+		#SET{date, #ARRAY}
+		#SET{titre, #ARRAY}
+		#SET{titre_en, #ARRAY}
+		#SET{lien, #ARRAY}
+		#SET{points, #ARRAY}
+
+			<BOUCLE_projets(PROJETS) {recherche} {!par points}>
+				#SET{date, #GET{date}|push{#MAJ}}
+				#SET{type, #GET{type}|push{Projet}}
+				#SET{type_en, #GET{type_en}|push{Project}}
+				<BOUCLE_projet_ville (VILLES projets_liens) {id_projet}>
+				  <BOUCLE_projet_pays (PAYS villes_liens) {id_ville}>
+					#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_projet_ville:NOM_FR}}
+					#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_projet_ville:NOM_EN}}
+				  </BOUCLE_projet_pays>
+				</BOUCLE_projet_ville>
+
+				#SET{titre, #GET{titre}|push{#TITRE_FR}}
+				#SET{titre_en, #GET{titre_en}|push{#TITRE_EN}}
+
+				#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTION_FR|couper{160}}}
+				#SET{resume_en, #GET{resume_en}|push{#DESCRIPTION_EN|couper{160}}}
+
+				#SET{lien, #GET{lien}|push{#URL_PROJET}}
+				#SET{points, #GET{points}|push{#POINTS}}
+			</BOUCLE_projets>
+
+
+
+
+			<BOUCLE_villes(VILLES) {recherche} {!par points}>
+				#SET{date, #GET{date}|push{#MAJ}}
+				#SET{type, #GET{type}|push{Ville}}
+				#SET{type_en, #GET{type_en}|push{City}}
+
+				<BOUCLE_ville_pays (PAYS villes_liens) {id_ville}>
+				  #SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR }}
+				  #SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN }}
+				</BOUCLE_ville_pays>
+
+				#SET{resume_fr, #GET{resume_fr}|push{''}}
+				#SET{resume_en, #GET{resume_en}|push{''}}
+
+				#SET{titre, #GET{titre}|push{#NOM_FR}}
+				#SET{titre_en, #GET{titre_en}|push{#NOM_EN}}
+				#SET{lien, #GET{lien}|push{#URL_VILLE}}
+				#SET{points, #GET{points}|push{#POINTS}}
+			</BOUCLE_villes>
+
+
+
+
+			<BOUCLE_pays(PAYS) {recherche} {!par points}>
+				#SET{date, #GET{date}|push{#MAJ}}
+				#SET{type, #GET{type}|push{Pays}}
+				#SET{type_en, #GET{type_en}|push{Country}}
+				#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire }}
+				#SET{chemin_en, #GET{chemin_en}|push{ Inventory }}
+				#SET{resume_fr, #GET{resume_fr}|push{''}}
+				#SET{resume_en, #GET{resume_en}|push{''}}
+				#SET{titre, #GET{titre}|push{#NOM_FR}}
+				#SET{titre_en, #GET{titre_en}|push{#NOM_EN}}
+				#SET{lien, #GET{lien}|push{#URL_PAY}}
+				#SET{points, #GET{points}|push{#POINTS}}
+			</BOUCLE_pays>
+
+
+			<BOUCLE_thematiques(THEMATIQUES) {recherche} {!par points}>
+				#SET{date, #GET{date}|push{#MAJ}}
+				#SET{points, #GET{points}|push{#POINTS}}
+				#SET{resume_fr, #GET{resume_fr}|push{#TEXTE_FR|couper{160}}}
+				#SET{resume_en, #GET{resume_en}|push{#TEXTE_EN|couper{160}}}
+				#SET{type, #GET{type}|push{Thématique}}
+				#SET{type_en, #GET{type_en}|push{Topic}}
+				#SET{titre, #GET{titre}|push{#_thematiques:TITRE_FR}}
+				#SET{titre_en, #GET{titre_en}|push{#_thematiques:TITRE_EN}}
+
+				<BOUCLE_them_projets(PROJETS spip_thematiques_liens){id_thematique}>
+					#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#TITRE_FR }}
+					#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#TITRE_EN }}
+					#SET{lien, #GET{lien}|push{#URL_PROJET|parametre_url{thematique,#_thematiques:ID_THEMATIQUE}}}
+				</BOUCLE_them_projets>
+				<BOUCLE_them_villes(VILLES spip_thematiques_liens){id_thematique}>
+					#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR }}
+					#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN }}
+					#SET{lien, #GET{lien}|push{#URL_VILLE|parametre_url{thematique,#_thematiques:ID_THEMATIQUE}}}
+				</BOUCLE_them_villes>
+				<BOUCLE_them_pays(PAYS spip_thematiques_liens){id_thematique}>
+					#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR} }
+					#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN }}
+					#SET{lien, #GET{lien}|push{#URL_PAY|parametre_url{thematique,#_thematiques:ID_THEMATIQUE}}}
+				</BOUCLE_them_pays>
+			</BOUCLE_thematiques>
+
+
+			<BOUCLE_chapitre(CHAPITRES) {recherche} {!par points}>
+				#SET{date, #GET{date}|push{#_chapitre:MAJ}}
+				#SET{titre, #GET{titre}|push{#_chapitre:TITRE_FR}}
+				#SET{titre_en, #GET{titre_en}|push{#_chapitre:TITRE_EN}}
+				#SET{type, #GET{type}|push{Chapitre}}
+				#SET{type_en, #GET{type_en}|push{Chapter}}
+				#SET{resume_fr, #GET{resume_fr}|push{#TEXTE_FR|couper{160}}}
+				#SET{resume_en, #GET{resume_en}|push{#TEXTE_EN|couper{160}}}
+				#SET{points, #GET{points}|push{#_chapitre:POINTS}}
+				<BOUCLE_chap_thematiques(THEMATIQUES spip_chapitres_liens){id_chapitre}>
+					<BOUCLE_chap_them_projets(PROJETS spip_thematiques_liens){id_thematique}>
+						#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#TITRE_FR<span class="icon fleche fa-angle-right"></span>#_chap_thematiques:TITRE_FR}}
+						#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#TITRE_EN<span class="icon fleche fa-angle-right"></span>#_chap_thematiques:TITRE_EN}}
+						#SET{lien, #GET{lien}|push{#URL_PROJET|parametre_url{thematique,#_chap_thematiques:ID_THEMATIQUE}|parametre_url{chapitre,#_chapitre:ID_CHAPITRE}}}
+					</BOUCLE_chap_them_projets>
+					<BOUCLE_chap_them_villes(VILLES spip_thematiques_liens){id_thematique}>
+						#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_chap_thematiques:TITRE_FR}}
+						#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_chap_thematiques:TITRE_EN}}
+						#SET{lien, #GET{lien}|push{#URL_VILLE|parametre_url{thematique,#_chap_thematiques:ID_THEMATIQUE}|parametre_url{chapitre,#_chapitre:ID_CHAPITRE}}}
+					</BOUCLE_chap_them_villes>
+					<BOUCLE_chap_them_pays(PAYS spip_thematiques_liens){id_thematique}>
+						#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_chap_thematiques:TITRE_FR}}
+						#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_chap_thematiques:TITRE_EN}}
+						#SET{lien, #GET{lien}|push{#URL_PAY|parametre_url{thematique,#_chap_thematiques:ID_THEMATIQUE}|parametre_url{chapitre,#_chapitre:ID_CHAPITRE}}}
+					</BOUCLE_chap_them_pays>
+				</BOUCLE_chap_thematiques>
+			</BOUCLE_chapitre>
+
+
+			<BOUCLE_document(DOCUMENTS) {recherche} {!par points}>
+				<BOUCLE_docs_thematiques(THEMATIQUES spip_documents_liens){id_document}>
+					<BOUCLE_docs_them_projets(PROJETS spip_thematiques_liens){id_thematique}>
+						#SET{date, #GET{date}|push{#_document:MAJ}}
+						#SET{type, #GET{type}|push{Document}}
+						#SET{type_en, #GET{type_en}|push{Document}}
+						#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTIF|couper{160}}}
+						#SET{resume_en, #GET{resume_en}|push{#DESCRIPTIF|couper{160}}}
+						#SET{titre, #GET{titre}|push{#_document:TITRE}}
+						#SET{titre_en, #GET{titre_en}|push{#_document:TITRE}}
+						#SET{points, #GET{points}|push{#_document:POINTS}}
+						#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#TITRE_FR<span class="icon fleche fa-angle-right"></span>#_docs_thematiques:TITRE_FR }}
+						#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#TITRE_EN<span class="icon fleche fa-angle-right"></span>#_docs_thematiques:TITRE_EN }}
+						#SET{lien, #GET{lien}|push{#URL_PROJET|parametre_url{thematique,#_docs_thematiques:ID_THEMATIQUE}|ancre_url{document_#ID_DOCUMENT}}}
+					</BOUCLE_docs_them_projets>
+					<BOUCLE_docs_them_villes(VILLES spip_thematiques_liens){id_thematique}>
+						#SET{date, #GET{date}|push{#_document:MAJ}}
+						#SET{type, #GET{type}|push{Document}}
+						#SET{type_en, #GET{type_en}|push{Document}}
+						#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTIF|couper{160}}}
+						#SET{resume_en, #GET{resume_en}|push{#DESCRIPTIF|couper{160}}}
+						#SET{titre, #GET{titre}|push{#_document:TITRE}}
+						#SET{titre_en, #GET{titre_en}|push{#_document:TITRE}}
+						#SET{points, #GET{points}|push{#_document:POINTS}}
+						#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_docs_thematiques:TITRE_FR}}
+						#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_docs_thematiques:TITRE_EN}}
+						#SET{lien, #GET{lien}|push{#URL_VILLE|parametre_url{thematique,#_docs_thematiques:ID_THEMATIQUE}|ancre_url{document_#ID_DOCUMENT}}}
+					</BOUCLE_docs_them_villes>
+					<BOUCLE_docs_them_pays(PAYS spip_thematiques_liens){id_thematique}>
+						#SET{date, #GET{date}|push{#_document:MAJ}}
+						#SET{type, #GET{type}|push{Document}}
+						#SET{type_en, #GET{type_en}|push{Document}}
+						#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTIF|couper{160}}}
+						#SET{resume_en, #GET{resume_en}|push{#DESCRIPTIF|couper{160}}}
+						#SET{titre, #GET{titre}|push{#_document:TITRE}}
+						#SET{titre_en, #GET{titre_en}|push{#_document:TITRE}}
+						#SET{points, #GET{points}|push{#_document:POINTS}}
+						#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_docs_thematiques:TITRE_FR}}
+						#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_docs_thematiques:TITRE_EN}}
+						#SET{lien, #GET{lien}|push{#URL_PAY|parametre_url{thematique,#_docs_thematiques:ID_THEMATIQUE}|ancre_url{document_#ID_DOCUMENT}}}
+					</BOUCLE_docs_them_pays>
+				</BOUCLE_docs_thematiques>
+
+				<BOUCLE_docs_chapitre(CHAPITRES spip_documents_liens){id_document}>
+					<BOUCLE_docs_chap_thematiques(THEMATIQUES spip_chapitres_liens){id_chapitre}>
+						<BOUCLE_docs_chap_them_projets(PROJETS spip_thematiques_liens){id_thematique}>
+							#SET{date, #GET{date}|push{#_document:MAJ}}
+							#SET{type, #GET{type}|push{Document}}
+							#SET{type_en, #GET{type_en}|push{Document}}
+							#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTIF|couper{160}}}
+							#SET{resume_en, #GET{resume_en}|push{#DESCRIPTIF|couper{160}}}
+							#SET{titre, #GET{titre}|push{#_document:TITRE}}
+							#SET{titre_en, #GET{titre_en}|push{#_document:TITRE}}
+							#SET{points, #GET{points}|push{#_document:POINTS}}
+							#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#TITRE_FR<span class="icon fleche fa-angle-right"></span>#_docs_chap_thematiques:TITRE_FR<span class="icon fleche fa-angle-right"></span>#_docs_chapitre:TITRE_FR}}
+							#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#TITRE_EN<span class="icon fleche fa-angle-right"></span>#_docs_chap_thematiques:TITRE_EN<span class="icon fleche fa-angle-right"></span>#_docs_chapitre:TITRE_EN}}
+							#SET{lien, #GET{lien}|push{#URL_PROJET|parametre_url{thematique,#_docs_chap_thematiques:ID_THEMATIQUE}|parametre_url{chapitre,#_docs_chapitre:ID_CHAPITRE}|ancre_url{document_#ID_DOCUMENT}}}
+						</BOUCLE_docs_chap_them_projets>
+						<BOUCLE_docs_chap_them_villes(VILLES spip_thematiques_liens){id_thematique}>
+							#SET{date, #GET{date}|push{#_document:MAJ}}
+							#SET{type, #GET{type}|push{Document}}
+							#SET{type_en, #GET{type_en}|push{Document}}
+							#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTIF|couper{160}}}
+							#SET{resume_en, #GET{resume_en}|push{#DESCRIPTIF|couper{160}}}
+							#SET{titre, #GET{titre}|push{#_document:TITRE}}
+							#SET{titre_en, #GET{titre_en}|push{#_document:TITRE}}
+							#SET{points, #GET{points}|push{#_document:POINTS}}
+							#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_docs_chap_thematiques:TITRE_FR<span class="icon fleche fa-angle-right"></span>#_docs_chapitre:TITRE_FR}}
+							#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_docs_chap_thematiques:TITRE_EN<span class="icon fleche fa-angle-right"></span>#_docs_chapitre:TITRE_EN}}
+							#SET{lien, #GET{lien}|push{#URL_VILLE|parametre_url{thematique,#_docs_chap_thematiques:ID_THEMATIQUE}|parametre_url{chapitre,#_docs_chapitre:ID_CHAPITRE}|ancre_url{document_#ID_DOCUMENT}}}
+						</BOUCLE_docs_chap_them_villes>
+						<BOUCLE_docs_chap_them_pays(PAYS spip_thematiques_liens){id_thematique}>
+							#SET{date, #GET{date}|push{#_document:MAJ}}
+							#SET{type, #GET{type}|push{Document}}
+							#SET{type_en, #GET{type_en}|push{Document}}
+							#SET{resume_fr, #GET{resume_fr}|push{#DESCRIPTIF|couper{160}}}
+							#SET{resume_en, #GET{resume_en}|push{#DESCRIPTIF|couper{160}}}
+							#SET{titre, #GET{titre}|push{#_document:TITRE}}
+							#SET{titre_en, #GET{titre_en}|push{#_document:TITRE}}
+							#SET{points, #GET{points}|push{#_document:POINTS}}
+							#SET{chemin_fr, #GET{chemin_fr}|push{ Inventaire<span class="icon fleche fa-angle-right"></span>#NOM_FR<span class="icon fleche fa-angle-right"></span>#_docs_chap_thematiques:TITRE_FR<span class="icon fleche fa-angle-right"></span>#_docs_chapitre:TITRE_FR}}
+							#SET{chemin_en, #GET{chemin_en}|push{ Inventory<span class="icon fleche fa-angle-right"></span>#NOM_EN<span class="icon fleche fa-angle-right"></span>#_docs_chap_thematiques:TITRE_EN<span class="icon fleche fa-angle-right"></span>#_docs_chapitre:TITRE_EN}}
+							#SET{lien, #GET{lien}|push{#URL_PAY|parametre_url{thematique,#_docs_chap_thematiques:ID_THEMATIQUE}|parametre_url{chapitre,#_docs_chapitre:ID_CHAPITRE}|ancre_url{document_#ID_DOCUMENT}}}
+						</BOUCLE_docs_chap_them_pays>
+					</BOUCLE_docs_chap_thematiques>
+				</BOUCLE_docs_chapitre>
+
+			</BOUCLE_document>
+
+
+
+			<BOUCLE_mots(GLOMOTS) {recherche} {!par points}>
+				#SET{date, #GET{date}|push{#MAJ}}
+				#SET{type, #GET{type}|push{Entrée}}
+				#SET{type_en, #GET{type_en}|push{Entry}}
+				#SET{chemin_fr, #GET{chemin_fr}|push{Lexique}}
+				#SET{chemin_en, #GET{chemin_en}|push{Lexicon}}
+				#SET{resume_fr, #GET{resume_fr}|push{''}}
+				#SET{resume_en, #GET{resume_en}|push{''}}
+				#SET{titre, #GET{titre}|push{#TITRE}}
+				#SET{titre_en, #GET{titre_en}|push{#TITRE}}
+				#SET{lien, #GET{lien}|push{#INFO_URL{rubrique,5}|parametre_url{glomot,#ID_GLOMOT}|ancre_url{#TITRE|substr{0,1}}}}
+				#SET{points, #GET{points}|push{#POINTS}}
+			</BOUCLE_mots>
+
+			<BOUCLE_defs(GLODEFS) {recherche} {!par points}>
+				<BOUCLE_glomots_def(GLOMOTS spip_glodefs_liens){id_glodef}>
+				#SET{date, #GET{date}|push{#_defs:MAJ}}
+				#SET{type, #GET{type}|push{Définition}}
+				#SET{type_en, #GET{type_en}|push{Definition}}
+				#SET{chemin_fr, #GET{chemin_fr}|push{Lexique}}
+				#SET{chemin_en, #GET{chemin_en}|push{Lexicon}}
+				#SET{resume_fr, #GET{resume_fr}|push{#DEFINITION|couper{160}}}
+				#SET{resume_en, #GET{resume_en}|push{#DEFINITION|couper{160}}}
+				#SET{titre, #GET{titre}|push{#TITRE}}
+				#SET{titre_en, #GET{titre_en}|push{#TITRE}}
+				#SET{lien, #GET{lien}|push{#INFO_URL{rubrique,5}|parametre_url{glomot,#ID_GLOMOT}|ancre_url{#TITRE|substr{0,1}}}}
+				#SET{points, #GET{points}|push{#_defs:POINTS}}
+				</BOUCLE_glomots_def>
+			</BOUCLE_defs>
+
+			<BOUCLE_article(ARTICLES) {recherche} {!par points}>
+
+				#SET{type_article,''}
+				[(#ID_RUBRIQUE|=={8}|oui) #SET{type_article, Article} #SET{type_article_en, Article} #SET{chemin_article_fr, Journal} #SET{chemin_article_en, Journal} ]
+				[(#ID_RUBRIQUE|=={9}|oui) #SET{type_article, Nouvelle} #SET{type_article_en, News} #SET{chemin_article_fr, Journal} #SET{chemin_article_en, Journal} ]
+				<BOUCLE_rubrique (RUBRIQUES) {id_rubrique}>
+				<BOUCLE_papa (RUBRIQUES){id_enfant}{tout}>
+				  [(#ID_RUBRIQUE|=={24}|oui) #SET{type_article, Synthèse} #SET{type_article_en, Synthesis} #SET{chemin_article_fr, Synthèses} #SET{chemin_article_en, Synthesis} ]
+				</BOUCLE_papa>
+				</BOUCLE_rubrique>
+
+				[(#GET{type_article}|!={''}|oui)
+				  #SET{date, #GET{date}|push{#MAJ}}
+				  #SET{type, #GET{type}|push{#GET{type_article}}}
+				  #SET{type_en, #GET{type_en}|push{#GET{type_article_en}}}
+				  #SET{chemin_fr, #GET{chemin_fr}|push{#GET{chemin_article_fr}}}
+				  #SET{chemin_en, #GET{chemin_en}|push{#GET{chemin_article_en}}}
+				  #SET{resume_fr, #GET{resume_fr}|push{#TEXTE|couper{160}}}
+				  #SET{resume_en, #GET{resume_en}|push{#TEXTE_EN|couper{160}}}
+				  #SET{titre, #GET{titre}|push{#TITRE}}
+				  #SET{titre_en, #GET{titre_en}|push{#TITRE_EN}}
+				  #SET{lien, #GET{lien}|push{#URL_ARTICLE}}
+				  #SET{points, #GET{points}|push{#POINTS}}
+				]
+
+			</BOUCLE_article>
+
+		<ul id="resultats">
+			<BOUCLE_lecture(DATA){source tableau, #GET{points}}{par valeur}{inverse}>
+
+						<li class="resultat">
+							<a href="[(#GET{lien}|table_valeur{#CLE}|parametre_lang)]">
+								<h3>
+									[ (#ENV{lang}|=={fr}|oui) [(#GET{titre}|table_valeur{#CLE}|supprimer_numero)] ]
+									[ (#ENV{lang}|=={en}|oui) [(#GET{titre_en}|table_valeur{#CLE}|supprimer_numero|sinon{#GET{titre}|table_valeur{#CLE}|supprimer_numero})] ]
+							 	</h3>
+							 	<div class="meta">
+									<span class="type [(#GET{type_en}|table_valeur{#CLE}|strtolower)]">[(#ENV{lang}|=={fr}|oui)[(#GET{type}|table_valeur{#CLE})]][(#ENV{lang}|=={en}|oui)[(#GET{type_en}|table_valeur{#CLE})]]</span>
+									<span class="date discret">
+										[(#GET{date}|table_valeur{#CLE}|affdate{'d.m.Y'})]
+									</span>
+									<span class="chemin">
+										<span class="icon fa-folder-o"></span>
+										[(#ENV{lang}|=={fr}|oui) [(#GET{chemin_fr}|table_valeur{#CLE})] ][ (#ENV{lang}|=={en}|oui) [(#GET{chemin_en}|table_valeur{#CLE})]]
+									</span>
+								</div>
+								<div>
+									[ (#ENV{lang}|=={fr}|oui) [(#GET{resume_fr}|table_valeur{#CLE})] ]
+									[ (#ENV{lang}|=={en}|oui) [(#GET{resume_en}|table_valeur{#CLE})] ]
+								</div>
+							</a>
+						</li>
+
+			</BOUCLE_lecture>
+			  [(#RECHERCHE|oui) <:lped:aucun_resultat:>]
+			<//B_lecture>
+		</ul>
+
+
+	</section>
+</div>

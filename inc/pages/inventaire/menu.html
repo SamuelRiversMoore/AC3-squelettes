@@ -1,0 +1,24 @@
+#SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
+[ (#SESSION{statut}|non) #SET{statut, publie}  ]
+<B_pays>
+	<ul class="tree pays">
+		<BOUCLE_pays (PAYS) {statut IN #GET{statut}, {icon IN #GET{staticon}} {par nom_fr}>
+			[(#AUTORISER{voir,pay,#ID_PAY}|oui)
+				<li class="pays [(#EXPOSE|=={on}|oui)active] #STATUT">
+
+					<a class="item" href="[(#URL_PAY|parametre_lang)]" title="#NOM_FR">
+						<span class="menu-title">[(#ENV{lang}|=={fr}|oui)[(#NOM_FR)]][(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]
+						</span>
+						[(#AUTORISER{modifier,pay,#ID_PAY}|oui) <span class='status [(#STATUT)] [(#ENV{lang}|sinon{fr})]'></span> ]
+					</a>
+
+					[(#EXPOSE|=={on}|oui) <INCLURE{fond=inc/pages/inventaire/menu_villes, afficher, id_pay, id_ville=#ENV{id_ville}, id_projet=#ENV{id_projet}, statut=#GET{statut}}> ]
+				</li>
+			]
+		</BOUCLE_pays>
+	</ul>
+</B_pays>
+[(#AUTORISER{creer,pay}|oui)
+   [(#REM) le formulaire est inséré à la racine DOM du menu (inc/menu.html)]
+	<a class="gros bouton ajouter pays" href="[(#URL_RUBRIQUE{3}|parametre_lang|parametre_url{afficher, nouveau_pays})]"><:lped:pays_ajouter:></a>
+]

@@ -1,0 +1,14 @@
+<section class="administration mini">
+    <BOUCLE_refs (GLOREFS) {id_gloref} {tout}>
+        <a class="bouton modifier icon fa-pencil" href="[(#SELF|parametre_url{afficher, editer_ref}|parametre_url{gloref,#ID_GLOREF})]"></a>
+
+        [(#FORMULAIRE_MODERATION_OBJET{glorefs,gloref,#ID_GLOREF})]
+
+        [(#AFFICHER|=={gloref_ok}|et{#GLOREF|=={#ID_GLOREF}}|oui)<p class="message ok"><:lped:enregistrement_ok:></p>]
+
+        [(#AFFICHER|=={editer_ref}|et{#GLOREF|=={#ID_GLOREF}}|oui)
+             [(#FORMULAIRE_EDITION_GLOREF{#ID_GLOREF,'',[(#SELF|parametre_url{'afficher','gloref_ok'}|parametre_url{gloref,#ID_GLOREF})] })]
+        ]
+
+    </BOUCLE_refs>
+</section>

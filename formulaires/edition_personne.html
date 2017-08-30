@@ -1,0 +1,58 @@
+
+
+[(#EDITABLE|oui)
+
+<div class="modal">
+	<div class="modal-container">
+
+		<a href="[(#SELF|parametre_url{afficher,''})]" class="retour"></a>
+		<section class="edition">
+			<form action='#ENV{action}' method='post'>
+				#ACTION_FORMULAIRE{#ENV{action}}
+				<section class="row head">
+					<h2 class="full"> [(#ENV{id_personne}|=={new}|?{<:lped:personne_nouveau_titre:>,<:lped:personne_edition_titre:>})] </h2>
+					[<p class="message erreur icon fa-exclamation-triangle">(#ENV*{message_erreur})</p>]
+					[<p class="message ok icon fa-check-square-o">(#ENV*{message_ok})</p>]
+				</section>
+
+				<section class="row">
+					<div class="input-block">
+						<header class="full"><:lped:personne_nom:></header>
+						<label for='nom' class="icon fa-user"></label><span><input type='text' name='nom' value='#ENV{nom}' autocomplete="off"/></span>
+					</div>
+				</section>
+
+				<section class="row">
+					<div class="input-block demi">
+						<header class="full"><:lped:personne_email:></header>
+						<label for='email' class="icon fa-envelope"></label><span><input type='text' name='email' value='#ENV{email}' autocomplete="off"/></span>
+					</div>
+					<div class="input-block demi">
+						<header class="full"><:lped:personne_pays:></header>
+						<label for='pays' class="icon fa-map-marker"></label><span><input type='text' name='pays' value='#ENV{pays}'/></span>
+					</div>
+				</section>
+
+				<section class="row">
+					<div class="input-block demi">
+						<header class="full"><:lped:personne_societe:></header>
+						<label for='societe' class="icon fa-building"></label><span><input type='text' name='societe' value='#ENV{societe}'/></span>
+					</div>
+					<div class="input-block demi">
+						<header class="full"><:lped:personne_fonction:></header>
+						<label for='fonction' class="icon fa-briefcase"></label><span><input type='text' name='fonction' value='#ENV{fonction}' autocomplete="off"/></span>
+					</div>
+				</section>
+
+				<section class="row boutons right">
+					<div class="full">
+						<a href="[(#SELF|parametre_url{afficher,''})]" class="gros bouton fermer"><:lped:annuler:></a>
+						<input type='submit' class="gros bouton enregistrer" name='ok' value='<:lped:enregistrer:>' />
+					</div>
+				</section>
+			</form>
+		</section>
+	</div>
+</div>
+
+]

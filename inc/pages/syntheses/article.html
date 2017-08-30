@@ -1,0 +1,45 @@
+<BOUCLE_synthese (ARTICLES) {id_article} {tout}>
+
+<div id="contenu" class="wrapper">
+	<div id="arbo">
+		<a href="[(#URL_SITE_SPIP|parametre_lang)]">#NOM_SITE_SPIP</a> >
+		<a href="[(#INFO_URL{rubrique,24}|parametre_lang)]">
+			[ (#ENV{lang}|=={fr}|oui) [ (#INFO_TITRE{rubrique,24}) ] ]
+			[ (#ENV{lang}|=={en}|oui) [ (#INFO_TITRE_EN{rubrique,24}|sinon{#INFO_TITRE{rubrique,24}}) ] ]</a> >
+		<span class="arbo-current-page">
+			[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
+			[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+		</span>
+	</div>
+
+	<section class="synthese page-standard">
+		<article>
+			<header>
+				<h1>
+					[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
+					[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+				</h1>
+				
+				[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/article, id_article, env }/> ]
+			</header>
+			<div class="grid-2 texte-courant">
+				<div>
+					<span class="discret">— [(#DATE|affdate)]</span>
+				</div>
+				<div>
+					<div class="medium">
+						[ (#ENV{lang}|=={fr}|oui) [ (#CHAPO) ] ]
+						[ (#ENV{lang}|=={en}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
+					</div>
+					<div>
+						[ (#ENV{lang}|=={fr}|oui) [ (#TEXTE) ] ]
+						[ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|sinon{#TEXTE}) ] ]
+					</div>
+				</div>
+			</div>
+
+		</article>
+
+	</section>
+		</div>
+</BOUCLE_synthese>

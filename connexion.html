@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="[(#ENV{lang}|sinon{fr})]">
+<INCLURE{fond=inc/header, inc}>
+	<body [(#SESSION{statut}|oui)class="logged"]>
+
+	<INCLURE{fond=inc/menu}>
+
+	<div id="contenu" class="wrapper">
+        <header><h1><:lped:connexion:></h1></header>
+        [(#LOGIN_PUBLIC{#REDIRECT})]        
+	</div>
+
+	<INCLURE{fond=inc/footer}>
+
+	</body>
+</html>

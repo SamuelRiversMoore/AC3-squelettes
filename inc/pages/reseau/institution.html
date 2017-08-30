@@ -1,0 +1,15 @@
+<BOUCLE_institution (INSTITUTIONS) {id_institution} {tout}>
+  <div class="bloc-membre texte-courant">
+    <BOUCLE_document (DOCUMENTS){id_institution}{extension==jpg|png|gif}>
+      <figure>
+        <img src="[(#FICHIER|image_reduire{225,315}|extraire_attribut{src})]"  class="logo-institution" />
+      </figure>
+    </BOUCLE_document>
+
+    <h4>#NOM</h4>
+    [(#AUTORISER{modifier,institution,#ID_INSTITUTION}|oui)<INCLURE{fond=inc/administration/reseau/institutions, afficher, cible, id_institution, env} />]
+
+    <p>#DESCRIPTION</p>
+    <p class="membre-url discret"><a href="#LIEN" target="_blank">#LIEN</a></p>
+  </div>
+</BOUCLE_institution>

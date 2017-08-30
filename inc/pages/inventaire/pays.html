@@ -1,0 +1,54 @@
+
+<BOUCLE_pays (PAYS) {id_pay} {tout}>
+	<div id="contenu" class="wrapper">
+		<INCLURE{fond=inc/pages/inventaire/ariane, id_pay} />
+
+		<header>
+			<h1>[(#ENV{lang}|=={fr}|oui)[(#NOM_FR)]] [(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</h1>
+
+			[(#REM) on affiche le panneau d'administration]
+			[(#AUTORISER{modifier,pay,#ID_PAY}|oui) <INCLURE{fond=inc/administration/inventaire/pays, afficher, id_pay} /> ]
+
+			[(#REM) pour ajouter une ville]
+			[(#AUTORISER{creer,ville}|oui)
+				[(#AFFICHER|=={'nouvelle_ville'}|oui)
+					[(#FORMULAIRE_EDITION_VILLE{'new', 'pay', #ID_PAY} )] 
+				]
+
+				<a class="gros bouton ajouter externe icon fa-map-marker" href="[(#URL_PAY{#ID_PAY}|parametre_lang|parametre_url{afficher, nouvelle_ville})]"><:lped:ville_ajouter:></a>
+
+			]
+		</header>
+
+		<!-- inclusion thematiques -->
+		<INCLURE{fond=inc/pages/inventaire/thematiques, afficher, thematique, chapitre, document, id_pay} />
+
+		<div id="inventaire-carte">
+			<h5>— <:lped:villes:></h5>
+			<div id="inventaire-mapbox"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		var maxZoom = 6;
+
+		var geojson = [
+			<BOUCLE_villes_carte (VILLES) {id_pay} {longitude != ''}>
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [[(#LONGITUDE)], [(#LATITUDE)]]
+				},
+				"properties": {
+					"title": "#NOM_FR",
+					"marker-color": "#FFDB16",
+					"marker-size": "medium",
+					"url": "#URL_VILLE"
+				}
+			},
+			</BOUCLE_villes_carte>
+		];
+	</script>
+</BOUCLE_pays>
