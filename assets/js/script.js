@@ -47,7 +47,7 @@ $(function(){
 $( document ).ready(function() {
 
 	var myModal = $('body').find('.modal');
-	if(myModal.length && myModal.is(':visible')){ 
+	if(myModal.length && myModal.is(':visible')){
 		$('body').addClass('hasModal'); // pour désactiver la scrollbar de l'arrière plan si le modal et visible
 	}
 
@@ -241,7 +241,7 @@ $( document ).ready(function() {
 	});
 
 	$('#contenu.compte article.tab table.sortable').each(function(){
-		$(this).tablesorter({   
+		$(this).tablesorter({
 			headers: {
 				0 : { sorter: 'statuts' },
 				3 : { sorter: 'dates' }
@@ -250,17 +250,17 @@ $( document ).ready(function() {
 	});
 
 	$('section.personnes table.sortable').each(function(){
-		$(this).tablesorter({   
+		$(this).tablesorter({
 			headers: {
 				0 : { sorter: 'personnes' },
 			},
-		}); 
+		});
 	});
 
 	/* ----- gestion des onglets (tab) ---- */
 
 	// les tabs du compte fonctionnent sur un système d'ancres et pas de liens en dur
-	if (!$('body').hasClass('logged') || $('#contenu').hasClass('compte')) { 
+	if (!$('body').hasClass('logged') || $('#contenu').hasClass('compte')) {
 		$("#nav-tabs li a").click(function(e) {
 			closeMenu();
 			e.preventDefault();
@@ -287,7 +287,7 @@ $( document ).ready(function() {
 				document.getElementById( this.getAttribute('data-cible') ).style.display = 'block';
 			}
 			$inventaireMenu.find("li a").removeClass('strong');
-			if($(this).hasClass('titre')){ 
+			if($(this).hasClass('titre')){
 				$(this).next('.chapitres').find('li a').first().addClass('strong');
 			} else {
 				$(this).addClass('strong');
@@ -299,7 +299,7 @@ $( document ).ready(function() {
 					$('html,body').animate({ scrollTop: topPosition }, 200);
 				}
 			}
-			
+
 			$inventaireMenu.closest('.tabs-wrapper').removeClass('openmenu')
 			return false;
 		});
@@ -335,7 +335,7 @@ $( document ).ready(function() {
 		} else {
 			if($('#nav-tabs').find('a.strong').length <= 0){
 				$('#nav-tabs').find('li a').first().trigger('click');
-			}			
+			}
 		}
 		set_offset();
 		var sticky = $('#nav-tabs').stick_in_parent({offset_top : stick_offset});
@@ -369,7 +369,7 @@ $( document ).ready(function() {
 		$('#inventaire-tabs').css('min-height', minHeight).find('article.tab').each(function(){
 			$(this).css('min-height', minHeight);
 		});
-		
+
 	}
 
 	/* ----- / fin gestion des onglets (tab) ---- */
@@ -420,10 +420,10 @@ $( document ).ready(function() {
 
 		var adminMap = L.mapbox.map('administration-map', 'mapbox.streets');
 			adminMap.scrollWheelZoom.disable();
-			
+
     	var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {keepOpen: false, autocomplete: true});
     		geocoderControl.addTo(adminMap);
-		
+
 		getInputVal();
 	    geocoderControl.on('select', function(object){
 	    	var coord = object.feature.geometry.coordinates;
@@ -447,7 +447,7 @@ $( document ).ready(function() {
 	    	latInput.val(m.lat);
 	    	lonInput.val(m.lng);
 	    };
-	    
+
        	var marker;
 	    function setMarker(lat, lon){
 	    	if (undefined != marker) { adminMap.removeLayer(marker); }
@@ -489,7 +489,7 @@ $( document ).ready(function() {
 
 
 
-// pour afficher des marqueurs customs 
+// pour afficher des marqueurs customs
 /*
 	"properties": {
 		"title": "#NOM_FR",

@@ -308,7 +308,7 @@ button{
 	top: 0;
 	padding: 0 20px;
 	padding: 0 1.25rem;
-    -webkit-backface-visibility:hidden; 
+    -webkit-backface-visibility:hidden;
 }
 #menu-logo{
 	margin-left: -20px;
@@ -885,7 +885,7 @@ figure.slick-slide {
 	background-color: rgba(255, 255, 255, 0.95);
 	cursor: -webkit-zoom-out;
 	cursor: zoom-out;
-    -webkit-backface-visibility:hidden; 
+    -webkit-backface-visibility:hidden;
 }
 .slider.slick-fullscreen .slick-slide {
 	background-size: contain !important;
@@ -1232,7 +1232,7 @@ article.tab h2{
 	font-size: 20px;
 	font-size: 1.25rem;
 	position: fixed;
-    -webkit-backface-visibility:hidden; 
+    -webkit-backface-visibility:hidden;
 	top: 20px;
 	top: 1.25rem;
 	left: 352px;
@@ -1553,7 +1553,7 @@ section.page-standard {
 	margin-right: 2rem;
 	padding-top: 48px;
 	padding-top: 3rem;
-} 
+}
 section.page-standard>article>header{
 	margin-bottom: 40px;
 	margin-bottom: 2.5rem;
