@@ -3,10 +3,10 @@
 	<tr>
 		<td class="statut" data-statut="[(#VAL{#STATUT}|_T)]">
 			[(#SESSION{statut}|=={0minirezo}|oui) [(#FORMULAIRE_MODERATION_OBJET{pays,pay,#ID_PAY})] ]
-			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{fr})]"></div> ]
+			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{es})]"></div> ]
 		</td>
 		<td class="titre">
-			<a href="#URL_PAY">[(#ENV{lang}|=={fr}|oui)#NOM_FR][(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</a>
+			<a href="#URL_PAY">[(#ENV{lang}|=={es}|oui)#NOM_FR][(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</a>
 		</td>
 		<td class="contributeurs">
 			<BOUCLE_auteur (AUTEURS) {id_pay} {tout} >

@@ -297,21 +297,21 @@
 						<li class="resultat">
 							<a href="[(#GET{lien}|table_valeur{#CLE}|parametre_lang)]">
 								<h3>
-									[ (#ENV{lang}|=={fr}|oui) [(#GET{titre}|table_valeur{#CLE}|supprimer_numero)] ]
+									[ (#ENV{lang}|=={es}|oui) [(#GET{titre}|table_valeur{#CLE}|supprimer_numero)] ]
 									[ (#ENV{lang}|=={en}|oui) [(#GET{titre_en}|table_valeur{#CLE}|supprimer_numero|sinon{#GET{titre}|table_valeur{#CLE}|supprimer_numero})] ]
 							 	</h3>
 							 	<div class="meta">
-									<span class="type [(#GET{type_en}|table_valeur{#CLE}|strtolower)]">[(#ENV{lang}|=={fr}|oui)[(#GET{type}|table_valeur{#CLE})]][(#ENV{lang}|=={en}|oui)[(#GET{type_en}|table_valeur{#CLE})]]</span>
+									<span class="type [(#GET{type_en}|table_valeur{#CLE}|strtolower)]">[(#ENV{lang}|=={es}|oui)[(#GET{type}|table_valeur{#CLE})]][(#ENV{lang}|=={en}|oui)[(#GET{type_en}|table_valeur{#CLE})]]</span>
 									<span class="date discret">
 										[(#GET{date}|table_valeur{#CLE}|affdate{'d.m.Y'})]
 									</span>
 									<span class="chemin">
 										<span class="icon fa-folder-o"></span>
-										[(#ENV{lang}|=={fr}|oui) [(#GET{chemin_fr}|table_valeur{#CLE})] ][ (#ENV{lang}|=={en}|oui) [(#GET{chemin_en}|table_valeur{#CLE})]]
+										[(#ENV{lang}|=={es}|oui) [(#GET{chemin_fr}|table_valeur{#CLE})] ][ (#ENV{lang}|=={en}|oui) [(#GET{chemin_en}|table_valeur{#CLE})]]
 									</span>
 								</div>
 								<div>
-									[ (#ENV{lang}|=={fr}|oui) [(#GET{resume_fr}|table_valeur{#CLE})] ]
+									[ (#ENV{lang}|=={es}|oui) [(#GET{resume_fr}|table_valeur{#CLE})] ]
 									[ (#ENV{lang}|=={en}|oui) [(#GET{resume_en}|table_valeur{#CLE})] ]
 								</div>
 							</a>

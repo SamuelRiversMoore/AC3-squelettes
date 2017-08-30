@@ -6,13 +6,13 @@
 		<div id="arbo">
 			<a href="[(#URL_SITE_SPIP|parametre_lang)]">#NOM_SITE_SPIP</a> >
 			<span class="arbo-current-page">
-				[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+				[ (#ENV{lang}|=={es}|oui)#TITRE ]
 				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 			</span>
 		</div>
 		<header>
 			<h1>
-				[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+				[ (#ENV{lang}|=={es}|oui)#TITRE ]
 				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 			</h1>
 		</header>
@@ -33,13 +33,13 @@
 							<article class="apropos">
 
 									<h2>
-										[ (#ENV{lang}|=={fr}|oui)#TITRE ]
+										[ (#ENV{lang}|=={es}|oui)#TITRE ]
 										[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 									</h2>
 
 									[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/article, id_article, env }/> ]
 									<div class="texte-courant">
-										[ (#ENV{lang}|=={fr}|oui) [(#TEXTE|liens_ouvrants)] ]
+										[ (#ENV{lang}|=={es}|oui) [(#TEXTE|liens_ouvrants)] ]
 										[ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE|liens_ouvrants}) ] ]
 									</div>
 							</article>
@@ -51,7 +51,7 @@
 		</section>
 
 		<section class="credits">
-			[ (#ENV{lang}|=={fr}|oui)
+			[ (#ENV{lang}|=={es}|oui)
 				<h3 class="discret">Crédits :</h3>
 				<p class="colonne">Ce site a été conçu et développé par <a href="http://www.emmanuelkormann.com/">Emmanuel&nbsp;Kormann</a>, <a href="http://www.samuelriversmoore.net/">Samuel&nbsp;Rivers-Moore</a> et&nbsp;<a href="http://www.lecollecteur.fr/">Pierre&nbsp;Tandille</a> en collaboration avec l'équipe MC3.</p>
 			]

@@ -5,13 +5,13 @@
         <div class="select-menu" data-original="[(#ENV{statut}|oui)[(#STATUT)]]">
             <!-- <span class="status-label">Statut : </span> -->
             <span class="select-options">
-                <span class="select-title" title="<:lped:statut:>"><div class="status [(#ENV{statut}|oui)[(#STATUT)] [(#ENV{lang}|sinon{fr})]]"></div></span>
+                <span class="select-title" title="<:lped:statut:>"><div class="status [(#ENV{statut}|oui)[(#STATUT)] [(#ENV{lang}|sinon{es})]]"></div></span>
                 <ul>
-                    <li class="status prepa [(#ENV{statut}|=={prepa}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="prepa"></li>
-                    <li class="status prop [(#ENV{statut}|=={prop}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="prop"></li>
-                    <li class="status publie [(#ENV{statut}|=={publie}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="publie"></li>
-                    <li class="status refuse [(#ENV{statut}|=={refuse}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="refuse"></li>
-                    <li class="status poubelle [(#ENV{statut}|=={poubelle}|oui)selected] [(#ENV{lang}|sinon{fr})]" data-value="poubelle"></li>
+                    <li class="status prepa [(#ENV{statut}|=={prepa}|oui)selected] [(#ENV{lang}|sinon{es})]" data-value="prepa"></li>
+                    <li class="status prop [(#ENV{statut}|=={prop}|oui)selected] [(#ENV{lang}|sinon{es})]" data-value="prop"></li>
+                    <li class="status publie [(#ENV{statut}|=={publie}|oui)selected] [(#ENV{lang}|sinon{es})]" data-value="publie"></li>
+                    <li class="status refuse [(#ENV{statut}|=={refuse}|oui)selected] [(#ENV{lang}|sinon{es})]" data-value="refuse"></li>
+                    <li class="status poubelle [(#ENV{statut}|=={poubelle}|oui)selected] [(#ENV{lang}|sinon{es})]" data-value="poubelle"></li>
                 </ul>
             </span>
             <select name="form_statut" class="hiddeninput">
@@ -34,6 +34,6 @@
 
     [(#ENV{role}|=={1comite}|et{#ENV{statut}|!={prepa}}|oui)
         <span class="status-label">Statut : </span>
-        <div class="status [(#ENV{lang}|sinon{fr})] #ENV{statut}"></div>
+        <div class="status [(#ENV{lang}|sinon{es})] #ENV{statut}"></div>
     ]
   </form>

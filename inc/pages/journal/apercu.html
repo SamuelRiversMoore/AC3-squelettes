@@ -5,10 +5,10 @@
 				<img src="[(#FICHIER|image_passe_partout{225,315}|image_recadre{225,315,'center center','#ffffff'}|extraire_attribut{src})]" />
 			</a>
 		</BOUCLE_document>
-		<h4><a href="[(#URL_ARTICLE|parametre_lang)]">[(#ENV{lang}|=={fr}|oui)[(#TITRE)]] [(#ENV{lang}|=={en}|oui)[(#TITRE_EN|sinon{#TITRE})]]</a></h4>
-		[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <span class='status [(#STATUT)] [(#ENV{lang}|sinon{fr})]'></span>]
+		<h4><a href="[(#URL_ARTICLE|parametre_lang)]">[(#ENV{lang}|=={es}|oui)[(#TITRE)]] [(#ENV{lang}|=={en}|oui)[(#TITRE_EN|sinon{#TITRE})]]</a></h4>
+		[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <span class='status [(#STATUT)] [(#ENV{lang}|sinon{es})]'></span>]
 		<div class="extrait-contenu texte-courant">
-			[ (#ENV{lang}|=={fr}|oui) [ (#CHAPO) ] ]
+			[ (#ENV{lang}|=={es}|oui) [ (#CHAPO) ] ]
 			[ (#ENV{lang}|=={en}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
 			<a href="[(#URL_ARTICLE|parametre_lang)]" class="more"><:lped:suite:></a>
 		</div>

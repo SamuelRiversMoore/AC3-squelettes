@@ -2,7 +2,7 @@
 [ (#SESSION{statut}|non) #SET{statut, publie}  ]
 
 <BOUCLE_article (ARTICLES) {id_article} {statut IN #GET{statut}} >
-#SET{lang, #ENV{lang}|sinon{fr}}
+#SET{lang, #ENV{lang}|sinon{es}}
 <!DOCTYPE HTML>
 <html  lang="[(#GET{lang})]">
 <INCLURE{fond=inc/header, env, lang=#GET{lang}} />

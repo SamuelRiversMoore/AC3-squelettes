@@ -7,9 +7,9 @@
 				<li class="pays [(#EXPOSE|=={on}|oui)active] #STATUT">
 
 					<a class="item" href="[(#URL_PAY|parametre_lang)]" title="#NOM_FR">
-						<span class="menu-title">[(#ENV{lang}|=={fr}|oui)[(#NOM_FR)]][(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]
+						<span class="menu-title">[(#ENV{lang}|=={es}|oui)[(#NOM_FR)]][(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]
 						</span>
-						[(#AUTORISER{modifier,pay,#ID_PAY}|oui) <span class='status [(#STATUT)] [(#ENV{lang}|sinon{fr})]'></span> ]
+						[(#AUTORISER{modifier,pay,#ID_PAY}|oui) <span class='status [(#STATUT)] [(#ENV{lang}|sinon{es})]'></span> ]
 					</a>
 
 					[(#EXPOSE|=={on}|oui) <INCLURE{fond=inc/pages/inventaire/menu_villes, afficher, id_pay, id_ville=#ENV{id_ville}, id_projet=#ENV{id_projet}, statut=#GET{statut}}> ]

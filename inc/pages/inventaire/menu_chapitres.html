@@ -12,9 +12,9 @@
 	  [(#AUTORISER{voir,chapitre,#ID_CHAPITRE}|oui)
 		<li>
 			<a class="item chapitre[(#CHAPITRE|=={#ID_CHAPITRE}|oui)strong]" href="[(#SELF|parametre_lang|parametre_url{thematique, #ID_THEMATIQUE}|parametre_url{chapitre, #ID_CHAPITRE}|parametre_url{afficher, ''}|parametre_url{document, ''})]" data-cible="thematique#ID_THEMATIQUE-chapitre#ID_CHAPITRE" >
-				[ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR|supprimer_numero) ] ]
+				[ (#ENV{lang}|=={es}|oui) [ (#TITRE_FR|supprimer_numero) ] ]
 				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|supprimer_numero|sinon{#TITRE_FR|supprimer_numero}) ] ]
-				[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|oui)<span class='status [(#STATUT)] [(#ENV{lang}|sinon{fr})]'></span>]
+				[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|oui)<span class='status [(#STATUT)] [(#ENV{lang}|sinon{es})]'></span>]
 			</a>
 		</li>
 	  ]

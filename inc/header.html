@@ -3,27 +3,27 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>
             <BOUCLE_rubrique (RUBRIQUES){id_rubrique}{tout}>
-                [ (#ENV{lang}|=={fr}|oui)#TITRE ]
+                [ (#ENV{lang}|=={es}|oui)#TITRE ]
                 [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
                 /
             </BOUCLE_rubrique>
             <BOUCLE_article (ARTICLES){id_article}>
-                [ (#ENV{lang}|=={fr}|oui)#TITRE ]
+                [ (#ENV{lang}|=={es}|oui)#TITRE ]
                 [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
                 /
             </BOUCLE_article>
             <BOUCLE_pays (PAYS){id_pay}>
-                [ (#ENV{lang}|=={fr}|oui) #NOM_FR ]
+                [ (#ENV{lang}|=={es}|oui) #NOM_FR ]
                 [ (#ENV{lang}|=={en}|oui) [ (#NOM_EN|sinon{#NOM_FR}) ] ]
                 /
             </BOUCLE_pays>
             <BOUCLE_villes (VILLES){id_ville}>
-                [ (#ENV{lang}|=={fr}|oui) #NOM_FR ]
+                [ (#ENV{lang}|=={es}|oui) #NOM_FR ]
                 [ (#ENV{lang}|=={en}|oui) [ (#NOM_EN|sinon{#NOM_FR}) ] ]
                 /
             </BOUCLE_villes>
             <BOUCLE_projets (PROJETS){id_projet}>
-                [ (#ENV{lang}|=={fr}|oui) #TITRE_FR ]
+                [ (#ENV{lang}|=={es}|oui) #TITRE_FR ]
                 [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]
                 /
             </BOUCLE_projets>
@@ -97,6 +97,6 @@
 			ga('create', 'UA-83851374-1', 'auto');
 			ga('send', 'pageview');
 		</script>
-		
+
 
 	</head>

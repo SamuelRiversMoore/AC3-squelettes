@@ -8,7 +8,7 @@
 		<INCLURE{fond=inc/pages/inventaire/ariane, id_pay, id_ville, id_projet} />
 
 		<header>
-			<h1>[ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR) ] ][ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]</h1>
+			<h1>[ (#ENV{lang}|=={es}|oui) [ (#TITRE_FR) ] ][ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]</h1>
 			[(#REM) on affiche le panneau d'administration]
 		    [(#AUTORISER{modifier,projet,#ID_PROJET}|oui) <INCLURE{fond=inc/administration/inventaire/projets, afficher, id_projet, env} /> ]
 		</header>
@@ -16,7 +16,7 @@
 		<div class="col-wrap">
 			<div id="inventaire-introduction">
 				<h5>— <:lped:introduction:></h5>
-				[ (#ENV{lang}|=={fr}|oui)  [(#DESCRIPTION_FR)] ]
+				[ (#ENV{lang}|=={es}|oui)  [(#DESCRIPTION_FR)] ]
 				[ (#ENV{lang}|=={en}|oui)  [(#DESCRIPTION_EN|sinon{#DESCRIPTION_FR})] ]
 		    </div>
 

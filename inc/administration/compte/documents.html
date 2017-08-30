@@ -5,7 +5,7 @@
 			<BOUCLE_chap_pays (PAYS) {thematiques_liens.objet=pay} {thematiques_liens.id_thematique} {tout}>
 				#SET{lien, #URL_PAYS}
 				[(#SET{papa,
-					[ (#ENV{lang}|=={fr}|oui) <span class="parent">#NOM_FR</span> ]
+					[ (#ENV{lang}|=={es}|oui) <span class="parent">#NOM_FR</span> ]
 					[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
 				})]
 			</BOUCLE_chap_pays>
@@ -13,7 +13,7 @@
 			<BOUCLE_chap_villes (VILLES) {thematiques_liens.objet=ville} {thematiques_liens.id_thematique} {tout}>
 				#SET{lien, #URL_VILLE}
 				[(#SET{papa,
-					[ (#ENV{lang}|=={fr}|oui) <span class="parent">#NOM_FR</span> ]
+					[ (#ENV{lang}|=={es}|oui) <span class="parent">#NOM_FR</span> ]
 					[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
 				})]
 			</BOUCLE_chap_villes>
@@ -21,14 +21,14 @@
 			<BOUCLE_chap_projets (PROJETS) {thematiques_liens.objet=projet} {thematiques_liens.id_thematique} {tout}>
 				#SET{lien, #URL_PROJET}
 				[(#SET{papa,
-					[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
+					[ (#ENV{lang}|=={es}|oui) <span class="parent">#TITRE_FR</span> ]
 					[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 				})]
 			</BOUCLE_chap_projets>
 			#SET{thematique, #ID_THEMATIQUE}
 			[(#SET{papa,
 					[(#GET{papa})<span class="icon fleche fa-angle-right"></span>]
-					[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
+					[ (#ENV{lang}|=={es}|oui) <span class="parent">#TITRE_FR</span> ]
 					[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 			})]
 		</BOUCLE_chap_thematiques>
@@ -36,7 +36,7 @@
 		#SET{chapitre, #ID_CHAPITRE}
 		[(#SET{papa,
 				[(#GET{papa})<span class="icon fleche fa-angle-right"></span>]
-				[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
+				[ (#ENV{lang}|=={es}|oui) <span class="parent">#TITRE_FR</span> ]
 				[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 		})]
 	</BOUCLE_chapitres>
@@ -45,7 +45,7 @@
 		<BOUCLE_pays (PAYS) {thematiques_liens.objet=pay} {thematiques_liens.id_thematique} {tout}>
 			#SET{lien, #URL_PAYS}
 			[(#SET{papa,
-				[ (#ENV{lang}|=={fr}|oui) <span class="parent">#NOM_FR</span> ]
+				[ (#ENV{lang}|=={es}|oui) <span class="parent">#NOM_FR</span> ]
 				[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
 			})]
 		</BOUCLE_pays>
@@ -53,7 +53,7 @@
 		<BOUCLE_villes (VILLES) {thematiques_liens.objet=ville} {thematiques_liens.id_thematique} {tout}>
 			#SET{lien, #URL_VILLE}
 			[(#SET{papa,
-				[ (#ENV{lang}|=={fr}|oui) <span class="parent">#NOM_FR</span> ]
+				[ (#ENV{lang}|=={es}|oui) <span class="parent">#NOM_FR</span> ]
 				[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
 			})]
 		</BOUCLE_villes>
@@ -61,14 +61,14 @@
 		<BOUCLE_projets (PROJETS) {thematiques_liens.objet=projet} {thematiques_liens.id_thematique} {tout}>
 			#SET{lien, #URL_PROJET}
 			[(#SET{papa,
-				[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
+				[ (#ENV{lang}|=={es}|oui) <span class="parent">#TITRE_FR</span> ]
 				[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 			})]
 		</BOUCLE_projets>
 		#SET{thematique, #ID_THEMATIQUE}
 		[(#SET{papa,
 			[(#GET{papa})<span class="icon fleche fa-angle-right"></span>]
-			[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
+			[ (#ENV{lang}|=={es}|oui) <span class="parent">#TITRE_FR</span> ]
 			[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 		})]
 	</BOUCLE_thematiques>
@@ -77,7 +77,7 @@
 	<tr [(#GET{thematique}|non|et{#GET{chapitre}|non}|oui) style=""]>
 		<td class="statut" data-statut="[(#VAL{#STATUT}|_T)]">
 			[(#SESSION{statut}|=={0minirezo}|oui) [(#FORMULAIRE_MODERATION_OBJET{documents,document,#ID_DOCUMENT})] ]
-			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{fr})]"></div> ]
+			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{es})]"></div> ]
 		</td>
 		<td class="titre">
 			<a href="[(#GET{lien}|parametre_url{thematique,#GET{thematique}}|parametre_url{chapitre, #GET{chapitre}}|parametre_url{document, #ID_DOCUMENT})]">
