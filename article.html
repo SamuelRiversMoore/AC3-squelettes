@@ -18,8 +18,8 @@
 	<!-- si c'est un article des synthèses -->
 	<BOUCLE_rubrique (RUBRIQUES){id_rubrique}{tout}>
 		<BOUCLE_papa (RUBRIQUES){id_enfant}{tout}>
-			[(#ID_RUBRIQUE|=={24}|oui)
-				<INCLURE{fond=inc/menu, env, id_rubrique=24, lang=#GET{lang}} />
+			[(#ID_RUBRIQUE|=={4}|oui)
+				<INCLURE{fond=inc/menu, env, id_rubrique=4, lang=#GET{lang}} />
 				[(#AUTORISER{voir,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/pages/syntheses/article, id_article, env, lang=#GET{lang}} /> ]
 			]
 		</BOUCLE_papa>

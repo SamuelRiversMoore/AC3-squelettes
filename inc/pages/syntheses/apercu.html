@@ -3,10 +3,10 @@
 		<li class="synthese">
 			<h3>
 				[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+				[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 			</h3>
 				[ (#ENV{lang}|=={fr}|oui) [ (#CHAPO) ] ]
-				[ (#ENV{lang}|=={en}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
+				[ (#ENV{lang}|=={es}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
 			<div class="discret">
 				[(#SESSION{statut}|oui)<div class='status [(#STATUT)] [(#ENV{lang}|sinon{fr})]'></div>]
 				<span>— [(#DATE|affdate)], <:lped:par:></span>

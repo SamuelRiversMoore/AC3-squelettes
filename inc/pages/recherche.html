@@ -271,7 +271,7 @@
 				[(#ID_RUBRIQUE|=={9}|oui) #SET{type_article, Nouvelle} #SET{type_article_en, News} #SET{chemin_article_fr, Journal} #SET{chemin_article_en, Journal} ]
 				<BOUCLE_rubrique (RUBRIQUES) {id_rubrique}>
 				<BOUCLE_papa (RUBRIQUES){id_enfant}{tout}>
-				  [(#ID_RUBRIQUE|=={24}|oui) #SET{type_article, Synthèse} #SET{type_article_en, Synthesis} #SET{chemin_article_fr, Synthèses} #SET{chemin_article_en, Synthesis} ]
+				  [(#ID_RUBRIQUE|=={4}|oui) #SET{type_article, Synthèse} #SET{type_article_en, Synthesis} #SET{chemin_article_fr, Synthèses} #SET{chemin_article_en, Synthesis} ]
 				</BOUCLE_papa>
 				</BOUCLE_rubrique>
 
@@ -298,21 +298,21 @@
 							<a href="[(#GET{lien}|table_valeur{#CLE}|parametre_lang)]">
 								<h3>
 									[ (#ENV{lang}|=={fr}|oui) [(#GET{titre}|table_valeur{#CLE}|supprimer_numero)] ]
-									[ (#ENV{lang}|=={en}|oui) [(#GET{titre_en}|table_valeur{#CLE}|supprimer_numero|sinon{#GET{titre}|table_valeur{#CLE}|supprimer_numero})] ]
+									[ (#ENV{lang}|=={es}|oui) [(#GET{titre_en}|table_valeur{#CLE}|supprimer_numero|sinon{#GET{titre}|table_valeur{#CLE}|supprimer_numero})] ]
 							 	</h3>
 							 	<div class="meta">
-									<span class="type [(#GET{type_en}|table_valeur{#CLE}|strtolower)]">[(#ENV{lang}|=={fr}|oui)[(#GET{type}|table_valeur{#CLE})]][(#ENV{lang}|=={en}|oui)[(#GET{type_en}|table_valeur{#CLE})]]</span>
+									<span class="type [(#GET{type_en}|table_valeur{#CLE}|strtolower)]">[(#ENV{lang}|=={fr}|oui)[(#GET{type}|table_valeur{#CLE})]][(#ENV{lang}|=={es}|oui)[(#GET{type_en}|table_valeur{#CLE})]]</span>
 									<span class="date discret">
 										[(#GET{date}|table_valeur{#CLE}|affdate{'d.m.Y'})]
 									</span>
 									<span class="chemin">
 										<span class="icon fa-folder-o"></span>
-										[(#ENV{lang}|=={fr}|oui) [(#GET{chemin_fr}|table_valeur{#CLE})] ][ (#ENV{lang}|=={en}|oui) [(#GET{chemin_en}|table_valeur{#CLE})]]
+										[(#ENV{lang}|=={fr}|oui) [(#GET{chemin_fr}|table_valeur{#CLE})] ][ (#ENV{lang}|=={es}|oui) [(#GET{chemin_en}|table_valeur{#CLE})]]
 									</span>
 								</div>
 								<div>
 									[ (#ENV{lang}|=={fr}|oui) [(#GET{resume_fr}|table_valeur{#CLE})] ]
-									[ (#ENV{lang}|=={en}|oui) [(#GET{resume_en}|table_valeur{#CLE})] ]
+									[ (#ENV{lang}|=={es}|oui) [(#GET{resume_en}|table_valeur{#CLE})] ]
 								</div>
 							</a>
 						</li>

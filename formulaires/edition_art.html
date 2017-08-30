@@ -16,12 +16,12 @@
 				<section class="row">
 					<header class="full"><:lped:article_titre:></header>
 					<div class="input-block demi"><label for='titre'>FR</label><span><input type='text' name='titre' value='#ENV{titre}' autocomplete="off"/></span></div>
-					<div class="input-block demi"><label for='titre_en'>EN</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
+					<div class="input-block demi"><label for='titre_en'>ES</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
 				</section>
 
 				<div class="row switch">
 					<input  id="newarticlechapolangueuniqueid" class="switchlang hideninput" type="checkbox"[(#LANG|=={fr}|oui) checked]>
-					<label for="newarticlechapolangueuniqueid"><span class="fr">FR</span><span class="en">EN</span></label>
+					<label for="newarticlechapolangueuniqueid"><span class="fr">FR</span><span class="en">ES</span></label>
 					<section class="langue fr full">
 						<header for='chapo'><:lped:article_chapo_fr:></header>
 						<textarea name='chapo' class="small inserer_barre_edition">#ENV{chapo}</textarea>
@@ -34,7 +34,7 @@
 
 				<div class="row switch">
 					<input  id="newarticletxtlangueuniqueid" class="switchlang hideninput" type="checkbox"[(#LANG|=={fr}|oui) checked]>
-					<label for="newarticletxtlangueuniqueid"><span class="fr">FR</span><span class="en">EN</span></label>
+					<label for="newarticletxtlangueuniqueid"><span class="fr">FR</span><span class="en">ES</span></label>
 					<section class="langue fr full">
 						<header for='texte'><:lped:article_texte_fr:></header>
 						<textarea name='texte' class="inserer_barre_edition">#ENV{texte}</textarea>

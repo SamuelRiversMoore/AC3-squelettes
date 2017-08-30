@@ -209,10 +209,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<BOUCLE_articles (ARTICLES) {tout} {statut IN prepa, prop, publie} {par statut, maj} {inverse} {id_secteur=24}>
+						<BOUCLE_articles (ARTICLES) {tout} {statut IN prepa, prop, publie} {par statut, maj} {inverse} {id_secteur=4}>
 							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
 						</BOUCLE_articles>
-						<BOUCLE_articles_poub (ARTICLES) {tout} {statut IN refuse, poubelle} {par statut, maj} {inverse} {id_secteur=24}>
+						<BOUCLE_articles_poub (ARTICLES) {tout} {statut IN refuse, poubelle} {par statut, maj} {inverse} {id_secteur=4}>
 							[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/compte/articles, env, id_article}> ]
 						</BOUCLE_articles_poub>
 					</tbody>

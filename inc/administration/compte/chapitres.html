@@ -6,7 +6,7 @@
 					#SET{lien, #URL_PAYS}
 					[(#SET{papa,
 						[ (#ENV{lang}|=={fr}|oui) <span class="parent">#NOM_FR</span> ]
-						[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
+						[ (#ENV{lang}|=={es}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
 					})]
 				</BOUCLE_pays>
 
@@ -14,7 +14,7 @@
 					#SET{lien, #URL_VILLE}
 					[(#SET{papa,
 						[ (#ENV{lang}|=={fr}|oui) <span class="parent">#NOM_FR</span> ]
-						[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
+						[ (#ENV{lang}|=={es}|oui) <span class="parent">[(#NOM_EN|sinon{#NOM_FR})]</span> ]
 					})]
 				</BOUCLE_villes>
 
@@ -22,7 +22,7 @@
 					#SET{lien, #URL_PROJET}
 					[(#SET{papa,
 						[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
-						[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
+						[ (#ENV{lang}|=={es}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 					})]
 				</BOUCLE_projets>
 
@@ -30,7 +30,7 @@
 				[(#SET{papa,
 						[(#GET{papa})<span class="icon fleche fa-angle-right"></span>]
 						[ (#ENV{lang}|=={fr}|oui) <span class="parent">#TITRE_FR</span> ]
-						[ (#ENV{lang}|=={en}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
+						[ (#ENV{lang}|=={es}|oui) <span class="parent">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 				})]
 		</BOUCLE_thematiques>
 		<td class="statut" data-statut="[(#VAL{#STATUT}|_T)]">
@@ -41,7 +41,7 @@
 			<a href="[(#GET{lien}|parametre_url{thematique,#GET{thematique}}|parametre_url{chapitre, #ID_CHAPITRE})]">
 				<span class="parents">[(#GET{papa})<span class="icon fleche fa-angle-right"></span>]</span>
 				[ (#ENV{lang}|=={fr}|oui) <span class="enfant">#TITRE_FR</span> ]
-				[ (#ENV{lang}|=={en}|oui) <span class="enfant">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
+				[ (#ENV{lang}|=={es}|oui) <span class="enfant">[(#TITRE_EN|sinon{#TITRE_FR})]</span> ]
 			</a>
 		</td>
 		<td class="contributeurs">
