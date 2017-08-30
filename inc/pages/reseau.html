@@ -4,13 +4,13 @@
 		<a href="[(#URL_SITE_SPIP|parametre_lang)]">#NOM_SITE_SPIP</a> >
 		<span class="arbo-current-page">
 			[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-			[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+			[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 		</span>
 	</div>
 		<header>
 			<h1>
 				[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-				[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+				[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 			</h1>
 		</header>
 		<section class="reseaux">
@@ -21,7 +21,7 @@
 								<li class="item">
 								<a class="item [(#RUBRIQUE|=={#ID_RUBRIQUE}|oui)strong] [(#RUBRIQUE|=={''}|et{#COMPTEUR_BOUCLE|=={1}}|oui)strong]" href="[(#URL_RUBRIQUE{6}|parametre_lang|parametre_url{rubrique,#ID_RUBRIQUE})]" data-cible="rubrique#ID_RUBRIQUE">
 										[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-										[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+										[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 									</a>
 								</li>
 							</BOUCLE_rubriques>
@@ -43,7 +43,7 @@
 					<article class="tab" id="rubrique#ID_RUBRIQUE" [(#RUBRIQUE|=={#ID_RUBRIQUE}|oui) style="display:block;"] [(#RUBRIQUE|=={''}|et{#COMPTEUR_BOUCLE|=={1}}|oui) style="display:block" ]>
 							<h2>
 								[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-								[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+								[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 							</h2>
 
 							<section class="administration">
@@ -61,7 +61,7 @@
 
 									<h3>
 										[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-										[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+										[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 									</h3>
 									<section class="administration">
 										[(#AUTORISER{modifier,rubrique,#ID_RUBRIQUE})	<INCLURE{fond=inc/administration/rubrique, afficher, cible, id_rubrique} />]

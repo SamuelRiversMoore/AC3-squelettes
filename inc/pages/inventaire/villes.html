@@ -5,7 +5,7 @@
 	<INCLURE{fond=inc/pages/inventaire/ariane, id_pay, id_ville}>
 
 	<header>
-		<h1>[(#ENV{lang}|=={fr}|oui)[(#NOM_FR)]] [(#ENV{lang}|=={es}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</h1>
+		<h1>[(#ENV{lang}|=={fr}|oui)[(#NOM_FR)]] [(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</h1>
 		[(#REM) on affiche le panneau d'administration]
 		[(#AUTORISER{modifier,ville,#ID_VILLE}|oui) <INCLURE{fond=inc/administration/inventaire/villes, afficher, id_ville} /> ]
 
@@ -38,7 +38,7 @@
 		                    <h2>
 		                        <span>
 		                            [ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR) ] ]
-		                            [ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]
+		                            [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE_FR}) ] ]
 									<span class="status [(#ENV{lang}|sinon{fr})] [(#SESSION{statut}|oui) [(#STATUT)] ]"></span>
 		                        </span>
 		                    </h2>
@@ -54,7 +54,7 @@
 				[(#AUTORISER{voir,projet,#ID_PROJET}|oui)
 						<!--
 		                    [ (#ENV{lang}|=={fr}|oui) [ <section>(#DESCRIPTION_FR|couper{160})</section>] ]
-		                    [ (#ENV{lang}|=={es}|oui) [ <section>(#DESCRIPTION_EN|couper{160}|sinon{#DESCRIPTION_FR|couper{160}}) </section>] ]
+		                    [ (#ENV{lang}|=={en}|oui) [ <section>(#DESCRIPTION_EN|couper{160}|sinon{#DESCRIPTION_FR|couper{160}}) </section>] ]
 		                -->
 		                </article>
 		            </a>

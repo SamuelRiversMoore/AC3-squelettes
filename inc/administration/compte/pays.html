@@ -6,7 +6,7 @@
 			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{fr})]"></div> ]
 		</td>
 		<td class="titre">
-			<a href="#URL_PAY">[(#ENV{lang}|=={fr}|oui)#NOM_FR][(#ENV{lang}|=={es}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</a>
+			<a href="#URL_PAY">[(#ENV{lang}|=={fr}|oui)#NOM_FR][(#ENV{lang}|=={en}|oui)[(#NOM_EN|sinon{#NOM_FR})]]</a>
 		</td>
 		<td class="contributeurs">
 			<BOUCLE_auteur (AUTEURS) {id_pay} {tout} >

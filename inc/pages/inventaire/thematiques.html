@@ -28,14 +28,14 @@
                     <article class="tab" id="thematique#ID_THEMATIQUE" [(#CHAPITRE|non|et{#THEMATIQUE|=={#ID_THEMATIQUE}|oui}) style="display:block" ] [(#THEMATIQUE|=={''}|et{#COMPTEUR_BOUCLE|=={1}}|oui) style="display:block" ] >
                             <h2>
                               [ (#ENV{lang}|=={fr}|oui) [ (#TITRE_FR|supprimer_numero) ] ]
-                              [ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|supprimer_numero|sinon{#TITRE_FR|supprimer_numero}) ] ]
+                              [ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|supprimer_numero|sinon{#TITRE_FR|supprimer_numero}) ] ]
                             </h2>
                             [(#REM) on inclus le panneau d'administration de la thématique pour ceux qui ont le droit  ]
                             [(#AUTORISER{modifier,thematique,#ID_THEMATIQUE}|oui) <INCLURE{fond=inc/administration/inventaire/thematiques, afficher, id_thematique, thematique} /> ]
 
                             <section class="texte-courant">
                                 [ (#ENV{lang}|=={fr}|oui) [ (#TEXTE_FR|liens_ouvrants)] ]
-                                [ (#ENV{lang}|=={es}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE_FR|liens_ouvrants}) ] ]
+                                [ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|liens_ouvrants|sinon{#TEXTE_FR|liens_ouvrants}) ] ]
                             </section>
 
                             <INCLURE{fond=inc/pages/inventaire/documents, afficher, thematique, chapitre, document, id_thematique} />

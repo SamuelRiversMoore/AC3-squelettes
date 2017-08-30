@@ -5,10 +5,10 @@
 		<a href="[(#URL_SITE_SPIP|parametre_lang)]">#NOM_SITE_SPIP</a> >
 		<a href="[(#INFO_URL{rubrique,4}|parametre_lang)]">
 			[ (#ENV{lang}|=={fr}|oui) [ (#INFO_TITRE{rubrique,4}) ] ]
-			[ (#ENV{lang}|=={es}|oui) [ (#INFO_TITRE_EN{rubrique,4}|sinon{#INFO_TITRE{rubrique,4}}) ] ]</a> >
+			[ (#ENV{lang}|=={en}|oui) [ (#INFO_TITRE_EN{rubrique,4}|sinon{#INFO_TITRE{rubrique,4}}) ] ]</a> >
 		<span class="arbo-current-page">
 			[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-			[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+			[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 		</span>
 	</div>
 
@@ -17,7 +17,7 @@
 			<header>
 				<h1>
 					[ (#ENV{lang}|=={fr}|oui) [ (#TITRE) ] ]
-					[ (#ENV{lang}|=={es}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
+					[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 				</h1>
 
 				[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui) <INCLURE{fond=inc/administration/article, id_article, env }/> ]
@@ -29,11 +29,11 @@
 				<div>
 					<div class="medium">
 						[ (#ENV{lang}|=={fr}|oui) [ (#CHAPO) ] ]
-						[ (#ENV{lang}|=={es}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
+						[ (#ENV{lang}|=={en}|oui) [ (#CHAPO_EN|sinon{#CHAPO}) ] ]
 					</div>
 					<div>
 						[ (#ENV{lang}|=={fr}|oui) [ (#TEXTE) ] ]
-						[ (#ENV{lang}|=={es}|oui) [ (#TEXTE_EN|sinon{#TEXTE}) ] ]
+						[ (#ENV{lang}|=={en}|oui) [ (#TEXTE_EN|sinon{#TEXTE}) ] ]
 					</div>
 				</div>
 			</div>

@@ -15,12 +15,12 @@
 				<section class="row">
 					<header class="full"><:lped:chapitre_titre:></header>
 					<div class="input-block demi"><label for='titre_fr'>FR</label><span><input type='text' name='titre_fr' value='#ENV{titre_fr}' autocomplete="off"/></span></div>
-					<div class="input-block demi"><label for='titre_en'>ES</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
+					<div class="input-block demi"><label for='titre_en'>EN</label><span><input type='text' name='titre_en' value='#ENV{titre_en}' autocomplete="off"/></span></div>
 				</section>
 
 				<div class="row switch">
 					<input  id="newchapitretxtlangueuniqueid" class="switchlang hideninput" type="checkbox"[(#LANG|=={fr}|oui) checked]>
-					<label for="newchapitretxtlangueuniqueid"><span class="fr">FR</span><span class="en">ES</span></label>
+					<label for="newchapitretxtlangueuniqueid"><span class="fr">FR</span><span class="en">EN</span></label>
 
 					<section class="langue fr full">
 						<header for='texte_fr'><:lped:chapitre_texte_fr:></header>
