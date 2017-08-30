@@ -409,7 +409,7 @@ $( document ).ready(function() {
 	/* Init Mapbox */
 	if($("#welcome-map").length > 0) {
 		var map = L.mapbox.map('welcome-map', 'mapbox.streets', {zoomControl: false })
-		.setView([37, 16.5], 5);
+		.fitBounds([[15,-70],[-57,-50]]);
 		map.scrollWheelZoom.disable();
 	}
 
@@ -439,7 +439,7 @@ $( document ).ready(function() {
 	    		setMarker(lat, lon);
 	    		adminMap.setView([lat, lon], zoomVal);
 	    	} else {
-	 			adminMap.setView([37, 16.5], 4);
+	 			adminMap.fitBounds([[15,-70],[-57,-50]]);
 	    	}
 	    }
 	    function displayCoords(){
@@ -459,7 +459,7 @@ $( document ).ready(function() {
 	}
 
 	if($("#inventaire-mapbox").length > 0){
-		var map = L.mapbox.map('inventaire-mapbox', 'mapbox.streets').setView([37, 16.5], 5);
+		var map = L.mapbox.map('inventaire-mapbox', 'mapbox.streets').fitBounds([[15,-70],[-57,-50]]);
 			map.scrollWheelZoom.disable();
 
 		if(typeof geojson !== 'undefined' && geojson.length > 0) {

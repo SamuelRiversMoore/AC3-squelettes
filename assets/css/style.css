@@ -420,8 +420,8 @@ div#menu-header {
     padding-right: 4px;
     padding-right: .25rem;
     -webkit-appearance: none;
-    -webkit-padding-start: 0;
-    -webkit-padding-end: 0;
+	-webkit-padding-start: .5rem;
+	-webkit-padding-end: .25rem;
 }
 #menu-searchbar input::-ms-clear, #content-searchbar input::-ms-clear{
 	margin-right:8px;

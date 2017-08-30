@@ -343,7 +343,7 @@ input.switchlang + label:before {
 	bottom: 0;
 	width: 40px;
 	width: 2.5rem;
-	background-color: #FFAA16;
+	background-color: var(--green-medium);
 	-webkit-transition: margin 0.4s;
 	        transition: margin 0.4s;
 	margin-left: 40px;
@@ -360,7 +360,9 @@ input.switchlang:checked + label>span:last-child, input.switchlang:not(:checked)
 .switchlang[type="checkbox"]:checked ~ section.langue.en{ display: none; }
 .switchlang[type="checkbox"]:checked ~ section.langue.fr{ display: block; }
 
-
+body .markItUp .markItUpHeader{
+	border-radius: 0;
+}
 
 .dvp {
 	display:block;
@@ -701,7 +703,6 @@ section.administration.mini .select-title .status{
 	font-weight: normal;
 	margin: 0;
 }
-
 .modal section.edition{
 	position:relative;
 	z-index:2020;
@@ -720,7 +721,6 @@ section.administration.mini .select-title .status{
 	margin: 3rem auto;
 	background: #fff;
 }
-
 .modal-container>.retour {
 	display:block;
 	z-index:2010;
