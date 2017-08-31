@@ -6,7 +6,7 @@
 
 <div id="contenu" class="accueil">
 	<div id="welcome-map"></div>
-	<div id="presentation" class="medium strong small-screen">
+	<div id="presentation-small" class="medium strong small-screen">
 		#GET{introduction}
 	</div>
 
@@ -16,8 +16,10 @@
 			<INCLURE{fond=inc/pages/journal/journal, accueil=oui} />
 		</section>
 		<div class="col40">
-			<div id="presentation" class="medium strong large-screen">
-				#GET{introduction}
+			<div class="presentation-wrapper large-screen">			
+				<div id="presentation-large" class="medium strong large-screen">
+					#GET{introduction}
+				</div>
 			</div>
 			<div class="col-wrap">
 				<section class="nouvelles col60">

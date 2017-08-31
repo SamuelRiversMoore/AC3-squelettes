@@ -1,7 +1,7 @@
 
 L.mapbox.accessToken = 'pk.eyJ1IjoicGllcnJlcGllcnJlcGllcnJlIiwiYSI6IkdXdE5CRFEifQ.3zLbKVYfHituW8BVU-bl5g';
 
-var mapBounds = [[8,-70],[-50,-50]]; // Andes
+var mapBounds = [[8,-70],[-53,-50]]; // Andes
 //var mapBounds = [[15,-70],[-57,-50]]; // Andes
 
 $(function(){
@@ -417,6 +417,14 @@ $( document ).ready(function() {
 		});
 		map.scrollWheelZoom.disable();
 		map.fitBounds(mapBounds);
+
+		if ($(window).width() >= 700) {
+			var bounds = map.getBounds();
+			var mapWidth = bounds.getEast() - bounds.getWest();
+			var center = map.getCenter();
+			map.panTo([center.lat, center.lng + mapWidth/4], {animate: false})			
+		}
+
 	}
 
 	if($('#administration-map').length){
