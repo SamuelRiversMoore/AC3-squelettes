@@ -1154,7 +1154,7 @@ ul.mediatheque li.media .preview{
 }
 .item:hover, .focus,
 .output-partiel:hover .focus:hover {
-	background: #F2EFE4;
+	background: rgba(0,0,0,.06);
 }
 .item:hover { cursor: pointer; }
 .item strong { color: #333; }

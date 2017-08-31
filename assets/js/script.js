@@ -1,6 +1,8 @@
 
 L.mapbox.accessToken = 'pk.eyJ1IjoicGllcnJlcGllcnJlcGllcnJlIiwiYSI6IkdXdE5CRFEifQ.3zLbKVYfHituW8BVU-bl5g';
 
+var mapBounds = [[8,-70],[-50,-50]]; // Andes
+//var mapBounds = [[15,-70],[-57,-50]]; // Andes
 
 $(function(){
 	$.tablesorter.addParser({
@@ -417,7 +419,7 @@ $( document ).ready(function() {
 			zoomSnap: 1,
 		});
 		map.scrollWheelZoom.disable();
-		map.fitBounds([[15,-70],[-57,-50]]);
+		map.fitBounds(mapBounds);
 	}
 
 	if($('#administration-map').length){
@@ -430,7 +432,7 @@ $( document ).ready(function() {
 			fadeAnimation: true,
 			zoomDelta: 1,
 			zoomSnap: 1,
-		}).fitBounds([[15,-70],[-57,-50]]);
+		}).fitBounds(mapBounds);
 
     	var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {keepOpen: false, autocomplete: true});
     		geocoderControl.addTo(adminMap);
@@ -450,7 +452,7 @@ $( document ).ready(function() {
 	    		setMarker(lat, lon);
 	    		adminMap.setView([lat, lon], zoomVal);
 	    	} else {
-	 			adminMap.fitBounds([[15,-70],[-57,-50]]);
+	 			adminMap.fitBounds(mapBounds);
 	    	}
 	    }
 	    function displayCoords(){
@@ -478,7 +480,7 @@ $( document ).ready(function() {
 			zoomSnap: 1,
 		});
 		map.scrollWheelZoom.disable();
-		map.fitBounds([[15,-70],[-57,-50]]);
+		map.fitBounds(mapBounds);
 		
 		if(typeof geojson !== 'undefined' && geojson.length > 0) {
 			var markers = L.mapbox.featureLayer()
