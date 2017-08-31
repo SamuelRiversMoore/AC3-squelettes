@@ -28,12 +28,15 @@
 /*----------  variables  ----------*/
 
 :root {
-	--brown-light: #c96743;
+	
+	--beige-light: #f6f3ef;
+
+	--brown-light: #cb7453;
 	--brown-medium: #8F3226;
 	--brown-dark: #714138;
 
-	--green-light: #01e938;
-	--green-medium: #11d33f;
+	--green-light: #32f08e;
+	--green-medium: #32E486; /*11d33f*/
 	--green-dark: #128135;
 
 }
@@ -311,7 +314,7 @@ button{
 #menu{
 	width: 320px;
 	width: 20rem;
-	background: rgb(242, 239, 228);
+	background: var(--beige-light);
 	color: var(--brown-dark);
 	border-right: 1px solid rgba(0,0,0,.1);
 	position: fixed;
@@ -588,7 +591,7 @@ ul#menu-footer {
 	display: none;
 }
 #presentation {
-	background-color: var(--green-medium);
+	background-color: var(--green-light);
 	padding: 20px 24px;
 	padding: 1.25rem 1.5rem;
 	position: relative;

@@ -1,3 +1,4 @@
+
 L.mapbox.accessToken = 'pk.eyJ1IjoicGllcnJlcGllcnJlcGllcnJlIiwiYSI6IkdXdE5CRFEifQ.3zLbKVYfHituW8BVU-bl5g';
 
 
@@ -408,9 +409,15 @@ $( document ).ready(function() {
 
 	/* Init Mapbox */
 	if($("#welcome-map").length > 0) {
-		var map = L.mapbox.map('welcome-map', 'mapbox.streets', {zoomControl: false })
-		.fitBounds([[15,-70],[-57,-50]]);
+		var map = L.mapbox.map('welcome-map', 'mapbox.streets', { 
+			zoomControl: false,
+			attributionControl: false,
+			fadeAnimation: true,
+			zoomDelta: 1,
+			zoomSnap: 1,
+		});
 		map.scrollWheelZoom.disable();
+		map.fitBounds([[15,-70],[-57,-50]]);
 	}
 
 	if($('#administration-map').length){
@@ -418,8 +425,12 @@ $( document ).ready(function() {
     		latInput = wrapper.find('input[name="latitude"]'),
     		lonInput = wrapper.find('input[name="longitude"]');
 
-		var adminMap = L.mapbox.map('administration-map', 'mapbox.streets');
-			adminMap.scrollWheelZoom.disable();
+		var adminMap = L.mapbox.map('administration-map', 'mapbox.streets', { 
+			attributionControl: false,
+			fadeAnimation: true,
+			zoomDelta: 1,
+			zoomSnap: 1,
+		}).fitBounds([[15,-70],[-57,-50]]);
 
     	var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {keepOpen: false, autocomplete: true});
     		geocoderControl.addTo(adminMap);
@@ -459,9 +470,16 @@ $( document ).ready(function() {
 	}
 
 	if($("#inventaire-mapbox").length > 0){
-		var map = L.mapbox.map('inventaire-mapbox', 'mapbox.streets').fitBounds([[15,-70],[-57,-50]]);
-			map.scrollWheelZoom.disable();
 
+		var map = L.mapbox.map('inventaire-mapbox', 'mapbox.streets', { 
+			attributionControl: false,
+			fadeAnimation: true,
+			zoomDelta: 1,
+			zoomSnap: 1,
+		});
+		map.scrollWheelZoom.disable();
+		map.fitBounds([[15,-70],[-57,-50]]);
+		
 		if(typeof geojson !== 'undefined' && geojson.length > 0) {
 			var markers = L.mapbox.featureLayer()
 				.setGeoJSON(geojson)
