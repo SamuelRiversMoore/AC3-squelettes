@@ -414,9 +414,6 @@ $( document ).ready(function() {
 		var map = L.mapbox.map('welcome-map', 'mapbox.streets', { 
 			zoomControl: false,
 			attributionControl: false,
-			fadeAnimation: true,
-			zoomDelta: 1,
-			zoomSnap: 1,
 		});
 		map.scrollWheelZoom.disable();
 		map.fitBounds(mapBounds);
@@ -429,9 +426,6 @@ $( document ).ready(function() {
 
 		var adminMap = L.mapbox.map('administration-map', 'mapbox.streets', { 
 			attributionControl: false,
-			fadeAnimation: true,
-			zoomDelta: 1,
-			zoomSnap: 1,
 		}).fitBounds(mapBounds);
 
     	var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {keepOpen: false, autocomplete: true});
@@ -475,9 +469,6 @@ $( document ).ready(function() {
 
 		var map = L.mapbox.map('inventaire-mapbox', 'mapbox.streets', { 
 			attributionControl: false,
-			fadeAnimation: true,
-			zoomDelta: 1,
-			zoomSnap: 1,
 		});
 		map.scrollWheelZoom.disable();
 		map.fitBounds(mapBounds);

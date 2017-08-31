@@ -6,8 +6,12 @@
 
 	<div id="menu-header">
 		<ul class="languages">
-			<li>[(#LANG|=={es}|non)<a href="[(#SELF|parametre_url{'afficher',''}|parametre_url{lang,''})]">]ES[(#LANG|=={es}|non)</a>]</li>
-			<li>[(#LANG|=={en}|non)<a href="[(#SELF|parametre_url{lang,en})]">]EN[(#LANG|=={en}|non)</a>]</li>
+			<li [(#LANG|=={es}|oui)class="current"]>
+				[(#LANG|=={es}|non)<a href="[(#SELF|parametre_url{'afficher',''}|parametre_url{lang,''})]">]ES[(#LANG|=={es}|non)</a>]
+			</li>
+			<li [(#LANG|=={en}|oui)class="current"]>
+				[(#LANG|=={en}|non)<a href="[(#SELF|parametre_url{lang,en})]">]EN[(#LANG|=={en}|non)</a>]
+			</li>
 		</ul>
 		<input type="checkbox" name="searchbar-button" id="searchbar-button" class="hiddeninput">
 		<label id="search-button" class="icon fa-search" for="searchbar-button" title="<:lped:rechercher:>"></label>

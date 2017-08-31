@@ -214,6 +214,7 @@ section.edition #inputImg .fichier{
 	z-index: 99;
 	display: none;
 	box-shadow: 0 0 10px rgba(0,0,0,.4);
+	box-shadow: 0 0 1px rgba(0,0,0,0.7);
 	top: 28px;
 	top: 1.75rem;
 	left: -8px;
@@ -266,7 +267,7 @@ span.select-title>.status{
 	-webkit-transform: rotate(-225deg);
 	    -ms-transform: rotate(-225deg);
 	        transform: rotate(-225deg);
-	box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: -1px 1px 1px 0 rgba(0, 0, 0, 0.3)	;
 }
 .select-menu input[type="submit"]{margin: 0;}
 .select-menu li, .select-menu .select-title{ cursor: pointer; }
@@ -469,14 +470,24 @@ span.status.poubelle:after, div.status.poubelle:before, li.status.poubelle:befor
 
 span.status.prepa.fr:before, div.status.prepa.fr:after, li.status.prepa.fr:after{ content:"brouillon"; }
 span.status.prepa.en:before, div.status.prepa.en:after, li.status.prepa.en:after{ content:"draft"; }
+span.status.prepa.es:before, div.status.prepa.es:after, li.status.prepa.es:after{ content:"en preparación"; }
+
 span.status.prop.fr:before, div.status.prop.fr:after, li.status.prop.fr:after{ content:"proposé"; }
 span.status.prop.en:before, div.status.prop.en:after, li.status.prop.en:after{ content:"proposed"; }
+span.status.prop.es:before, div.status.prop.es:after, li.status.prop.es:after{ content:"propuesto"; }
+
 span.status.publie.fr:before, div.status.publie.fr:after, li.status.publie.fr:after{ content:"publié"; }
 span.status.publie.en:before, div.status.publie.en:after, li.status.publie.en:after{ content:"published"; }
+span.status.publie.es:before, div.status.publie.es:after, li.status.publie.es:after{ content:"publicado"; }
+
 span.status.refuse.fr:before, div.status.refuse.fr:after, li.status.refuse.fr:after{ content:"refusé"; }
 span.status.refuse.en:before, div.status.refuse.en:after, li.status.refuse.en:after{ content:"refused"; }
+span.status.refuse.es:before, div.status.refuse.es:after, li.status.refuse.es:after{ content:"rechazado"; }
+
 span.status.poubelle.fr:before, div.status.poubelle.fr:after, li.status.poubelle.fr:after{ content:"à la poubelle"; }
 span.status.poubelle.en:before, div.status.poubelle.en:after, li.status.poubelle.en:after{ content:"trash"; }
+span.status.poubelle.es:before, div.status.poubelle.es:after, li.status.poubelle.es:after{ content:"basura"; }
+
 
 span.status-label{ margin-right: 4px; margin-right: .25rem; }
 .discret .status{ margin: 0; }

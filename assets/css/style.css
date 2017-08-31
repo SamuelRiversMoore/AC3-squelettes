@@ -30,6 +30,7 @@
 :root {
 	
 	--beige-light: #f6f3ef;
+	--beige-dark: #9F9F9F;
 
 	--brown-light: #cb7453;
 	--brown-medium: #8F3226;
@@ -347,7 +348,7 @@ button{
 	margin:0;
 	list-style-type: none;
     text-overflow: ellipsis;
-    color: #9F9F9F;
+    color: var(--beige-dark);
 }
 div#menu-header {
 	margin-top: 12px;
@@ -374,6 +375,18 @@ div#menu-header {
     margin-bottom: 2px;
     margin-bottom: .125rem;
 }
+#menu-header>ul.languages li.current {
+	color: var(--brown-dark);
+	text-decoration: underline;
+}
+#menu-header>ul.languages li:not(.current) a {
+	opacity: .4;
+}
+#menu-header>ul.languages li:not(.current) a:hover,
+#menu-header>ul.languages li:not(.current) a:active {
+	opacity: 1;
+}
+
 #search-button {
     font-size: 16px;
     font-size: 1rem;
@@ -584,7 +597,7 @@ ul#menu-footer {
 
 #welcome-map {
 	height: 448px;
-	height: 28rem;
+	height: 33rem;
 }
 
 .leaflet-bottom.leaflet-left, .leaflet-bottom.leaflet-right {
