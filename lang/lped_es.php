@@ -8,7 +8,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'contributeurs' => 'Contribuidores',
     'nom'   => 'Apellido',
     'date'  => 'Fecha',
-    'traduction'    => 'Traducción',
+    'traduction'    => 'Trad.',
 
     'connexion' => 'Conexión',
     'nouvelles' => 'Noticias',

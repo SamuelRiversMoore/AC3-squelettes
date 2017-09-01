@@ -466,7 +466,7 @@ $( document ).ready(function() {
        	var marker;
 	    function setMarker(lat, lon){
 	    	if (undefined != marker) { adminMap.removeLayer(marker); }
-	    	marker = L.marker([lat, lon], { icon: L.mapbox.marker.icon({ 'marker-color': 'FFDB16'}), draggable: true });
+	    	marker = L.marker([lat, lon], { icon: L.mapbox.marker.icon({ 'marker-color': '08c15f'}), draggable: true });
    			marker.addTo(adminMap);
 			marker.on('dragend', displayCoords);
 			displayCoords();
