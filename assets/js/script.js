@@ -160,9 +160,16 @@ $( document ).ready(function() {
 			$mot.removeClass('ouvert').siblings('.glomot-contenu').removeClass('ouvert');
 		},
 		montre:function($mot){
-			$('html, body').animate({ scrollTop: $mot.offset().top - 64}, 0);
+			$('html, body').animate({ scrollTop: $mot.offset().top - 200}, 0);
 		}
 	}
+	$('#lexique-lettres').on('click', 'a', function(e){
+		e.preventDefault();
+		$('html, body').animate({
+			scrollTop: $( $.attr(this, 'href') ).offset().top - 64
+		}, 250);
+	});
+
 	if($('#lexique-mots').length){
 		if ( $('#lexique-mots').find('.lexique-titre.ouvert').length ){
 			var $mot_ouvert = $('#lexique-mots').find('.lexique-titre.ouvert');

@@ -1187,7 +1187,7 @@ ul.mediatheque li.media .preview{
 	margin: 0;
 }
 #show-hide-menu:checked ~ .show-hide.bouton{
-    background: #4BA7F5;
+    background: var(--green-medium);
     border: none;
 }
 #show-hide-menu:checked ~ .show-hide.bouton:before{

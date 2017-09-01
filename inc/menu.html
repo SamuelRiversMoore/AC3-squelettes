@@ -25,7 +25,7 @@
 		<BOUCLE_menu(RUBRIQUES){tout}{racine}{par num titre}>
 			<li [(#EXPOSE|=={on}|oui) class="active"]>
 				<a href="[(#URL_RUBRIQUE|parametre_lang)]" title="#TITRE">
-					[ (#ENV{lang}|=={es}|oui)#TITRE ]
+					[ (#ENV{lang}|=={es}|oui) #TITRE ]
 					[ (#ENV{lang}|=={en}|oui) [ (#TITRE_EN|sinon{#TITRE}) ] ]
 				</a>
 				<!-- inventaire qui déplie-->
