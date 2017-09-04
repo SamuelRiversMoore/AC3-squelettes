@@ -1,9 +1,9 @@
 #SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
 [ (#SESSION{statut}|non) #SET{statut, publie}  ]
 
-<BOUCLE_definition (MC3:GLODEFS) {id_glodef} {tout}>
+<BOUCLE_definition (MC3:spip_glodefs) {id_glodef} {tout}>
 
-	<BOUCLE_refs (MC3:GLOREFS) {id_glodef} {statut IN #GET{statut}}>
+	<BOUCLE_refs (MC3:spip_glorefs) {id_glodef} {statut IN #GET{statut}}>
 		[(#AUTORISER{voir,gloref,#ID_GLOREF}|oui)
 			<p class="discret">#TITRE</p>
 			[<p class="lexique-reference"><span class="source">SOURCE:</span>(#DESCRIPTION)</p>]
