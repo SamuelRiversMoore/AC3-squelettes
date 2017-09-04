@@ -1,5 +1,5 @@
 <section class="administration">
-    <BOUCLE_mots (GLOMOTS) {id_glomot} {tout}>
+    <BOUCLE_mots (MC3:GLOMOTS) {id_glomot} {tout}>
         [(#AFFICHER|=={editer_glomot}|et{#GLOMOT|=={#ID_GLOMOT}}|non)
             <a class="bouton moyen modifier icon fa-pencil" href="[(#SELF|parametre_url{afficher, editer_glomot}|parametre_url{glomot,#ID_GLOMOT})]"><:lped:editer:></a>
         ]
