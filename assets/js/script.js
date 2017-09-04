@@ -55,7 +55,13 @@ $( document ).ready(function() {
 	}
 
 	$('#show-menu, #close-menu').on('click', function(){
-		$('#menu').toggleClass('shown');
+		if ($('#menu').hasClass('shown')) {
+			$('body').addClass('menu-opened');
+			$('#menu').addClass('shown');
+		} else {
+			$('body').removeClass('menu-opened');
+			$('#menu').removeClass('shown');			
+		}
 	});
 
 
@@ -422,7 +428,14 @@ $( document ).ready(function() {
 			zoomControl: false,
 			attributionControl: false,
 		});
-		map.scrollWheelZoom.disable();
+        map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+        if (map.tap) map.tap.disable();
+
 		map.fitBounds(mapBounds);
 
 		if ($(window).width() >= 700) {

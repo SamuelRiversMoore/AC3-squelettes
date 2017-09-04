@@ -261,20 +261,33 @@ p.reponse_formulaire{
 	padding: 2rem;
 	#footer-logos {
 		text-align: left;
-		img {
-			max-width: 6.25rem;
-			max-height: 2.5rem;
-			margin: auto 2rem;
-			display: inline;
-			vertical-align: middle;
-			&.mc3{
-				max-width: 10rem;
-				max-height: 3rem;
-			}
+		a {
+			display: inline-block;
+			margin-bottom: 1.5rem;
+			margin-right: 2.5rem;
+			img {
+				max-width: 6.25rem;
+				max-height: 2.5rem;
+				margin: auto 0;
+				display: inline;
+				vertical-align: middle;
+				&.mc3{
+					max-width: none;
+					max-height: 4rem;
+				}
+				&.ird{
+					max-width: 10rem;
+					max-height: 4.8rem;
+				}
+				&.lped{
+					max-width: 10rem;
+					max-height: 4rem;
+				}
+				&:not(.mc3){
+					margin-right: 1rem;
+				}
 
-		}
-		a:first-child img{
-			margin-left: 0;
+			}		
 		}
 	}
 }
@@ -613,8 +626,8 @@ p.reponse_formulaire{
 #contenu{
 	display: block;
 	margin-left: 20rem;
-	min-height: 100%;
 	position: relative;
+    min-height: 100%;
 	.wrapper,
 	&.wrapper {
 		padding: 2rem;
@@ -658,7 +671,7 @@ p.reponse_formulaire{
 	margin-bottom: 2rem;
 	padding: 2rem 0;
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 }
 .mises-a-jour{
 	padding-left: 2rem;
@@ -1673,6 +1686,7 @@ article.tab {
 	display: none;
 }
 @media screen and (max-width: 1100px){
+	body
 	#welcome-map {
 		height: 30rem;
 	}
