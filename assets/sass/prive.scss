@@ -17,7 +17,7 @@ input[type="button"]{
 	}
 }
 label.icon{ 
-	font-size: .85rem; 
+	font-size: 13px; 
 }
 
 section form input[type="file"].hiddeninput,
@@ -61,7 +61,7 @@ div.compte{
 			vertical-align: top;
 		}
 		.parents{
-			font-size: .85rem;
+			font-size: 13px;
 			.parent, 
 			.fleche{
 				color: #999;
@@ -106,11 +106,11 @@ div.compte{
 		&:hover{
 			background: #ddd;
 		}
-	}
-	&.icon:before{
-		margin-left: 0.1rem;
-		margin-right: 0.5rem;
-		opacity: .5;
+		&.icon:before{
+			margin-left: 0.1rem;
+			margin-right: 0.5rem;
+			opacity: .5;
+		}
 	}
 	> [type=radio] {
 		display: none;
@@ -161,8 +161,6 @@ div.compte{
 section.edition {
 	input[type="file"].fileupload + label {
 		cursor: pointer;
-		background: $brown-light;
-		color: #fff;
 		border: none;
 		padding: .5rem .75rem;
 		&.hasFile {
@@ -173,10 +171,6 @@ section.edition {
 			background: transparent;
 			color: #333;
 		}
-	}
-	input[type="file"].fileupload + label:hover,
-	input[type="file"].fileupload:focus + label {
-		color: #333;
 	}
 }
 section.edition #inputImg {
@@ -280,7 +274,7 @@ span.select-title{
 
 div.switch{
 	position: relative;
-	input.switchlang {
+	input.switchlang[type="checkbox"] {
 		z-index: -9;
 		visibility: hidden;
 		width: 0;
@@ -314,7 +308,7 @@ div.switch{
 				color: rgba(0, 0, 0, 0.56);
 				transition: color 0.4s;
 				top: 0;
-				box-shadow: 0px -3px 4px -3px rgba(0,0,0,0.25) inset;
+				box-shadow: 0px -2px 5px -4px rgba(0,0,0,0.25) inset;;
 				&:first-child{ left:0; }
 				&:last-child{ right:0; }
 			}
@@ -330,24 +324,25 @@ div.switch{
 				margin-left: 2.5rem;
 			}
 		}
+		&:checked + label:before {
+			margin-left: 0;
+		}
+		&:checked + label>span:last-child,,
+		&:not(:checked) + label>span:first-child{
+			color: #999;
+		}
+		& ~ section.langue.en{ display: block; }
+		& ~ section.langue.fr{ display: none; }
+		&:checked ~ section.langue.en{ display: none; }
+		&:checked ~ section.langue.fr{ display: block; }
+
 	}
 	> section{ 
 		z-index: 0; 
 	}
 }
-input.switchlang:checked + label:before {
-	margin-left: 0;
-}
-input.switchlang:checked + label>span:last-child, 
-input.switchlang:not(:checked) + label>span:first-child{
-	color: #999;
-}
-.switchlang[type="checkbox"] ~ section.langue.en{ display: block; }
-.switchlang[type="checkbox"] ~ section.langue.fr{ display: none; }
-.switchlang[type="checkbox"]:checked ~ section.langue.en{ display: none; }
-.switchlang[type="checkbox"]:checked ~ section.langue.fr{ display: block; }
 
-body .markItUp .markItUpHeader{
+section.edition .markItUp .markItUpHeader{
 	border-radius: 0;
 }
 
@@ -462,9 +457,10 @@ span.status:before,
 div.status:after, 
 li.status:after{
 	padding-left: 3px;
-	font-size: .75rem;
 	text-transform: uppercase;
+	font-size: 14px;
 	line-height: 1.25rem;
+	letter-spacing: .02em;
 }
 span.status:before, 
 li.status:after{
@@ -479,7 +475,6 @@ span.status:after,
 div.status:before, 
 li.status:before{
 	font: normal normal normal 13px/1 FontAwesome;
-	font: normal normal normal .85rem/1 FontAwesome;
 	width: 16px;
 	width: 1rem;
 	height: 20px;
@@ -557,9 +552,10 @@ span.status-label{ margin-right: 4px; margin-right: .25rem; }
 		font-size: 1rem; 
 		padding: .5rem .75rem; 
 		margin-right: .625rem; 
+		line-height: 21px;
 	}
 	&.moyen{ 
-		font-size: .85rem; 
+		font-size: 13px; 
 		padding: .25rem .5rem; 
 		margin-right: .625rem;
 	}
@@ -577,6 +573,22 @@ span.status-label{ margin-right: 4px; margin-right: .25rem; }
 	&.inline { 
 		margin-top: 0; 
 		display: inline-block; 
+	}
+	&.modifier, 
+	&.supprimer,
+	&.petit{
+		padding-left: 0; 
+		vertical-align: middle;
+		&:not(.proposer){
+			border-radius: 0;
+			display: inline-block;
+			vertical-align: middle;
+			font-size: 13px;
+			padding: 0 .25rem;
+			height: 1.25rem;
+			background: transparent;
+			color: rgba(0, 0, 0, 0.5);
+		}
 	}
 	&.modifier:not(:last-child){
 		border-right: 1px solid #bbb;
@@ -643,29 +655,26 @@ div.bouton.moyen{
 	line-height: 1rem; 
 }
 
-article.tab .petit.bouton{
-	padding-left: 0; 
-	vertical-align: middle;
-	&:not(.proposer){
-		border-radius: 0;
-		display: inline-block;
-		vertical-align: middle;
-		font-size: .85rem;
-		padding: 0 .25rem;
-		height: 1.25rem;
-		background: transparent;
-		color: rgba(0, 0, 0, 0.5);
+section.administration form{
+	line-height: 1em;
+	input.bouton{
+		font-family: "karmilla", arial, sans-serif;
+		line-height: 21px;
+	} 
+	input.petit.bouton{
+		padding:0; 
+		margin:0; 
+		margin-right: 0; 
 	}
-}
-section.administration form input.petit.bouton{
-	padding:0; 
-	margin:0; 
-	margin-right: 0; 
-}
-section.administration>form:not(:last-child){
-	border-right: 1px solid #bbb;
-	padding-right: .65rem;
-	margin-right: .5rem;
+	input.bouton.supprimer{ 
+		margin: 0; 
+	}
+
+	&:not(:last-child):not(.formulaire_spip){
+		border-right: 1px solid #bbb;
+		padding-right: .65rem;
+		margin-right: .5rem;
+	}
 }
 #menu .bouton.ajouter.pays{
 	background: rgb(226, 223, 215);
@@ -677,10 +686,6 @@ section.administration>form:not(:last-child){
 		background: rgb(207, 204, 196);
 	}
 }
-form input.bouton.supprimer{ 
-	margin: 0; 
-}
-
 
 
 
@@ -692,9 +697,6 @@ section.administration {
 	color: #999;
 	margin-bottom: 1rem;
 	margin-top: .75rem;
-	.diaporama{
-		margin-top: 1rem;
-	}
 	&.mini{
 		margin: 0;
 		display: inline-block;
@@ -869,13 +871,15 @@ section.edition{
 			min-height:10rem;
 		}
 	}
-	section header{
+	div.row header,
+	section.row header{
 		margin-bottom: .75rem;
 	}
 	header, 
 	label{
 		font-size:1rem;
 		display: block;
+		line-height: 1.25rem;
 	}
 	.input-block {
 		label{
@@ -1022,7 +1026,6 @@ section.edition{
 			background: rgba(255, 255, 255, 0.65);
 			color: #000;
 			font-size: 13px;
-			font-size: .85rem;
 			line-height: 1.25em;
 		}
 		.supprimer{
@@ -1139,13 +1142,17 @@ ul.mediatheque {
 			background: rgba(0,0,0,.35); 
 			color:#555;
 		}
-		img{ 
-			width: 100%; 
-		}
 		.preview{
 			margin-left: auto;
 			margin-right: auto;
 		   	margin-bottom: .25rem;
+		}
+		img.preview{
+			max-height: 5rem;
+			max-width: 100%;
+			width: auto;
+			height: auto;
+			display: block;
 		}
 	}
 }
@@ -1297,7 +1304,7 @@ ul.mediatheque {
 }
 .item-texte{
 	color: rgba(119, 119, 119, 0.76);
-	font-size: .85rem;
+	font-size: 13px;
 	&:before{
 		content:' : ';
 	}

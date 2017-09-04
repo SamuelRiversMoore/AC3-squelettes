@@ -183,16 +183,26 @@ h6, .h6 {
 	line-height: 1.2em;
 }
 ul {
-	margin-left: 48px;
-	margin-left: 3rem;
+	margin-left: 2.25rem;
 }
 ul.liste-lettres {
 	list-style-type: upper-alpha;
 }
-.text-courant{
-	p:not(.message){
+.texte-courant{
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6{
 		margin-bottom: 1em;
-		line-height: 1.32em;
+	}
+	p{
+		max-width: 40rem;
+		&:not(.message){
+			margin-bottom: 1em;
+			line-height: 1.32em;
+		}
 	}
 	iframe {
 		margin-bottom: 1em;
@@ -200,7 +210,6 @@ ul.liste-lettres {
 	}
 	li, 
 	.medium{
-		margin-bottom: 16px;
 		margin-bottom: 1rem;
 	}
 }
@@ -321,8 +330,7 @@ p.reponse_formulaire{
 	z-index: 1500;
 	left: 0;
 	top: 0;
-	padding: 0 20px;
-	padding: 0 1.25rem;
+	padding: 0 1.25rem 2.5rem;
 	-webkit-backface-visibility:hidden;
 	a {
 		text-decoration: none;
@@ -760,6 +768,9 @@ header.gros{
 	width: 18rem;
 	margin-right: 2rem;
 	margin-bottom: 4rem;
+	p{
+		margin-bottom: .75rem;
+	}
 }
 #inventaire-images {
 	overflow: hidden;
@@ -776,7 +787,7 @@ header.gros{
 /*------------ Syntheses -------------*/
 ul.syntheses {
 	margin-left: 0;
-	margin-top: 2rem;
+	margin-top: 1.25rem;
 	p:not(.message){
 		margin-bottom: 1rem;
 	}
@@ -792,10 +803,11 @@ ul.syntheses {
 	a{
 		text-decoration: none;
 		display: block;
-		border-left: 3px solid $green-medium;
-		padding-left: 1rem;
-		max-width: 34rem;
-		margin-bottom: 2rem;
+		border: 1px solid $green-medium;
+		border-left-width: 3px;
+		padding: 1rem;
+		max-width: 40rem;
+		margin-bottom: 1.25rem; 
 	}
 }
 
@@ -1087,7 +1099,7 @@ section.reseaux .tabs-wrapper article {
 }
 .thematique-document {
 	border: 1px solid;
-	padding: 3rem;
+	padding: 2rem;
 	box-shadow: 2px 2px 0 black;
 	margin: 1.5rem 0;
 	overflow: hidden;
@@ -1158,8 +1170,9 @@ section.reseaux .tabs-wrapper article {
 		}
 	}
 	&.integre{
-		margin-top: 2em; 
-		margin-bottom: 1em;
+		margin-top: 2.5em; 
+		margin-bottom: 1.5em;
+		margin-left: 1.5em;
 	}
 	&.petit{
 		font-size: .625rem; 
@@ -1379,6 +1392,12 @@ table {
 	border-spacing: 0;
 	width: 100%;
 	margin-bottom: .75rem;
+	caption{
+		text-align: left;
+		margin: 1.25rem 0;
+		font-weight: bold;
+		text-decoration: underline;
+	}
 	thead {
 		background-color: $green-medium;
 		text-align: left;
@@ -1461,7 +1480,6 @@ section.journal {
 	padding-right: 6%;
 	article{
 		position: relative;
-		max-width: 40rem;
 	}
 }
 .extrait{
@@ -1485,7 +1503,7 @@ article.extrait .extrait-contenu p{
 article.extrait .more{
 	color: $green-medium;
 	margin-left: .5rem;
-	font-size: .85rem;
+	font-size: 13px;
 	border-bottom: 1px solid;
 	white-space: nowrap;
 }
@@ -1515,7 +1533,7 @@ section.page-standard {
 				display: inline-block;
 				vertical-align: top;
 				font-size: 1rem;
-				&:first-child {
+				&:first-of-type {
 					width: 12rem;
 					margin-right: 2rem;
 					margin-top: .2rem;
@@ -1523,7 +1541,7 @@ section.page-standard {
 						line-height:  1.3rem;
 					}
 				}
-				&:last-child {
+				&:last-of-type {
 					width: calc(100% - 14rem);
 					min-width: 20rem;
 				}
