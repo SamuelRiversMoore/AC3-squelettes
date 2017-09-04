@@ -1,13 +1,13 @@
 #SET{statut, #ARRAY{1,prepa,2,prop,3,publie,4,refuse,5,poubelle} }
 [ (#SESSION{statut}|non) #SET{statut, publie}  ]
 
-<BOUCLE_mot (MC3:spip_glomots) {id_glomot} {tout}>
+<BOUCLE_mot (GLOMOTS) {id_glomot} {tout}>
 
 	<div class="lexique-wrapper">
 		<a title="#TITRE" href="[(#SELF|parametre_url{glomot, #ID_GLOMOT})]##ANCRE" class="lexique-titre [(#GLOMOT|=={#ID_GLOMOT}|oui)ouvert]">#TITRE</a>
 		<div class="glomot-contenu [(#GLOMOT|=={#ID_GLOMOT}|oui)ouvert]" id="glomot_#ID_GLOMOT">
 			[(#AUTORISER{modifier,glomot,#ID_GLOMOT}|oui) <INCLURE{fond=inc/administration/lexique/glomots, afficher, id_glomot, glomot} /> ]
-			<BOUCLE_definitions (MC3:spip_glodefs) {id_glomot} {statut IN #GET{statut}}>
+			<BOUCLE_definitions (GLODEFS) {id_glomot} {statut IN #GET{statut}}>
 				[(#AUTORISER{voir,glodef,#ID_GLODEF}|oui)
 					<div class="lexique-definition">
 						<INCLURE{fond=inc/pages/lexique/definitions, env, id_glodef}>
