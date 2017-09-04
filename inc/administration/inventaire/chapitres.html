@@ -5,8 +5,8 @@
         [(#FORMULAIRE_MODERATION_OBJET{chapitres,chapitre,#ID_CHAPITRE})]
 
         <div class="meta">
-            <span class="icon fa-calendar-o" alt="<:lped:creation:>" title="<:lped:creation:>">[(#DATE|affdate)]</span>
-            <span class="icon fa-pencil-square-o" alt="<:lped:modification:>" title="<:lped:modification:>">[(#MAJ|affdate)]</span>
+            <span class="icon fa-calendar-o" alt="<:lped:creation:>" title="<:lped:creation:>">[(#DATE|affdate{'d.m.Y'})]</span>
+            <span class="icon fa-pencil-square-o" alt="<:lped:modification:>" title="<:lped:modification:>">[(#MAJ|affdate{'d.m.Y'})]</span>
             <span class="auteurs icon fa-user" alt="<:lped:contributeurs:>" title="<:lped:contributeurs:>">
                 <span class="auteurs">
                     <BOUCLE_auteurs (AUTEURS) {id_chapitre}>

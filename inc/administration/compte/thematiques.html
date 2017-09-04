@@ -41,7 +41,7 @@
 			</BOUCLE_auteur>
 		</td>
 		<td class="date" data-date="[(#MAJ)]">
-			[(#MAJ|affdate)]
+			[(#MAJ|affdate{'d.m.Y'})]
 		</td>
 		<td class="trad">
 			[(#TITRE_EN|oui|et{#TITRE_FR|oui}|et{#TEXTE_FR|oui}|et{#TEXTE_EN|oui}|?{<:lped:oui:>,<:lped:non:>})]
