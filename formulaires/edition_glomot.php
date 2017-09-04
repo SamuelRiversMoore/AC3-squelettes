@@ -11,7 +11,7 @@ function formulaires_edition_glomot_charger_dist( $id_glomot = 'new' ){
     if ( $id_glomot == 'new' )
         return array( 'id_glomot' => 'new', 'nouveau' => 'oui' ); // Renvoi un objet vide
 
-    return sql_fetsel( "*" , "spip_glomots" , "id_glomot=$id_glomot" ); // Renvoi l'ensemble de l'objet
+    return sql_fetsel( "*" , "spip_glomots" , "id_glomot=$id_glomot", $serveur='mc3' ); // Renvoi l'ensemble de l'objet
 }
 
 function formulaires_edition_glomot_verifier_dist( $id_glomot = 'new' ){
