@@ -5,7 +5,7 @@
 	<div id="contenu" class="wrapper">
 		<!-- construction du tableau d'initiales -->
 		[(#SET{tab_initiales,#ARRAY})]
-		<BOUCLE_remplir_tableau (MC3:GLOMOTS) {par titre} {statut IN #GET{statut}}>
+		<BOUCLE_remplir_tableau (GLOMOTS) {par titre} {statut IN #GET{statut}}>
 			[(#SET{tab_initiales, #GET{tab_initiales}|push{#TITRE|mb_substr{0,1,'UTF-8'}|strtolower}})]
 		</BOUCLE_remplir_tableau>
 		[(#SET{tab_initiales, #GET{tab_initiales}|array_unique})]
@@ -29,7 +29,7 @@
 		<div id="lexique-mots">
 			<BOUCLE_lire_tableau (DATA) {source tableau,#GET{tab_initiales}} >
 				<h1 id="#VALEUR">#VALEUR</h1>
-				<BOUCLE_mots (MC3:GLOMOTS) {par titre} {tout}>
+				<BOUCLE_mots (GLOMOTS) {par titre} {tout}>
 					[(#AUTORISER{voir,glomot,#ID_GLOMOT}|oui)
 						[(#REM) si le mot commence bien par la lettre]
 						[(#TITRE|mb_substr{0,1,'UTF-8'}|strtolower|=={#VALEUR}|oui) <INCLURE{fond=inc/pages/lexique/mots, env, id_glomot, ancre=#VALEUR}> ]
