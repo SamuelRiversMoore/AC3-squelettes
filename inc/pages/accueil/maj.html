@@ -155,7 +155,7 @@
 
             </BOUCLE_document>
 
-            <BOUCLE_mots(MC3:GLOMOTS)>
+            <BOUCLE_mots(GLOMOTS)>
                 #SET{date, #GET{date}|push{#MAJ}}
                 #SET{type, #GET{type}|push{Lexique}}
                 #SET{titre, #GET{titre}|push{#TITRE}}
@@ -163,8 +163,8 @@
                 #SET{lien, #GET{lien}|push{#INFO_URL{rubrique,5}#mot-#ID_GLOMOT}}
             </BOUCLE_mots>
 
-            <BOUCLE_defs(MC3:GLODEFS)>
-                <BOUCLE_glomots_def(MC3:GLOMOTS spip_glodefs_liens){id_glodef}>
+            <BOUCLE_defs(GLODEFS)>
+                <BOUCLE_glomots_def(GLOMOTS spip_glodefs_liens){id_glodef}>
                 #SET{date, #GET{date}|push{#_defs:MAJ}}
                 #SET{type, #GET{type}|push{Lexique}}
                 #SET{titre, #GET{titre}|push{#TITRE}}

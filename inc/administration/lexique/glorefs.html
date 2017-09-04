@@ -1,5 +1,5 @@
 <section class="administration mini">
-    <BOUCLE_refs (MC3:GLOREFS) {id_gloref} {tout}>
+    <BOUCLE_refs (GLOREFS) {id_gloref} {tout}>
         <a class="bouton modifier icon fa-pencil" href="[(#SELF|parametre_url{afficher, editer_ref}|parametre_url{gloref,#ID_GLOREF})]"></a>
 
         [(#FORMULAIRE_MODERATION_OBJET{glorefs,gloref,#ID_GLOREF})]

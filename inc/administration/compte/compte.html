@@ -274,10 +274,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<BOUCLE_mots (MC3:GLOMOTS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+						<BOUCLE_mots (GLOMOTS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
 							[(#AUTORISER{modifier,glomot,#ID_GLOMOT}|oui) <INCLURE{fond=inc/administration/compte/glomots, env, id_glomot}> ]
 						</BOUCLE_mots>
-						<BOUCLE_mots_poub (MC3:GLOMOTS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+						<BOUCLE_mots_poub (GLOMOTS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
 							[(#AUTORISER{modifier,glomot,#ID_GLOMOT}|oui) <INCLURE{fond=inc/administration/compte/glomots, env, id_glomot}> ]
 						</BOUCLE_mots_poub>
 					</tbody>
@@ -295,10 +295,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<BOUCLE_defs (MC3:GLODEFS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+						<BOUCLE_defs (GLODEFS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
 							[(#AUTORISER{modifier,glodef,#ID_GLODEF}|oui) <INCLURE{fond=inc/administration/compte/glodefs, env, id_glodef}> ]
 						</BOUCLE_defs>
-						<BOUCLE_defs_poub (MC3:GLODEFS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+						<BOUCLE_defs_poub (GLODEFS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
 							[(#AUTORISER{modifier,glodef,#ID_GLODEF}|oui) <INCLURE{fond=inc/administration/compte/glodefs, env, id_glodef}> ]
 						</BOUCLE_defs_poub>
 					</tbody>
@@ -316,10 +316,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<BOUCLE_refs (MC3:GLOREFS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
+						<BOUCLE_refs (GLOREFS) {tout} {par statut, maj} {statut IN prepa, prop, publie} {inverse}>
 							[(#AUTORISER{modifier,gloref,#ID_GLOREF}|oui) <INCLURE{fond=inc/administration/compte/glorefs, env, id_gloref}> ]
 						</BOUCLE_refs>
-						<BOUCLE_refs_poub (MC3:GLOREFS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
+						<BOUCLE_refs_poub (GLOREFS) {tout} {par statut, maj} {statut IN refuse, poubelle} {inverse}>
 							[(#AUTORISER{modifier,gloref,#ID_GLOREF}|oui) <INCLURE{fond=inc/administration/compte/glorefs, env, id_gloref}> ]
 						</BOUCLE_refs_poub>
 					</tbody>
