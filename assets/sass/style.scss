@@ -654,7 +654,6 @@ p.reponse_formulaire{
 	background-color: $green-light;
 	padding: 1.25rem 1.5rem;
 	position: relative;
-	margin-bottom: 2rem;
 	width: 100%;
 	min-height: 2em;
 	box-shadow: 0px 0px 1px rgba(0,0,0,.1);
@@ -664,6 +663,9 @@ p.reponse_formulaire{
 }
 #presentation-large{
 	min-height: 6em;
+}
+#presentation-small{
+	margin-bottom: 2rem;
 }
 .presentation-wrapper{
 	min-height: 33rem;
