@@ -2,7 +2,7 @@
 	<B_references>
 			<section class="row">
 				<header for='titre'><:lped:reference:></header>
-				<BOUCLE_references (GLOREFS) {id_glodef = #ENV{id_glodef}} {tout}>
+				<BOUCLE_references (MC3:GLOREFS) {id_glodef = #ENV{id_glodef}} {tout}>
 					<div class="edition-reference">
 						<form action='#ENV{action}' method='post' class="inline">
 							#ACTION_FORMULAIRE{#ENV{action}}
@@ -17,7 +17,7 @@
 		</B_references>
 
 		[(#REM) si la première boucle n'a pas été executée]
-		
+
 		<section class="row">
 			<header for='titre'><:lped:reference:></header>
 			<div class="gros bouton montrer" data-target="referenceadmin"><:lped:reference_ajouter:></div>
@@ -43,7 +43,7 @@
 									<ul class="output-partiel"></ul>
 									<ul class="output-complet">
 										<B_refs>
-											<BOUCLE_refs (GLOREFS) {si #ENV{id_gloref}|=={new}} {tout}>
+											<BOUCLE_refs (MC3:GLOREFS) {si #ENV{id_gloref}|=={new}} {tout}>
 												<li class="item">
 													<input type="radio" name="gloref_lien" value="#ID_GLOREF" id="gloref-#ID_GLOREF" class="hiddeninput">
 													<label for="gloref-#ID_GLOREF">

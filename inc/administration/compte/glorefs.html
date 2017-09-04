@@ -1,4 +1,4 @@
-<BOUCLE_gloref (GLOREFS) {id_gloref} {tout} >
+<BOUCLE_gloref (MC3:GLOREFS) {id_gloref} {tout} >
 
 	<tr>
 		<td class="statut" data-statut="[(#VAL{#STATUT}|_T)]">
@@ -6,8 +6,8 @@
 			[(#SESSION{statut}|=={1comite}|oui) <div class="status [(#VAL{#STATUT}|_T)] [(#ENV{lang}|sinon{es})]"></div> ]
 		</td>
 		<td class="titre">
-      <BOUCLE_glodef (GLODEFS glorefs_liens) {id_gloref} {tout}>
-  			<BOUCLE_glomot (GLOMOTS glodefs_liens) {id_glodef} {tout}>
+      <BOUCLE_glodef (MC3:GLODEFS glorefs_liens) {id_gloref} {tout}>
+  			<BOUCLE_glomot (MC3:GLOMOTS glodefs_liens) {id_glodef} {tout}>
   			<a href="[(#URL_RUBRIQUE{5}|parametre_url{glomot,#ID_GLOMOT}|ancre_url{#TITRE|substr{0,1}})]">
   			</BOUCLE_glomot>
       </BOUCLE_glodef>
