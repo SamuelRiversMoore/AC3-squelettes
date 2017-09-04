@@ -267,6 +267,11 @@ p.reponse_formulaire{
 			margin: auto 2rem;
 			display: inline;
 			vertical-align: middle;
+			&.mc3{
+				max-width: 10rem;
+				max-height: 3rem;
+			}
+
 		}
 		a:first-child img{
 			margin-left: 0;
