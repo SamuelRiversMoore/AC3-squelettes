@@ -317,12 +317,9 @@ p.reponse_formulaire{
 	z-index: 1500;
 	background: #ECE8DD;
 	border-radius: 2px;
-	top: 24px;
 	top: 1.5rem;
-	left: 32px;
 	left: 2rem;
 	font-family: 'karmilla', helvetica, arial, sans-serif;
-	font-size: 18px;
 	font-size: 1.125rem;
 	opacity: 1;
 	filter: alpha(opacity=1);
@@ -348,8 +345,10 @@ p.reponse_formulaire{
 	z-index: 1500;
 	left: 0;
 	top: 0;
-	padding: 0 1.25rem 2.5rem;
+	padding: 0 1.25rem 1.25rem;
 	-webkit-backface-visibility:hidden;
+	display: flex;
+	flex-direction: column;
 	a {
 		text-decoration: none;
 		color: $brown-dark;
@@ -409,6 +408,9 @@ p.reponse_formulaire{
 	border-top: 1px solid $brown-dark;
 	padding-top: .5rem;
 	position: relative;
+	flex: 1 1 100%;
+	display: flex;
+	flex-direction: column;
 	ul {
 		margin-right: 70px;
 		li {
@@ -417,9 +419,11 @@ p.reponse_formulaire{
 		}
 	}
 	a.external-link {
-		position: absolute;
-		top: 1.1rem;;
-		right: 0;
+		display: inline-block;
+		width: 70px;
+		margin-top: auto;
+		padding-top: .5em;
+		padding-left: 1px;
 		&:before{
 			content: "";
 			background: url("../images/logo-mc3-sm-brown.svg") no-repeat;
@@ -668,12 +672,12 @@ p.reponse_formulaire{
 /*----------  Home ----------*/
 
 #welcome-map {
-	height: 30rem;
+	height: 28rem;
 	@media screen and (max-width: 700px){
-		height: 20rem;
+		height: 18rem;
 	}
 	@media screen and (max-width: 360px){
-		height: 10rem;
+		height: 8rem;
 	}
 }
 .leaflet-bottom.leaflet-left, 
