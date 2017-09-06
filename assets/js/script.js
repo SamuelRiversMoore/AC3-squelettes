@@ -218,7 +218,9 @@ $( document ).ready(function() {
 		//centerMode: true,
 		//variableWidth: true,
 		prevArrow: '<img class="slider-arrow-left" src="squelettes/assets/images/arrow-left.png">',
-		nextArrow: '<img class="slider-arrow-right" src="squelettes/assets/images/arrow-right.png">'
+		nextArrow: '<img class="slider-arrow-right" src="squelettes/assets/images/arrow-right.png">',
+		accessibility: true,
+
 	});
 	$(".slick-zoom").on('click', function(e) {
 		$(".slider").addClass("slick-fullscreen");
@@ -226,7 +228,7 @@ $( document ).ready(function() {
 	});
 	$(".slider").on('click', function(e) {
 		if( !$(e.target).hasClass('slick-arrow') ) {
-			if($(e.target).hasClass('slick-slide')) {
+			if($(e.target).hasClass('slick-slide') || $(e.target).parent().hasClass('slick-slide')) {
 				$(".slider").slick('slickNext');
 			} else {
 				$(this).removeClass("slick-fullscreen");
