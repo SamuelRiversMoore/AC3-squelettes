@@ -1,7 +1,7 @@
 <div id="footer">
 	<div id="footer-logos">
 		<BOUCLE_partenaires(PARTENAIRES){par num titre}>
-			<BOUCLE_logo(DOCUMENTS){id_partenaire}>
+			<BOUCLE_logo(DOCUMENTS){id_partenaire}{extension==jpg|png|gif}{0,1}>
 				<a href="#_partenaires:LIEN" target="_blank"><img src="[(#FICHIER|image_reduire{200,200}|extraire_attribut{src})]" alt="#_partenaires:TITRE"></a>
 			</BOUCLE_logo>
 		</BOUCLE_partenaires>
