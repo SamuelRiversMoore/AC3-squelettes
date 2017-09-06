@@ -1,11 +1,10 @@
 <div id="footer">
 	<div id="footer-logos">
-        <a href="http://amidex.univ-amu.fr/" target="_blank"><img src="squelettes/assets/images/logos/logo_AMIDEX.png"></a>
-		<a href="http://www.univ-amu.fr" target="_blank"><img src="squelettes/assets/images/logos/logo_AMU.png"></a>
-		<a href="http://www.agence-nationale-recherche.fr/investissements-d-avenir/" target="_blank"><img src="squelettes/assets/images/logos/logo_IDEX.png"></a>
-		<a href="https://www.ird.fr" target="_blank"><img src="squelettes/assets/images/logos/logo_IRD.png"></a>
-		<a href="http://www.lped.fr" target="_blank"><img src="squelettes/assets/images/logos/logo_LPED.png"></a>
-		<a href="http://www.otmed.fr" target="_blank"><img src="squelettes/assets/images/logos/logo_OTMED.png"></a>
+		<BOUCLE_partenaires(PARTENAIRES){par num titre}>
+			<BOUCLE_logo(DOCUMENTS){id_partenaire}>
+				<a href="#_partenaires:LIEN" target="_blank"><img src="[(#FICHIER|image_reduire{200,200}|extraire_attribut{src})]" alt="#_partenaires:TITRE"></a>
+			</BOUCLE_logo>
+		</BOUCLE_partenaires>
 	</div>
 </div>
 
@@ -22,7 +21,7 @@
 <script type="text/javascript" src="squelettes/assets/js/script.min.js"></script>
 
 
-<!-- spip -->	
+<!-- spip -->
 <script src="prive/javascript/jquery.form.js?1460723772" type="text/javascript"></script>
 <script src="prive/javascript/jquery.placeholder-label.js?1460723772" type="text/javascript"></script>
 <script src="prive/javascript/ajaxCallback.js?1460723772" type="text/javascript"></script>
