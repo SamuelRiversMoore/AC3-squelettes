@@ -4,25 +4,25 @@
 	<body [(#SESSION{statut}|oui)class="logged"]>
 	<INCLURE{fond=inc/menu, env, id_rubrique}>
 
-	<!-- accueil -->
+	[(#REM) accueil ]
 	[(#ID_RUBRIQUE|=={1}|oui) <INCLURE{fond=inc/pages/accueil}, env> ]
 
-	<!-- journal -->
+	[(#REM) journal ]
 	[(#ID_RUBRIQUE|=={2}|oui) <INCLURE{fond=inc/pages/journal, env, id_rubrique}> ]
 
-	<!-- inventaire -->
+	[(#REM) inventaire ]
 	[(#ID_RUBRIQUE|=={3}|oui) <INCLURE{fond=inc/pages/inventaire}, env> ]
 
-	<!-- synthèses -->
+	[(#REM) synthèses ]
 	[(#ID_RUBRIQUE|=={4}|oui) <INCLURE{fond=inc/pages/syntheses, env, id_rubrique}> ]
 
-	<!-- lexique -->
+	[(#REM) lexique ]
 	[(#ID_RUBRIQUE|=={5}|oui) <INCLURE{fond=inc/pages/lexique, env, id_rubrique}> ]
 
-	<!-- réseau -->
+	[(#REM) réseau ]
 	[(#ID_RUBRIQUE|=={6}|oui) <INCLURE{fond=inc/pages/reseau, env, id_rubrique}> ]
 
-	<!-- à propos -->
+	[(#REM) à propos ]
 	[(#ID_RUBRIQUE|=={7}|oui) <INCLURE{fond=inc/pages/apropos, env, id_rubrique}> ]
 
 

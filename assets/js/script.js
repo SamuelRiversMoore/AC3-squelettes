@@ -55,7 +55,13 @@ $( document ).ready(function() {
 	}
 
 	$('#show-menu, #close-menu').on('click', function(){
-		$('#menu').toggleClass('shown');
+		if ($('#menu').hasClass('shown')) {
+			$('body').addClass('menu-opened');
+			$('#menu').addClass('shown');
+		} else {
+			$('body').removeClass('menu-opened');
+			$('#menu').removeClass('shown');			
+		}
 	});
 
 
@@ -422,15 +428,28 @@ $( document ).ready(function() {
 			zoomControl: false,
 			attributionControl: false,
 		});
-		map.scrollWheelZoom.disable();
-		map.fitBounds(mapBounds);
+		
+        map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+        if (map.tap) map.tap.disable();
+        
 
+        var zoom = ($(window).width() >= 700) ? 4 : 3;
+		map.setView([ -20, -63 ], zoom)
+
+		/*
+		map.fitBounds(L.latLngBounds(mapBounds).getCenter());
 		if ($(window).width() >= 700) {
 			var bounds = map.getBounds();
 			var mapWidth = bounds.getEast() - bounds.getWest();
 			var center = map.getCenter();
 			map.panTo([center.lat, center.lng + mapWidth/4], {animate: false})			
 		}
+		*/
 
 	}
 
