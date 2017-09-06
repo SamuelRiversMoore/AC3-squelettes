@@ -439,7 +439,7 @@ $( document ).ready(function() {
         
 
         var zoom = ($(window).width() >= 700) ? 4 : 3;
-		map.setView([ -20, -63 ], zoom)
+		map.setView([ -20, -60 ], zoom)
 
 		/*
 		map.fitBounds(L.latLngBounds(mapBounds).getCenter());
