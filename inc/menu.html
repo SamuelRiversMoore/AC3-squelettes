@@ -34,17 +34,23 @@
 		</BOUCLE_menu>
 	</ul>
 
-	<ul id="menu-footer">
-		<B_auteur>
+	<div id="menu-footer">
+		<ul>
+			<B_auteur>
 			<BOUCLE_auteur (AUTEURS) {tout} {id_auteur=#SESSION{id_auteur}}>
 				<li>#NOM</li>
 				<li><a href="[(#URL_PAGE{compte}|parametre_lang)]"><:lped:mon_compte:></a></li>
 				<li><a href="#URL_LOGOUT"><:lped:se_deconnecter:></a></li>
 			</BOUCLE_auteur>
-		</B_auteur>
-		<li><a href="[(#URL_PAGE{connexion}|parametre_url{redirect,#SELF})]">Connexion</a></li>
+			</B_auteur>
+			<li><a href="[(#URL_PAGE{connexion}|parametre_url{redirect,#SELF})]">Connexion</a></li>
+		</ul>
 		<//B_auteur>
-	</ul>
+		<a class="external-link" href="http://mc3.lped.fr"></a>	
+
+	</div>
+
+
 
 </div>
 [(#AUTORISER{creer,pay}|oui)

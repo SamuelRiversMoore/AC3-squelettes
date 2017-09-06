@@ -428,6 +428,7 @@ $( document ).ready(function() {
 			zoomControl: false,
 			attributionControl: false,
 		});
+		
         map.dragging.disable();
         map.touchZoom.disable();
         map.doubleClickZoom.disable();
@@ -435,15 +436,20 @@ $( document ).ready(function() {
         map.boxZoom.disable();
         map.keyboard.disable();
         if (map.tap) map.tap.disable();
+        
 
-		map.fitBounds(mapBounds);
+        var zoom = ($(window).width() >= 700) ? 4 : 3;
+		map.setView([ -20, -63 ], zoom)
 
+		/*
+		map.fitBounds(L.latLngBounds(mapBounds).getCenter());
 		if ($(window).width() >= 700) {
 			var bounds = map.getBounds();
 			var mapWidth = bounds.getEast() - bounds.getWest();
 			var center = map.getCenter();
 			map.panTo([center.lat, center.lng + mapWidth/4], {animate: false})			
 		}
+		*/
 
 	}
 
