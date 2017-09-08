@@ -16,7 +16,7 @@
 	<BOUCLE_journal (ARTICLES) {id_rubrique=8} {par statut, date} {inverse} {statut IN #GET{statut}}>
 		[(#AUTORISER{voir,article,#ID_ARTICLE}|oui)
 			<article class="extrait">
-				<INCLURE{fond=inc/pages/journal/apercu, env, id_article} />
+				<INCLURE{fond=inc/pages/journal/apercu, env, id_article, lang=#ENV{lang}} />
 			</article>
 		]
 	</BOUCLE_journal>

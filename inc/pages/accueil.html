@@ -1,6 +1,6 @@
 <BOUCLE_presentation (ARTICLES){id_article=1}>
-	[(#ENV{lang}|=={es}|oui) #SET{introduction, #TEXTE } ] 
-	[(#ENV{lang}|=={en}|oui) #SET{introduction, #TEXTE_EN } ] 	
+	[(#ENV{lang}|=={es}|oui) #SET{introduction, #TEXTE } ]
+	[(#ENV{lang}|=={en}|oui) #SET{introduction, #TEXTE_EN } ]
 </BOUCLE_presentation>
 
 
@@ -13,7 +13,7 @@
 	<div class="wrapper col-wrap">
 		<section class="journal col60">
 			<h5>— <:lped:derniers_articles:></h5>
-			<INCLURE{fond=inc/pages/journal/journal, accueil=oui} />
+			<INCLURE{fond=inc/pages/journal/journal, accueil=oui, env} />
 		</section>
 		<div class="col40">
 			<div id="presentation-large" class="medium strong large-screen">
@@ -22,7 +22,7 @@
 			<div class="col-wrap">
 				<section class="nouvelles col60">
 					<h5>— <:lped:dernieres_nouvelles:></h5>
-					<INCLURE{fond=inc/pages/journal/nouvelles, accueil=oui} />
+					<INCLURE{fond=inc/pages/journal/nouvelles, accueil=oui, env} />
 				</section>
 				<section class="mises-a-jour col40">
 					<h5>— <:lped:dernieres_maj:></h5>
